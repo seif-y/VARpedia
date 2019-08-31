@@ -44,14 +44,14 @@ public class Wikit {
     	_articleSentences = _article.split("(?<=[^ ]\\.) (?=[^a-z])");
     	
     	_article = "";
-    	for (String line : _articleSentences) {
-    		_article += line + "\n\n";
+    	for (int i = 0; i < _articleSentences.length; i++) {
+    		_article += "(" + (i+1) + ") " + _articleSentences[i] + "\n\n";
     	}
-    	_article = _article.substring(1, _article.length() - 1);
+    	_article = _article.substring(0, _article.length() - 1);
     }
  
     
-    public String getArticle() {
+    public String getFormattedArticle() {
     	return _article;
     }
     

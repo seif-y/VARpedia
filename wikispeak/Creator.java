@@ -60,9 +60,9 @@ public class Creator {
     
     public void cleanup(String videoName, String audioName) {
     	try {
-    		Process deleteAudio = Bash.execute("./creations", "rm " + videoName);
+    		Process deleteAudio = Bash.execute("./creations", "rm " + videoName + ".mp4");
     		deleteAudio.waitFor();
-        	Process deleteVideo = Bash.execute("./creations", "rm " + audioName);
+        	Process deleteVideo = Bash.execute("./creations", "rm " + audioName + ".wav");
         	deleteVideo.waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();

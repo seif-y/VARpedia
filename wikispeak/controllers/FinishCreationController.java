@@ -32,8 +32,9 @@ public class FinishCreationController {
         errorMsg.setVisible(false);
         progressBar.setVisible(false);
         //TODO: set text for wikitText to search result (formatted)
-        wikitText.setText(Wikit.get().getArticle());
+        wikitText.setText(Wikit.get().getFormattedArticle());
         //TODO: set max value for slider to number of sentences in creation
+        slider.setMin(1);
         slider.setMax(Wikit.get().getNumSentences());
     }
 

@@ -66,23 +66,17 @@ public class FinishCreationController {
         	String creationName = nameField.getText();
 
             Platform.runLater(() -> { updateBarAndMessage(0.1, "Generating audio..."); });
-            //TODO: generate audio
             String article = Wikit.get().getArticle((int) slider.getValue());
-            System.out.println(article);
             Creator.get().makeAudio(article, audio);
-            System.out.println("finished audio method");
 
             Platform.runLater(() -> { updateBarAndMessage(0.4, "Generating video..."); });
-            //TODO: generate video
             Creator.get().makeVideo(Wikit.get().getTerm(), video);
 
             Platform.runLater(() -> { updateBarAndMessage(0.7, "Combining audio with video..."); });
-            //TODO: combine audio and video
             Creator.get().combine(video, audio, creationName);
 
             Platform.runLater(() -> { updateBarAndMessage(1, "Creation complete! Redirecting to creations page..."); });
-
-            //TODO: save creation onto combyooter (have to consider where creations folder will be)
+            Creator.get().cleanup(video, audio);
 
             return null;
 

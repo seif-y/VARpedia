@@ -9,8 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import wikispeak.Bash;
+import wikispeak.Wikit;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class NewCreationsController {
 
@@ -38,7 +42,7 @@ public class NewCreationsController {
         } else {
             searchingGif.setVisible(true);
 
-            Thread searchThread = new Thread(wikitSearch);
+            Thread searchThread = new Thread(new WikitSearch<Void>());
             searchThread.start();
         }
     }
@@ -57,20 +61,66 @@ public class NewCreationsController {
 
     }
 
-    private Task<Void> wikitSearch = new Task<Void>() {
+    private class WikitSearch<Void> extends Task<Void> {
 
+    	private boolean successful;
+    	private String wikitOut;
+    	private String message;
+    	
         @Override
         protected Void call() throws Exception {
-            //TODO: Search term on wikit
-            Thread.sleep(3000);
-            return null;
+           
+//        	String searchTerm = searchField.getText();
+//            
+//        	Process process = Bash.execute("wikit", searchTerm);
+//            
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//            String output = "";
+//            String line = "";
+//            while ((line = reader.readLine()) != null) { output += line + "\n"; }
+//            int exitCode = process.waitFor();
+//            
+//            successful = true;
+//            if (exitCode != 0) {
+//            	successful = false;
+//            	message = "An error occured with wikit";
+//            } else if (output.contains(" not found :^(")) {
+//            	successful = false;
+//            	message = output;
+//            }
+//            return null;
+        	
+        	String output = Wikit.getInstance().search(searchField.getText());
+        	
+        	if (output.equals("")) {
+        		message = "There was an error with wikit :L";
+        		successful = false;
+        	} else if (output.contains("not found :^(")) {
+        		message = output;
+        		successful = false;
+        	} else {
+        		wikitOut = output;
+        		successful = true;
+        	}
+        	
+        	return null;
+        	
         }
 
         @Override
         protected void done() {
-            Platform.runLater(() -> {
-                loadFinishCreationsPage();
-            });
+            
+        	if (successful) {
+        		Platform.runLater(() -> {
+        			Wikit.getInstance().setArticle(wikitOut);
+        			loadFinishCreationsPage();
+        		});
+        	} else {
+        		Platform.runLater(() -> {
+        			errorMsg.setText(message);
+        			searchingGif.setVisible(false);
+        		});
+        	}
         }
-    };
+    }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import wikispeak.Wikit;
 
 public class FinishCreationController {
 
@@ -30,7 +31,9 @@ public class FinishCreationController {
         errorMsg.setVisible(false);
         progressBar.setVisible(false);
         //TODO: set text for wikitText to search result (formatted)
+        wikitText.setText(Wikit.getInstance().getArticle());
         //TODO: set max value for slider to number of sentences in creation
+        slider.setMax(Wikit.getInstance().getNumSentences());
     }
 
     private void updateBarAndMessage(double progress, String message) {

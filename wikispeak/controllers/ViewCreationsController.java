@@ -17,7 +17,7 @@ public class ViewCreationsController {
 
 
     @FXML
-    private ListView creationList;
+    private ListView<String> creationList;
 
     @FXML
     private Text creationDisplay;
@@ -41,9 +41,12 @@ public class ViewCreationsController {
         if (!_creationSelected) { _creationSelected = true; }
 
 
-        String creationName = creationList.getSelectionModel().getSelectedItem().toString();
+        try {
+        	String creationName = creationList.getSelectionModel().getSelectedItem().toString();
+        	creationDisplay.setText(creationName);
+        } catch (NullPointerException e) {}
 
-        creationDisplay.setText(creationName);
+        
     }
 
     @FXML

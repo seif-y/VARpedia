@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
+   <children>
+      <Slider fx:id="slider" layoutX="34.0" layoutY="251.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="23.0" prefWidth="531.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Text layoutX="162.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How many sentences?" textAlignment="CENTER" wrappingWidth="275.0000009536743" />
+      <TextField fx:id="nameField" layoutX="155.0" layoutY="300.0" prefHeight="31.0" prefWidth="191.0" promptText="Enter name here" />
+      <Button layoutX="345.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="31.0" prefWidth="97.0" text="Create" />
+      <ProgressBar fx:id="progressBar" layoutX="155.0" layoutY="368.0" prefHeight="11.0" prefWidth="291.0" progress="0.0" />
+      <TextArea fx:id="wikitText" layoutX="34.0" layoutY="13.0" prefHeight="211.0" prefWidth="531.0" />
+      <Text fx:id="errorMsg" layoutX="112.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="374.6708984375" />
+   </children>
+</AnchorPane>

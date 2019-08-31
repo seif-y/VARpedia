@@ -8,6 +8,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import wikispeak.Creator;
 import wikispeak.Wikit;
 
 public class FinishCreationController {
@@ -31,9 +32,9 @@ public class FinishCreationController {
         errorMsg.setVisible(false);
         progressBar.setVisible(false);
         //TODO: set text for wikitText to search result (formatted)
-        wikitText.setText(Wikit.getInstance().getArticle());
+        wikitText.setText(Wikit.get().getArticle());
         //TODO: set max value for slider to number of sentences in creation
-        slider.setMax(Wikit.getInstance().getNumSentences());
+        slider.setMax(Wikit.get().getNumSentences());
     }
 
     private void updateBarAndMessage(double progress, String message) {
@@ -59,18 +60,25 @@ public class FinishCreationController {
 
         @Override
         protected Void call() throws Exception {
+        	
+        	String audio = "audioTemp";
+        	String video = "videoTemp";
+        	String creationName = nameField.getText();
 
             Platform.runLater(() -> { updateBarAndMessage(0.1, "Generating audio..."); });
             //TODO: generate audio
-            Thread.sleep(1000);
+            String article = Wikit.get().getArticle((int) slider.getValue());
+            System.out.println(article);
+            Creator.get().makeAudio(article, audio);
+            System.out.println("finished audio method");
 
             Platform.runLater(() -> { updateBarAndMessage(0.4, "Generating video..."); });
             //TODO: generate video
-            Thread.sleep(1000);
+            Creator.get().makeVideo(Wikit.get().getTerm(), video);
 
             Platform.runLater(() -> { updateBarAndMessage(0.7, "Combining audio with video..."); });
             //TODO: combine audio and video
-            Thread.sleep(1000);
+            Creator.get().combine(video, audio, creationName);
 
             Platform.runLater(() -> { updateBarAndMessage(1, "Creation complete! Redirecting to creations page..."); });
 

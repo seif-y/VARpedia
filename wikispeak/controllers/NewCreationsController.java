@@ -90,7 +90,7 @@ public class NewCreationsController {
 //            }
 //            return null;
         	
-        	String output = Wikit.getInstance().search(searchField.getText());
+        	String output = Wikit.get().search(searchField.getText());
         	
         	if (output.equals("")) {
         		message = "There was an error with wikit :L";
@@ -112,7 +112,7 @@ public class NewCreationsController {
             
         	if (successful) {
         		Platform.runLater(() -> {
-        			Wikit.getInstance().setArticle(wikitOut);
+        			Wikit.get().setArticle(wikitOut);
         			loadFinishCreationsPage();
         		});
         	} else {

@@ -21,5 +21,21 @@ public class WikiSpeakApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    	
+    	/*
+    	try {
+			Wikit.get().setArticle(Wikit.get().search("apple"));
+			String article = Wikit.get().getArticle(3);
+			
+			Creator.get().makeAudio(article, "audio");
+			Creator.get().makeVideo("apple", "video");
+			Creator.get().combine("video", "audio", "yes");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
     }
 }

@@ -31,7 +31,8 @@ public class ViewCreationsController {
         _creationSelected = false;
         _currentCreation = null;
         
-        String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
+        //String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
+        String[] creations = { "fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you" };
         for (String creation : creations) {
         	creationList.getItems().add(creation.substring(0, creation.length() - 4));
         }

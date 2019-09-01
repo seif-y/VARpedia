@@ -56,7 +56,7 @@ public class NewCreationsController {
             newCreationPage.getChildren().add(finishCreationPage);
 
         } catch (IOException e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
 
     }

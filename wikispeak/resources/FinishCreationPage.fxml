@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
+<AnchorPane fx:id="finishCreationPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
       <Slider fx:id="slider" layoutX="34.0" layoutY="251.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="23.0" prefWidth="531.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Text layoutX="162.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How many sentences?" textAlignment="CENTER" wrappingWidth="275.0000009536743" />

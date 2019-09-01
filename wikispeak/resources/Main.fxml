@@ -8,7 +8,7 @@
    <children>
       <ToolBar prefWidth="600.0">
         <items>
-          <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="31.0" prefWidth="120.0" text="Home" />
+          <Button mnemonicParsing="false" onAction="#handleHomeButton" prefWidth="120.0" text="Home" />
             <Button mnemonicParsing="false" onAction="#handleNewCreation" prefWidth="120.0" text="New Creation" />
             <Button mnemonicParsing="false" onAction="#handleViewCreations" prefWidth="120.0" text="Your Creations" />
             <Button mnemonicParsing="false" onAction="#handleQuit" prefWidth="120.0" text="Quit" />

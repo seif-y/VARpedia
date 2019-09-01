@@ -47,7 +47,6 @@ public class MainController {
         Alert quitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         quitAlert.setTitle("Exit WikiSpeak");
         quitAlert.setHeaderText("Are you sure you want to quit?");
-        quitAlert.setContentText("Nothing really happens when you quit, but I'll miss you :(");
         quitAlert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 Platform.exit();

@@ -31,8 +31,8 @@ public class ViewCreationsController {
         _creationSelected = false;
         _currentCreation = null;
         
-        //String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
-        String[] creations = { "fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you","fuck you" };
+        String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
+        
         for (String creation : creations) {
         	creationList.getItems().add(creation.substring(0, creation.length() - 4));
         }
@@ -55,7 +55,7 @@ public class ViewCreationsController {
     private void handleDelete() {
         if (_creationSelected) {
             String creationName = creationDisplay.getText();
-            Alert delAlert = new Alert(Alert.AlertType.WARNING);
+            Alert delAlert = new Alert(Alert.AlertType.CONFIRMATION);
             delAlert.setTitle("Delete Creation");
             delAlert.setHeaderText("Are you sure?");
             delAlert.setContentText("You are about to delete " + creationName);

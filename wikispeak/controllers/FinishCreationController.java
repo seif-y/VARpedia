@@ -1,12 +1,19 @@
 package wikispeak.controllers;
 
+import java.io.File;
+import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import wikispeak.Creator;
 import wikispeak.Wikit;
@@ -14,7 +21,9 @@ import wikispeak.Wikit;
 public class FinishCreationController {
 
     private int _numSentences = 10;
-
+    
+    @FXML
+    private AnchorPane finishCreationPage;
     @FXML
     private TextArea wikitText;
     @FXML
@@ -31,9 +40,9 @@ public class FinishCreationController {
 
         errorMsg.setVisible(false);
         progressBar.setVisible(false);
-        //TODO: set text for wikitText to search result (formatted)
+        
         wikitText.setText(Wikit.get().getFormattedArticle());
-        //TODO: set max value for slider to number of sentences in creation
+        
         slider.setMin(1);
         slider.setMax(Wikit.get().getNumSentences());
     }
@@ -50,11 +59,33 @@ public class FinishCreationController {
             errorMsg.setText("Please enter a valid name for your creation");
             errorMsg.setVisible(true);
         } else {
-            progressBar.setVisible(true);
+        	
+            /*progressBar.setVisible(true);
             errorMsg.setVisible(true);
             Thread creatorThread = new Thread(create);
-            creatorThread.start();
+            creatorThread.start();*/
+        	
+        	if (!(new File("./creations/" + creationName + ".mp4").exists())) {
+        		makeNewCreation();
+        	} else {
+        		Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                saveAlert.setTitle("Creation Overwrite Warning");
+                saveAlert.setHeaderText(creationName + " already exists!");
+                saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
+                saveAlert.showAndWait().ifPresent(response -> {
+                	if (response == ButtonType.OK) {
+                    	makeNewCreation();
+                	}
+                });
+        	}
         }
+    }
+    
+    private void makeNewCreation() {
+    	progressBar.setVisible(true);
+        errorMsg.setVisible(true);
+        Thread creatorThread = new Thread(create);
+        creatorThread.start();
     }
 
     private Task<Void> create = new Task<Void>() {
@@ -85,7 +116,18 @@ public class FinishCreationController {
 
         @Override
         protected void done() {
-            //TODO: load "view creations" or "home" page
+            Platform.runLater(() -> {
+            	FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(this.getClass().getResource("/wikispeak/resources/CreationsPage.fxml"));
+                try {
+                    AnchorPane viewCreationPage = loader.load();
+                    finishCreationPage.getChildren().clear();
+                    finishCreationPage.getChildren().add(viewCreationPage);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }); 
         }
     };
 }

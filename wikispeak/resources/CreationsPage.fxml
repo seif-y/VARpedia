@@ -8,13 +8,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
    <children>
-      <Text fx:id="creationDisplay" layoutX="71.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="455.00001311302185">
+      <Text fx:id="creationDisplay" layoutX="50.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="500.0">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Button layoutX="224.0" layoutY="347.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="31.0" prefWidth="63.0" text="Play" />
-      <Button layoutX="310.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleDelete" text="Delete" />
-      <ListView fx:id="creationList" layoutX="73.0" layoutY="29.0" onMouseClicked="#handleSelectCreation" prefHeight="261.0" prefWidth="455.0" />
+      <Button layoutX="210.0" layoutY="347.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="75.0" text="Play" />
+      <Button layoutX="315.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="75.0" text="Delete" />
+      <ListView fx:id="creationList" layoutX="70.0" layoutY="29.0" onMouseClicked="#handleSelectCreation" prefHeight="261.0" prefWidth="460.0" />
    </children>
 </AnchorPane>

@@ -25,7 +25,7 @@ public class MainController {
             AnchorPane page = loader.load();
             display.getChildren().add(page);
         } catch (IOException e) {
-            //TODO: handle this exception (maybe just exit?)
+        	e.printStackTrace();
         }
 
     }

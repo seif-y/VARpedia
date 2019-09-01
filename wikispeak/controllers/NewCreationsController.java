@@ -70,26 +70,6 @@ public class NewCreationsController {
         @Override
         protected Void call() throws Exception {
            
-//        	String searchTerm = searchField.getText();
-//            
-//        	Process process = Bash.execute("wikit", searchTerm);
-//            
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//            String output = "";
-//            String line = "";
-//            while ((line = reader.readLine()) != null) { output += line + "\n"; }
-//            int exitCode = process.waitFor();
-//            
-//            successful = true;
-//            if (exitCode != 0) {
-//            	successful = false;
-//            	message = "An error occured with wikit";
-//            } else if (output.contains(" not found :^(")) {
-//            	successful = false;
-//            	message = output;
-//            }
-//            return null;
-        	
         	String output = Wikit.get().search(searchField.getText());
         	
         	if (output.equals("")) {

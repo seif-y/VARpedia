@@ -1,8 +1,6 @@
 package wikispeak;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Wikit {
 
@@ -11,7 +9,6 @@ public class Wikit {
     private String _term;
     private String _article;
     private String[] _articleSentences;
-    private String caps = "[QWERTYUIOPASDFGHJKLZXCVBNM]";
   
     
     private Wikit() { 

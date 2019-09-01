@@ -28,6 +28,7 @@ public class Bash {
         try {
 			while ((line = reader.readLine()) != null) { output += line + "\n"; }
 			int exitCode = process.waitFor();
+			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {

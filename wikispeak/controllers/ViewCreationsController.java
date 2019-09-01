@@ -10,9 +10,6 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ViewCreationsController {
 	
     private String _currentCreation;

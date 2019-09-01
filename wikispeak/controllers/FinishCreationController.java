@@ -58,6 +58,9 @@ public class FinishCreationController {
         if (creationName == null || creationName.equals("")) {
             errorMsg.setText("Please enter a valid name for your creation");
             errorMsg.setVisible(true);
+        } else if (creationName.contains(" ")) {
+        	errorMsg.setText("Creation name cannot include a space");
+        	errorMsg.setVisible(true);
         } else {
         	
             /*progressBar.setVisible(true);

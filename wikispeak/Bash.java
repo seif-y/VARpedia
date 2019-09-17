@@ -7,6 +7,12 @@ import java.io.InputStreamReader;
 
 public class Bash {
 	
+	/**
+	 * Uses ProcessBuilder to run a specified BASH command.
+	 * @param directory The directory that the command will be run in
+	 * @param cmd The command being executed
+	 * @return The Process object returned by the ProcessBuilder's start method, or null if an exception is caught.
+	 */
 	public static Process execute(String directory, String cmd) {		
 		try {
 			ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", cmd);
@@ -19,6 +25,11 @@ public class Bash {
 		}
 	}
 	
+	/**
+	 * Reads and returns the output of a Process object, using BufferedReader
+	 * @param process The process object being read
+	 * @return A string containing the stdout for the given process
+	 */
 	public static String readOutput(Process process) {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         
@@ -27,7 +38,7 @@ public class Bash {
         
         try {
 			while ((line = reader.readLine()) != null) { output += line + "\n"; }
-			int exitCode = process.waitFor();
+			process.waitFor();
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -36,6 +47,26 @@ public class Bash {
 		}
         
         return output;
+	}
+	
+	
+	/**
+	 * Checks a string for invalid characters to input as bash commands.
+	 * @param text The string to check
+	 * @return True if it contains an invalid character, False otherwise
+	 */
+	public static boolean hasInvalidChars(String text, boolean spaceIsInvalid) {
+		String [] invalidChars = { "$", "$", "*", "|", "\\", "<", ">", "?", "/", ":", "\"", "`", "[", "]", "(", ")", "`" };
+		
+		if (spaceIsInvalid) { invalidChars[0] = " "; }
+		
+		for (String character : invalidChars) {
+    		if (text.contains(character)) {
+    			return true;
+    		}
+    	}
+		
+		return false;
 	}
 
 }

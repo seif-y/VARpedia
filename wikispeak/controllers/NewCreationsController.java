@@ -8,17 +8,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import wikispeak.Bash;
 import wikispeak.Wikit;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class NewCreationsController {
 
-    @FXML
+    
+	@FXML
     private TextField searchField;
     @FXML
     private Text errorMsg;
@@ -27,11 +25,21 @@ public class NewCreationsController {
     @FXML
     private ImageView searchingGif;
 
+    
+    
+    /**
+     * Initialize method: sets the searching animation to invisible
+     */
     @FXML
     private void initialize() {
         searchingGif.setVisible(false);
     }
 
+    
+    /**
+     * Executes when "search" button is pressed.
+     * Checks if the search term is valid and clear of invalid characters, and if it is, executes the search task in a new thread
+     */
     @FXML
     private void handleSearch() {
         String searchTerm = searchField.getText();
@@ -39,14 +47,21 @@ public class NewCreationsController {
         if (searchTerm == null || searchTerm.equals("")) {
             errorMsg.setText("Please enter a valid search term");
 
-        } else {
+        } else if (Bash.hasInvalidChars(searchTerm, false)) {
+        	errorMsg.setText("Search term contains invalid character(s)");
+        	
+        } else {        	
             searchingGif.setVisible(true);
 
             Thread searchThread = new Thread(new WikitSearch<Void>());
             searchThread.start();
         }
     }
-
+    
+    
+    /**
+     * Redirects to the "Finish Creations" page.
+     */
     private void loadFinishCreationsPage() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreationPage.fxml"));
@@ -61,13 +76,22 @@ public class NewCreationsController {
 
     }
 
-    private class WikitSearch<Void> extends Task<Void> {
+    
+    /**
+     * Subclass of Task to handle wikit search.
+     */
+    @SuppressWarnings("hiding")
+	private class WikitSearch<Void> extends Task<Void> {
 
     	private boolean successful;
     	private String wikitOut;
     	private String message;
     	
-        @Override
+    	
+    	/**
+    	 * Call method: Searches for term using wikit, and updates fields according to success of search.
+    	 */
+    	@Override
         protected Void call() throws Exception {
            
         	String output = Wikit.get().search(searchField.getText());
@@ -87,6 +111,10 @@ public class NewCreationsController {
         	
         }
 
+    	
+    	/**
+    	 * Done method:  if successful, redirects to "Finish Creations" page. Otherwise, it displays the error message.
+    	 */
         @Override
         protected void done() {
             

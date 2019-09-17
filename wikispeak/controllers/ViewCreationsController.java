@@ -1,5 +1,7 @@
 package wikispeak.controllers;
 
+import java.io.File;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -22,21 +24,38 @@ public class ViewCreationsController {
     private Text creationDisplay;
 
     
+    /**
+     * Initialize method: Makes the creations directory if it doesn't exist, then adds every creation in the directory to the list view.
+     * If the creations directory is empty, nothing is added to the list view, and a message is displayed to communicate this.
+     */
     @FXML
     private void initialize() {
 
+    	if (!(new File("./creations")).exists()) {
+    		Bash.execute(".","mkdir creations");
+    	};
+    	
         _creationSelected = false;
         _currentCreation = null;
         
         String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
         
-        for (String creation : creations) {
-        	creationList.getItems().add(creation.substring(0, creation.length() - 4));
+        try {
+        	for (String creation : creations) {
+        		creationList.getItems().add(creation.substring(0, creation.length() - 4));
+        	}
+        } catch (StringIndexOutOfBoundsException e) { 
+        	creationDisplay.setText("There are no creations to display.");
         }
+        
         creationList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
-    
 
+    
+    /**
+     * Executes when the list view is clicked on.
+     * Updates state to indicate that a creation is selected, and show which creation is selected
+     */
     @FXML
     private void handleSelectCreation() {
     	try {
@@ -48,6 +67,10 @@ public class ViewCreationsController {
     }
     
 
+    /**
+     * Executes when the delete button is pressed.
+     * If a valid creation is selected, it runs the delete task for that creation in another thread.
+     */
     @FXML
     private void handleDelete() {
         if (_creationSelected) {
@@ -65,7 +88,11 @@ public class ViewCreationsController {
         }
     }
 
-    
+
+    /**
+     * Executes when the play button is pressed.
+     * If a valid creation is selected, it runs the play task for that creation in another thread.
+     */
     @FXML
     private void handlePlay() {
         if (_creationSelected) {
@@ -75,7 +102,11 @@ public class ViewCreationsController {
     }
     
 
-    private class PlayCreation<Void> extends Task<Void> {
+    /**
+     * Subclass of Task to handle playing creations
+     */
+    @SuppressWarnings("hiding")
+	private class PlayCreation<Void> extends Task<Void> {
 
     	String _creation;
     	
@@ -83,6 +114,10 @@ public class ViewCreationsController {
     		_creation = creation;
     	}
     	
+    	
+    	/**
+    	 * Call method: Uses ffplay to play the creation in a new window
+    	 */
     	@Override
         protected Void call() throws Exception {
             Bash.execute("./creations", "ffplay -loglevel panic -autoexit " + _creation + ".mp4");
@@ -90,7 +125,12 @@ public class ViewCreationsController {
         }
     }
     
-    private class DeleteCreation<Void> extends Task<Void> {
+    
+    /**
+     * Subclass of Task to handle deleting creations
+     */
+    @SuppressWarnings("hiding")
+	private class DeleteCreation<Void> extends Task<Void> {
     	
     	String _creation;
     	
@@ -98,16 +138,26 @@ public class ViewCreationsController {
     		_creation = creation;
     	}
 
+    	
+    	/**
+    	 * Call method: Deletes the creation using rm command
+    	 */
 		@Override
 		protected Void call() throws Exception {
 			Bash.execute("./creations", "rm " + _creation + ".mp4");
 			return null;
 		}
 		
+		
+		/**
+		 * Done method: Updates creation list view and resets display message
+		 */
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
 				creationList.getItems().remove(_creation);
+				creationDisplay.setText("Select a creation");
+				_creationSelected = false;
 			});
 		}
     	

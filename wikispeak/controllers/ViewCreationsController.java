@@ -9,6 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
 
@@ -22,6 +25,8 @@ public class ViewCreationsController {
     private ListView<String> creationList;
     @FXML
     private Text creationDisplay;
+    @FXML
+    private MediaView viewer;
 
     
     /**
@@ -62,6 +67,11 @@ public class ViewCreationsController {
         	_currentCreation = creationList.getSelectionModel().getSelectedItem().toString();
         	if (!_creationSelected) { _creationSelected = true; }
         	creationDisplay.setText(_currentCreation);
+
+            File vidFile = new File("./creations" + _currentCreation + ".mp4");
+            Media video = new Media(vidFile.toURI().toString());
+            MediaPlayer player = new MediaPlayer(video);
+            viewer.setMediaPlayer(player);
         	
         } catch (NullPointerException e) {}        
     }
@@ -100,7 +110,7 @@ public class ViewCreationsController {
             playerThread.start();
         }
     }
-    
+
 
     /**
      * Subclass of Task to handle playing creations
@@ -109,18 +119,18 @@ public class ViewCreationsController {
 	private class PlayCreation<Void> extends Task<Void> {
 
     	String _creation;
-    	
+
     	private PlayCreation(String creation) {
     		_creation = creation;
     	}
-    	
-    	
+
     	/**
     	 * Call method: Uses ffplay to play the creation in a new window
     	 */
     	@Override
         protected Void call() throws Exception {
-            Bash.execute("./creations", "ffplay -loglevel panic -autoexit " + _creation + ".mp4");
+            //Bash.execute("./creations", "ffplay -loglevel panic -autoexit " + _creation + ".mp4");
+
             return null;
         }
     }

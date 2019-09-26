@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Creator {
 
-	private static Creator instance = null; 
+		private static Creator instance = null;
 	  
     private String _time;
  

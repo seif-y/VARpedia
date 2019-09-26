@@ -64,7 +64,7 @@ public class NewCreationsController {
      */
     private void loadFinishCreationsPage() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreationPage.fxml"));
+        loader.setLocation(this.getClass().getResource("/wikispeak/resources/AudioEditor.fxml"));
         try {
             AnchorPane finishCreationPage = loader.load();
             newCreationPage.getChildren().clear();

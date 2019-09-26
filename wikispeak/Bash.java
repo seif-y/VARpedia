@@ -6,6 +6,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Bash {
+
+	private static Bash instance = null;
+
+	private Bash() {
+
+	}
+
+	public Bash get() {
+		if (instance == null)
+			instance = new Bash();
+
+		return instance;
+	}
+
 	
 	/**
 	 * Uses ProcessBuilder to run a specified BASH command.

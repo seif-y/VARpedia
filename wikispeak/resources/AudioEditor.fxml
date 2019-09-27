@@ -12,7 +12,7 @@
       <Button layoutX="147.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="31.0" prefWidth="97.0" text="Save" />
       <TextArea fx:id="wikitText" layoutX="34.0" layoutY="49.0" prefHeight="295.0" prefWidth="531.0" wrapText="true" />
       <Text fx:id="errorMsg" layoutX="113.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="374.6708984375" />
-      <Button layoutX="35.0" layoutY="11.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" text="Preview" />
-      <Button fx:id="handleNext" layoutX="467.0" layoutY="353.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" text="Next" />
+      <Button layoutX="35.0" layoutY="11.0" mnemonicParsing="false" onAction="#handlePreview" prefHeight="31.0" prefWidth="97.0" text="Preview" />
+      <Button layoutX="467.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="31.0" prefWidth="97.0" text="Next" />
    </children>
 </AnchorPane>

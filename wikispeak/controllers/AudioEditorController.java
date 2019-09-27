@@ -7,11 +7,13 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
 import wikispeak.Creator;
@@ -82,17 +84,45 @@ public class AudioEditorController {
         }
     }
 
+    
+    @FXML
+    private void handlePreview() {
+    	String selection = wikitText.getSelectedText();
+    	int numWords = selection.split("\\s+").length;
+    	
+    	if (numWords > 40) {
+    		Alert wordAlert = new Alert(Alert.AlertType.ERROR);
+    		wordAlert.setTitle("Too many words!");
+    		wordAlert.setHeaderText("Your selection may contain no more than 40 words.");
+    		wordAlert.setContentText("Please select a smaller chunk of text.");
+    		wordAlert.showAndWait();
+    	} else {
+    		Bash.execute(".", "echo \"" + selection + "\" | festival --tts");
+    	}
+    }
 
+    
     @FXML
     private void handleNext() {
-        //Move on to the FinishCreations page.
+    	
+    	Pane parent = (Pane) finishCreationPage.getParent();
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
+        try {
+            AnchorPane viewCreationPage = loader.load();
+            parent.getChildren().clear();
+            parent.getChildren().add(viewCreationPage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /**
      * Method to run the new creation task in a new thread
      */
     private void generateAudio() {
-        Thread creatorThread = new Thread(create);
+        Thread creatorThread = new Thread(new GenerateAudio());
         creatorThread.start();
     }
 
@@ -100,7 +130,7 @@ public class AudioEditorController {
     /**
      * Subclass of Task to handle making a new creation.
      */
-    private Task<Void> create = new Task<Void>() {
+    private class GenerateAudio extends Task<Void> {
 
     	/**
     	 * Call method: Creates temp audio and video files and combines them, then deletes the temp files, using Creator class.
@@ -132,12 +162,13 @@ public class AudioEditorController {
         @Override
         protected void done() {
             Platform.runLater(() -> {
+            	Pane parent = (Pane) finishCreationPage.getParent();
             	FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(this.getClass().getResource("/wikispeak/resources/CreationsPage.fxml"));
                 try {
                     AnchorPane viewCreationPage = loader.load();
-                    finishCreationPage.getChildren().clear();
-                    finishCreationPage.getChildren().add(viewCreationPage);
+                    parent.getChildren().clear();
+                    parent.getChildren().add(viewCreationPage);
 
                 } catch (IOException e) {
                     e.printStackTrace();

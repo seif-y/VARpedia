@@ -81,7 +81,12 @@ public class AudioEditorController {
             });
         }
     }
-    
+
+
+    @FXML
+    private void handleNext() {
+        //Move on to the FinishCreations page.
+    }
     
     /**
      * Method to run the new creation task in a new thread

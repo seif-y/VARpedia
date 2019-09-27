@@ -28,9 +28,7 @@ public class ViewCreationsController {
     private Text creationDisplay;
     @FXML
     private MediaView viewer;
-    private File dirname = new File("./creations/man.mp4");
-    private Media vid = new Media(dirname.toURI().toString());
-    private MediaPlayer player = new MediaPlayer(vid);
+    private MediaPlayer player;
     
 
     
@@ -40,8 +38,6 @@ public class ViewCreationsController {
      */
     @FXML
     private void initialize() {
-
-    	viewer.setMediaPlayer(player);
     	
     	if (!(new File("./creations")).exists()) {
     		Bash.execute(".","mkdir creations");

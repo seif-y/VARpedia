@@ -56,7 +56,7 @@ public class Wikit {
     	
     	_article = "";
     	for (int i = 0; i < _articleSentences.length; i++) {
-    		_article += "(" + (i+1) + ") " + _articleSentences[i] + "\n\n";
+    		_article += _articleSentences[i] + "\n\n";
     	}
     	_article = _article.substring(0, _article.length() - 1);
     }

@@ -18,9 +18,6 @@
       <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="75.0" text="Play" />
       <Button layoutX="489.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="75.0" text="Delete" />
       <ListView fx:id="creationList" layoutX="32.0" layoutY="80.0" onMouseClicked="#handleSelectCreation" prefHeight="291.0" prefWidth="190.0" />
-      <MediaView fx:id="player" fitHeight="240.0" fitWidth="320.0" layoutX="244.0" layoutY="80.0">
-         <viewport>
-            <Rectangle2D height="240.0" minX="320.0" minY="240.0" width="320.0" />
-         </viewport></MediaView>
+      <MediaView fx:id="viewer" fitHeight="240.0" fitWidth="320.0" layoutX="244.0" layoutY="80.0" />
    </children>
 </AnchorPane>

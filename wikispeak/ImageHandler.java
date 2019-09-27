@@ -11,16 +11,26 @@ import com.flickr4java.flickr.*;
 import com.flickr4java.flickr.photos.*;
 
 public class ImageHandler {
-
-    public static String getAPIKey(String key) throws Exception {
-        // TODO fix the following based on where you will have your config file stored
-
+	
+	private static ImageHandler instance;
+    
+    private ImageHandler() {
+    	
+    }
+    
+    public ImageHandler get() {
+    	if (instance == null) {
+    		instance = new ImageHandler();
+    	}
+    	return instance;
+    }
+		
+	
+	private String getAPIKey(String key) throws Exception {
+    	
         String config = System.getProperty("user.dir")
                 + System.getProperty("file.separator")+ "flickr-api-keys.txt";
 
-//		String config = System.getProperty("user.home")
-//				+ System.getProperty("file.separator")+ "bin"
-//				+ System.getProperty("file.separator")+ "flickr-api-keys.txt";
         File file = new File(config);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -35,7 +45,13 @@ public class ImageHandler {
         throw new RuntimeException("Couldn't find " + key +" in config file "+file.getName());
     }
 
-    public static void main(String[] args) {
+    
+    /**
+     * Call Flickr API to get images relating to searchterm, and save them to the creations folder
+     * @param searchTerm The term we want to get photos for
+     * @param N The number of images we want to retrieve. Must be less than 11
+     */
+    public void saveImages(String searchTerm, int N) {
         try {
             String apiKey = getAPIKey("apiKey");
             String sharedSecret = getAPIKey("sharedSecret");
@@ -59,7 +75,7 @@ public class ImageHandler {
                 try {
                     BufferedImage image = photos.getImage(photo,Size.LARGE);
                     String filename = query.trim().replace(' ', '-')+"-"+System.currentTimeMillis()+"-"+photo.getId()+".jpg";
-                    File outputfile = new File("downloads",filename);
+                    File outputfile = new File("./creations",filename);
                     ImageIO.write(image, "jpg", outputfile);
                     System.out.println("Downloaded "+filename);
                 } catch (FlickrException fe) {

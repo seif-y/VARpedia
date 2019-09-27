@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
 import wikispeak.Creator;
+import wikispeak.ImageHandler;
 import wikispeak.Wikit;
 
 public class AudioEditorController {
@@ -105,21 +106,24 @@ public class AudioEditorController {
     @FXML
     private void handleNext() {
     	
-    	Pane parent = (Pane) finishCreationPage.getParent();
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
-        try {
-            AnchorPane viewCreationPage = loader.load();
-            parent.getChildren().clear();
-            parent.getChildren().add(viewCreationPage);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	retrieveImages();
+    	
+//    	Pane parent = (Pane) finishCreationPage.getParent();
+//    	FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
+//        try {
+//            AnchorPane viewCreationPage = loader.load();
+//            parent.getChildren().clear();
+//            parent.getChildren().add(viewCreationPage);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
+ 
     
     /**
-     * Method to run the new creation task in a new thread
+     * Method to generate the audio in a new thread
      */
     private void generateAudio() {
         Thread creatorThread = new Thread(new GenerateAudio());
@@ -128,29 +132,29 @@ public class AudioEditorController {
 
     
     /**
+     * Method to retrieve images in a new thread
+     */
+    private void retrieveImages() {
+    	Thread imageThread = new Thread(new CallFlickr());
+    	imageThread.start();
+    }
+    
+    /**
      * Subclass of Task to handle making a new creation.
      */
     private class GenerateAudio extends Task<Void> {
-
+    	
     	/**
     	 * Call method: Creates temp audio and video files and combines them, then deletes the temp files, using Creator class.
     	 */
         @Override
         protected Void call() throws Exception {
         	
-        	String audio = "audioTemp";
-        	String video = "videoTemp";
-        	String creationName = nameField.getText();
-
-            String chunk = wikitText.getSelectedText();
-            Creator.get().makeAudio(chunk, audio);
-
-            Creator.get().makeVideo(Wikit.get().getTerm(), video);
-
-            Creator.get().combine(video, audio, creationName);
-
-            Creator.get().cleanup(video, audio);
-
+        	String name = nameField.getText();
+            String selection = wikitText.getSelectedText();
+            
+            Creator.get().makeAudio(selection, name);
+            
             return null;
 
         }
@@ -161,19 +165,42 @@ public class AudioEditorController {
          */
         @Override
         protected void done() {
-            Platform.runLater(() -> {
-            	Pane parent = (Pane) finishCreationPage.getParent();
-            	FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(this.getClass().getResource("/wikispeak/resources/CreationsPage.fxml"));
-                try {
-                    AnchorPane viewCreationPage = loader.load();
-                    parent.getChildren().clear();
-                    parent.getChildren().add(viewCreationPage);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }); 
+            errorMsg.setText(nameField.getText() + " has been saved.");
+            errorMsg.setVisible(true);
         }
-    };
+    }
+    
+    
+    /**
+     * Task subclass to handle calls to Flickr API
+     */
+    private class CallFlickr extends Task<Void> {
+
+		@Override
+		protected Void call() throws Exception {
+			
+			String searchTerm = Wikit.get().getTerm();
+			ImageHandler.get().saveImages(searchTerm, 10);
+			
+			return null;
+		}
+		
+		@Override
+		protected void done() {
+			Platform.runLater(() -> {
+				Pane parent = (Pane) finishCreationPage.getParent();
+		    	FXMLLoader loader = new FXMLLoader();
+		        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
+		        try {
+		            AnchorPane viewCreationPage = loader.load();
+		            parent.getChildren().clear();
+		            parent.getChildren().add(viewCreationPage);
+
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+			});
+		}
+    	
+    }
 }

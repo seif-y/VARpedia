@@ -70,7 +70,7 @@ public class Bash {
 	 * @return True if it contains an invalid character, False otherwise
 	 */
 	public static boolean hasInvalidChars(String text, boolean spaceIsInvalid) {
-		String [] invalidChars = { "$", "$", "*", "|", "\\", "<", ">", "?", "/", ":", "\"", "`", "[", "]", "(", ")", "`" };
+		String [] invalidChars = { "$", "$", ".", "*", "|", "\\", "<", ">", "?", "/", ":", "\"", "`", "[", "]", "(", ")", "`" };
 		
 		if (spaceIsInvalid) { invalidChars[0] = " "; }
 		

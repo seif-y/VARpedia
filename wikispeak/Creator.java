@@ -43,7 +43,7 @@ public class Creator {
      */
     public void makeAudio(String text, String fileName) {
     	try {
-			Process generateAudio = Bash.execute("./creations", "echo \"" + text + "\" | text2wave -o " + fileName + ".wav");
+			Process generateAudio = Bash.execute("./creations", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav");
 			generateAudio.waitFor();
 			_time = Bash.readOutput(Bash.execute("./creations", "soxi -D " + fileName + ".wav"));
 			_time = _time.substring(0, _time.length() - 1);

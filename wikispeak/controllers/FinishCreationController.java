@@ -1,8 +1,13 @@
 package wikispeak.controllers;
 
-import javafx.fxml.FXML;
+import java.io.File;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import wikispeak.Bash;
 
@@ -16,16 +21,24 @@ public class FinishCreationController {
     
     @FXML
     private void initialize() {
-    	String[] audioFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.wav")).split("\n");
+    	String[] audioFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.wav 2> /dev/null")).split("\n");
     	for (String fileName : audioFiles) {
-    		audioList.getItems().add(fileName.substring(0, fileName.length() - 4));
+    		audioList.getItems().add(fileName.substring(1, fileName.length() - 4));
     	}
     	
-    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.jpg")).split("\n");
-    	for (String fileName : imageFiles) {
-    		imageList.getItems().add(new ImageView("./creations/" + fileName));
+    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations", "ls *.jpg 2> /dev/null")).split("\n");
+    	ObservableList<ImageView> images = FXCollections.observableArrayList();
+    	for (String imageFile : imageFiles) {
+    		File file = new File("./creations", imageFile);
+    		if (file.exists()) {
+    			Image image = new Image(file.toURI().toString());
+    			ImageView imageview = new ImageView(image);
+    			imageview.setPreserveRatio(true);
+    			imageview.setFitWidth(180);
+    			images.add(imageview);
+    		}
     	}
-    	
+    	imageList.setItems(images);    	
     }
 
     @FXML

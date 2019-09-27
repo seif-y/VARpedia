@@ -14,14 +14,12 @@ public class ImageHandler {
 	
 	private static ImageHandler instance;
     
-    private ImageHandler() {
-    	
-    }
+    private ImageHandler() {}
     
-    public ImageHandler get() {
-    	if (instance == null) {
+    public static ImageHandler get() {
+    	if (instance == null)
     		instance = new ImageHandler();
-    	}
+    	
     	return instance;
     }
 		
@@ -51,25 +49,19 @@ public class ImageHandler {
      * @param searchTerm The term we want to get photos for
      * @param N The number of images we want to retrieve. Must be less than 11
      */
-    public void saveImages(String searchTerm, int N) {
+    public void saveImages(String query, int N) {
         try {
             String apiKey = getAPIKey("apiKey");
             String sharedSecret = getAPIKey("sharedSecret");
 
             Flickr flickr = new Flickr(apiKey, sharedSecret, new REST());
-
-            String query = "bicycle";
-            int resultsPerPage = 5;
-            int page = 0;
-
             PhotosInterface photos = flickr.getPhotosInterface();
             SearchParameters params = new SearchParameters();
             params.setSort(SearchParameters.RELEVANCE);
             params.setMedia("photos");
             params.setText(query);
 
-            PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
-            System.out.println("Retrieving " + results.size()+ " results");
+            PhotoList<Photo> results = photos.search(params, N, 0);
 
             for (Photo photo: results) {
                 try {
@@ -77,15 +69,13 @@ public class ImageHandler {
                     String filename = query.trim().replace(' ', '-')+"-"+System.currentTimeMillis()+"-"+photo.getId()+".jpg";
                     File outputfile = new File("./creations",filename);
                     ImageIO.write(image, "jpg", outputfile);
-                    System.out.println("Downloaded "+filename);
                 } catch (FlickrException fe) {
-                    System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
+                    //System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
+                	fe.printStackTrace();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("\nDone");
     }
 }

@@ -57,10 +57,13 @@ public class Creator {
      * Return a string that contains the length of an audio file.
      * @param fileName The audio file that we are getting the time for.
      * @return The time of the given audio file
+     * @throws InterruptedException 
      */
     public String getTimeOfAudio(String fileName) {
-    	String time = Bash.readOutput(Bash.execute("./creations", "soxi -D " + fileName + ".wav"));
-		return time.substring(0, time.length() - 1);
+    	Process soxi = Bash.execute("./creations", "soxi -D " + fileName);
+    	String time = Bash.readOutput(soxi);
+		
+		return time;
     }
     
     
@@ -70,7 +73,12 @@ public class Creator {
      * @param combinedFileName
      */
     public void combineAudio(List<String> audioFiles, String combinedFileName) {
-    	Bash.execute("./creations", "sox " + audioFiles.toString() + " " + combinedFileName);
+    	String list = "";
+    	for (String file : audioFiles) {
+    		list += file + " ";
+    	}
+    	System.out.println(list);
+    	Bash.execute("./creations", "sox " + list + combinedFileName);
     }
     
     
@@ -81,6 +89,10 @@ public class Creator {
      */
     public void makeSlideshow(List<String> imageFiles, String videoName, String time) {
     	
+    	String list = "";
+    	for (String file : imageFiles) {
+    		list += file + " ";
+    	}
     	String framerate = imageFiles.size() + "/" + time;
     	// cat *.jpg | ffmpeg 
     	// -framerate $FRAMERATE 
@@ -88,7 +100,7 @@ public class Creator {
     	String vfSettings = "scale=iw*min(1920/iw\\,1080/ih):ih*min(1920/iw\\,1080/ih), pad=1920:1080:(1920-iw*min(1920/iw\\,1080/ih))/2:(1080-ih*min(1920/iw\\,1080/ih))/2,format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:shadowx=2:x=(w-text_w)/2:y=(h-text_h)/2:text='" + Wikit.get().getTerm() + "'";
     	// -r 25 $VIDEONAME.mp4
     	
-    	Bash.execute("./creations", "cat " + imageFiles.toString() + " | ffmpeg -framerate " + framerate + "-f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName);
+    	Bash.execute("./creations", "cat " + list + "| ffmpeg -framerate " + framerate + "-f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName);
 
     }
     

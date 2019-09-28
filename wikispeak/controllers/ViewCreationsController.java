@@ -14,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import wikispeak.Bash;
 
 public class ViewCreationsController {
@@ -103,6 +104,26 @@ public class ViewCreationsController {
 
 
     /**
+     * Executes when the back button is pressed.
+     * Skips back 3 seconds.
+     */
+    @FXML
+    private void handleBack() {
+    	player.seek( player.getCurrentTime().add( Duration.seconds(-3)) );
+    }
+    
+    /**
+     * Executes when the forward button is pressed.
+     * Skips forward 3 seconds.
+     */
+    @FXML
+    private void handleForward() {
+    	player.seek( player.getCurrentTime().add( Duration.seconds(3)) );
+    }
+    
+    
+    
+    /**
      * Executes when the play button is pressed.
      * If a valid creation is selected, it runs the play task for that creation in another thread.
      */
@@ -116,7 +137,6 @@ public class ViewCreationsController {
             }
         }
     }
-    
     
     /**
      * Subclass of Task to handle deleting creations

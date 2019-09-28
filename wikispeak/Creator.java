@@ -1,6 +1,7 @@
 package wikispeak;
 
 import java.io.File;
+import java.util.List;
 
 public class Creator {
 
@@ -45,12 +46,50 @@ public class Creator {
     	try {
 			Process generateAudio = Bash.execute("./creations", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav");
 			generateAudio.waitFor();
-			_time = Bash.readOutput(Bash.execute("./creations", "soxi -D " + fileName + ".wav"));
-			_time = _time.substring(0, _time.length() - 1);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
     	
+    }
+    
+    
+    /**
+     * Return a string that contains the length of an audio file.
+     * @param fileName The audio file that we are getting the time for.
+     * @return The time of the given audio file
+     */
+    public String getTimeOfAudio(String fileName) {
+    	String time = Bash.readOutput(Bash.execute("./creations", "soxi -D " + fileName + ".wav"));
+		return time.substring(0, time.length() - 1);
+    }
+    
+    
+    /**
+     * Combine multiple audio files by concatenating them, using the sox command. 
+     * @param audioFiles The list of names for the audio files being combined.
+     * @param combinedFileName
+     */
+    public void combineAudio(List<String> audioFiles, String combinedFileName) {
+    	Bash.execute("./creations", "sox " + audioFiles.toString() + " " + combinedFileName);
+    }
+    
+    
+    /**
+     * Uses ffmpeg to make a .mp4 video, consisting of a slideshow of the given images.
+     * @param imageFiles
+     * @param time
+     */
+    public void makeSlideshow(List<String> imageFiles, String videoName, String time) {
+    	
+    	String framerate = imageFiles.size() + "/" + time;
+    	// cat *.jpg | ffmpeg 
+    	// -framerate $FRAMERATE 
+    	// -f image2pipe -i - 
+    	String vfSettings = "scale=iw*min(1920/iw\\,1080/ih):ih*min(1920/iw\\,1080/ih), pad=1920:1080:(1920-iw*min(1920/iw\\,1080/ih))/2:(1080-ih*min(1920/iw\\,1080/ih))/2,format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:shadowx=2:x=(w-text_w)/2:y=(h-text_h)/2:text='" + Wikit.get().getTerm() + "'";
+    	// -r 25 $VIDEONAME.mp4
+    	
+    	Bash.execute("./creations", "cat " + imageFiles.toString() + " | ffmpeg -framerate " + framerate + "-f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName);
+
     }
     
     

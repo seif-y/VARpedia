@@ -116,30 +116,6 @@ public class ViewCreationsController {
             }
         }
     }
-
-
-    /**
-     * Subclass of Task to handle playing creations
-     */
-    @SuppressWarnings("hiding")
-	private class PlayCreation<Void> extends Task<Void> {
-
-    	String _creation;
-
-    	private PlayCreation(String creation) {
-    		_creation = creation;
-    	}
-
-    	/**
-    	 * Call method: Uses ffplay to play the creation in a new window
-    	 */
-    	@Override
-        protected Void call() throws Exception {
-            //Bash.execute("./creations", "ffplay -loglevel panic -autoexit " + _creation + ".mp4");
-
-            return null;
-        }
-    }
     
     
     /**

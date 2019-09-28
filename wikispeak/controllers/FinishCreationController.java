@@ -1,15 +1,20 @@
 package wikispeak.controllers;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import wikispeak.Bash;
+import wikispeak.Creator;
 
 public class FinishCreationController {
 
@@ -18,32 +23,66 @@ public class FinishCreationController {
 
     @FXML
     private ListView<ImageView> imageList;
+    private Map<ImageView, String> imageMap = new IdentityHashMap<>();
+    
     
     @FXML
     private void initialize() {
+    	setUpAudioList();
+    	setUpImageList();
+    }
+    
+    
+    private void setUpAudioList() {
     	String[] audioFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.wav 2> /dev/null")).split("\n");
+    	ObservableList<String> recordings = FXCollections.observableArrayList();
     	for (String fileName : audioFiles) {
-    		audioList.getItems().add(fileName.substring(1, fileName.length() - 4));
+    		recordings.add(fileName.substring(1, fileName.length() - 4));
     	}
-    	
-    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations", "ls *.jpg 2> /dev/null")).split("\n");
+    	audioList.setItems(recordings);
+    	audioList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+    
+    
+    private void setUpImageList() {
+    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.jpg 2> /dev/null")).split("\n");
     	ObservableList<ImageView> images = FXCollections.observableArrayList();
     	for (String imageFile : imageFiles) {
     		File file = new File("./creations", imageFile);
     		if (file.exists()) {
     			Image image = new Image(file.toURI().toString());
-    			ImageView imageview = new ImageView(image);
-    			imageview.setPreserveRatio(true);
-    			imageview.setFitWidth(180);
-    			images.add(imageview);
+    			ImageView imageView = new ImageView(image);
+    			imageView.setPreserveRatio(true);
+    			imageView.setFitWidth(180);
+    			images.add(imageView);
+    			imageMap.put(imageView, imageFile);
     		}
     	}
-    	imageList.setItems(images);    	
+    	imageList.setItems(images);
+    	imageList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
     private void handleCreation() {
-        //TODO: Create video based on selected images/audio files
+    	//TODO: Add textField for user to select creation name
+    	String creationName = "creation";
+    	String audioFileName = "." + creationName + "-audio.wav";
+    	String videoFileName = "." + creationName + "-video.mp4";
+    	
+    	List<String> selectedAudioFiles = audioList.getSelectionModel().getSelectedItems();
+    	for (String audioFile : selectedAudioFiles) {
+    		audioFile = "." + audioFile + ".wav";
+    	}
+    	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
+    	String time = Creator.get().getTimeOfAudio(audioFileName);
+    	
+        //TODO: Create video based on selected images using the time of the audio file
+    	List<String> selectedImageFiles = new ArrayList<String>();
+    	for (ImageView imageView : imageList.getSelectionModel().getSelectedItems()) {
+    		selectedImageFiles.add(imageMap.get(imageView));
+    	}
+    	
+    	
 
         //TODO: Load the CreationPreview page
     }

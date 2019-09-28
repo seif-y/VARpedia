@@ -22,6 +22,24 @@ public class Creator {
     			e.printStackTrace();
     		}
     	}
+    	
+    	if (!(new File("./creations/audiofiles")).exists()) {
+    		Process process = Bash.execute(".", "mkdir creations/audiofiles");
+    		try {
+    			process.waitFor();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	if (!(new File("./creations/images")).exists()) {
+    		Process process = Bash.execute(".", "mkdir creations/images");
+    		try {
+    			process.waitFor();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    	}
     } 
     
     
@@ -44,7 +62,7 @@ public class Creator {
      */
     public void makeAudio(String text, String fileName) {
     	try {
-			Process generateAudio = Bash.execute("./creations", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav");
+			Process generateAudio = Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav");
 			generateAudio.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -60,7 +78,7 @@ public class Creator {
      * @throws InterruptedException 
      */
     public String getTimeOfAudio(String fileName) {
-    	Process soxi = Bash.execute("./creations", "soxi -D " + fileName);
+    	Process soxi = Bash.execute("./creations/audiofiles", "soxi -D " + fileName);
     	String time = Bash.readOutput(soxi);
 		
 		return time;
@@ -78,7 +96,7 @@ public class Creator {
     		list += file + " ";
     	}
     	System.out.println(list);
-    	Bash.execute("./creations", "sox " + list + combinedFileName);
+    	Bash.execute("./creations/audiofiles", "sox " + list + combinedFileName);
     }
     
     
@@ -143,9 +161,9 @@ public class Creator {
      */
     public void cleanup(String videoName, String audioName) {
     	try {
-    		Process deleteAudio = Bash.execute("./creations", "rm " + videoName + ".mp4");
+    		Process deleteAudio = Bash.execute("./creations/audiofiles", "rm " + videoName + ".mp4");
     		deleteAudio.waitFor();
-        	Process deleteVideo = Bash.execute("./creations", "rm " + audioName + ".wav");
+        	Process deleteVideo = Bash.execute("./creations/images", "rm " + audioName + ".wav");
         	deleteVideo.waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();

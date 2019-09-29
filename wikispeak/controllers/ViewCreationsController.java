@@ -41,7 +41,11 @@ public class ViewCreationsController extends Controller {
     private void initialize() {
 
     	if (!(new File("./creations")).exists()) {
-    		Bash.execute(".","mkdir creations");
+    		try {
+				Bash.execute(".","mkdir creations").waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
     	};
     	
         _creationSelected = false;

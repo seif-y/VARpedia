@@ -95,8 +95,13 @@ public class Creator {
     	for (String file : audioFiles) {
     		list += file + " ";
     	}
-    	System.out.println(list);
-    	Bash.execute("./creations/audiofiles", "sox " + list + combinedFileName);
+    	
+    	try {
+    		Process combine = Bash.execute("./creations/audiofiles", "sox " + list + combinedFileName);
+    		combine.waitFor();
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
 
     }
     
@@ -112,18 +117,13 @@ public class Creator {
     	for (String file : imageFiles) {
     		list += file + " ";
     	}
-    	System.out.println("List: " + list);
     	String framerate = imageFiles.size() + "/" + time;
-    	System.out.println("Framerate: " + framerate);
-    	// cat *.jpg | ffmpeg 
-    	// -framerate $FRAMERATE 
-    	// -f image2pipe -i - 
     	String vfSettings = "scale=iw*min(1920/iw\\,1080/ih):ih*min(1920/iw\\,1080/ih), pad=1920:1080:(1920-iw*min(1920/iw\\,1080/ih))/2:(1080-ih*min(1920/iw\\,1080/ih))/2,format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:shadowx=2:x=(w-text_w)/2:y=(h-text_h)/2:text='" + Wikit.get().getTerm() + "'";
-    	// -r 25 $VIDEONAME.mp4
+    	
     	String cmd = "cat " + list + "| ffmpeg -framerate " + framerate + " -f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName;
-    	System.out.println(cmd);
-    	Process create = Bash.execute("./creations", cmd);
+    	
     	try {
+    		Process create = Bash.execute("./creations/images", cmd);
 			create.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -133,31 +133,12 @@ public class Creator {
     
     
     /**
-     * Makes a .mp4 video file that displays the given term in white text over a black background, using ffmpeg
-     * @param term The term to be displayed
-     * @param filename The name of the video file
-     */
-    public void makeVideo(String term, String filename) {
-    	
-    	String fontSettings = "\"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='" + term + "'\"";
-    	String bgSettings = "color=c=black:s=320x240:d=" + _time;
-    	
-    	try {
-    		Process generateVideo = Bash.execute("./creations", "ffmpeg -loglevel panic -f lavfi -i " + bgSettings + " -vf " + fontSettings + " " + filename + ".mp4");
-			generateVideo.waitFor();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    }
-    
-    
-    /**
      * Combines a video file with an audio file, using ffmpeg
      * @param fileName The name of the final video file, after combining
      */
     public void combine(String videoName, String audioName, String fileName) {
     	try {
-			Process combine = Bash.execute("./creations", "ffmpeg -loglevel panic -y -i " + videoName + ".mp4 -i " + audioName + ".wav -c:v copy -map 0:video:0 -map 1:audio:0 -strict experimental " + fileName + ".mp4 >&2");
+			Process combine = Bash.execute("./creations", "ffmpeg -loglevel panic -y -i " + videoName + " -i " + audioName + " -c:v copy -map 0:video:0 -map 1:audio:0 -strict experimental " + fileName + ".mp4 >&2");
 			combine.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();

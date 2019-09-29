@@ -6,6 +6,7 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -65,31 +66,8 @@ public class FinishCreationController {
 
     @FXML
     private void handleCreation() {
-    	//TODO: Add textField for user to select creation name
-    	String creationName = "creation";
-    	String audioFileName = "." + creationName + "-audio.wav";
-    	String videoFileName = "." + creationName + "-video.mp4";
-    	
-    	List<String> selectedAudioFiles = new ArrayList<String>();
-    	for (String audioFile : audioList.getSelectionModel().getSelectedItems()) {
-    		selectedAudioFiles.add("." + audioFile + ".wav");
-    	}
-    	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
-    	String time = Creator.get().getTimeOfAudio(audioFileName);
-    	System.out.println("Time: " + time);
-    	time = time.substring(0, time.length() - 1);
-    	
-        //TODO: Create video based on selected images using the time of the audio file
-    	List<String> selectedImageFiles = new ArrayList<String>();
-    	for (ImageView imageView : imageList.getSelectionModel().getSelectedItems()) {
-    		selectedImageFiles.add(imageMap.get(imageView));
-    	}
-    	System.out.println("Images: " + selectedImageFiles.toString());
-    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);
-    	
-    	
-
-        //TODO: Load the CreationPreview page
+    	Thread creatorThread = new Thread(new GenerateCreation());
+    	creatorThread.start();
     }
     
     
@@ -97,8 +75,40 @@ public class FinishCreationController {
 
 		@Override
 		protected Void call() throws Exception {
-			// TODO Auto-generated method stub
+			//Add textField for user to select creation name
+	    	String creationName = "creation";
+	    	String audioFileName = "." + creationName + "-audio.wav";
+	    	String videoFileName = "." + creationName + "-video.mp4";
+	    	
+	    	//Create audio based on selected files by concatenating them
+	    	List<String> selectedAudioFiles = new ArrayList<String>();
+	    	for (String audioFile : audioList.getSelectionModel().getSelectedItems()) {
+	    		selectedAudioFiles.add("." + audioFile + ".wav");
+	    	}
+	    	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
+	    	String time = Creator.get().getTimeOfAudio(audioFileName);
+	    	System.out.println("Time: " + time);
+	    	time = time.substring(0, time.length() - 1);
+	    	
+	        //Create video based on selected images using the time of the audio file
+	    	List<String> selectedImageFiles = new ArrayList<String>();
+	    	for (ImageView imageView : imageList.getSelectionModel().getSelectedItems()) {
+	    		selectedImageFiles.add(imageMap.get(imageView));
+	    	}
+	    	System.out.println("Images: " + selectedImageFiles.toString());
+	    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);
+	    	
+	    	//Combine audio and video files to one creation
+	    	Creator.get().combine("./images/" + videoFileName, "./audiofiles/" + audioFileName, creationName);
+	    	
 			return null;
+		}
+		
+		@Override
+		protected void done() {
+			Platform.runLater(() -> {
+				//TODO: Switch scenes to CreationPreview page. Should be able to pass on creation name.
+			});
 		}
     	
     	

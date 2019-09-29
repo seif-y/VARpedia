@@ -8,16 +8,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
    <children>
       <Text fx:id="creationDisplay" layoutX="17.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="50.0" text="Back" />
+      <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="50.0" text="&lt;&lt;" />
       <Button layoutX="299.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="100.0" text="Play/Pause" />
-      <Button layoutX="404.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleForward" prefWidth="50.0" text="Fwd" />
+      <Button layoutX="404.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleForward" prefWidth="50.0" text="&gt;&gt;" />
       <Button layoutX="489.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="75.0" text="Delete" />
       <ListView fx:id="creationList" layoutX="32.0" layoutY="80.0" onMouseClicked="#handleSelectCreation" prefHeight="291.0" prefWidth="190.0" />
       <MediaView fx:id="viewer" fitHeight="240.0" fitWidth="320.0" layoutX="244.0" layoutY="80.0" />

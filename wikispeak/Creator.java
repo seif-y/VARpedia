@@ -67,7 +67,7 @@ public class Creator {
      */
     public void makeAudio(String text, String fileName) {
     	try {
-			Process generateAudio = Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav");
+			Process generateAudio = Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav - eval /voices/slow.scm");
 			generateAudio.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();

@@ -2,14 +2,11 @@ package wikispeak.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
-
-public class MainController {
+public class MainController extends Controller {
 
     @FXML
     private AnchorPane display;
@@ -21,16 +18,7 @@ public class MainController {
      */
     private void updateDisplay(String fileName) {
 
-        display.getChildren().clear();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource(fileName)) ;
-        try {
-            AnchorPane page = loader.load();
-            display.getChildren().add(page);
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }
+        switchScenes(display, fileName);
 
     }
 
@@ -46,21 +34,21 @@ public class MainController {
      * Loads "Home" page
      */
     @FXML
-    private void handleHomeButton() { updateDisplay("/wikispeak/resources/HomePage.fxml"); }
+    private void handleHomeButton() { updateDisplay("HomePage.fxml"); }
 
     
     /**
      * Loads "New Creation" page
      */
     @FXML
-    private void handleNewCreation() { updateDisplay("/wikispeak/resources/NewCreationPage.fxml"); }
+    private void handleNewCreation() { updateDisplay("NewCreationPage.fxml"); }
 
     
     /**
      * Loads "View Creations" page
      */
     @FXML
-    private void handleViewCreations() { updateDisplay("/wikispeak/resources/CreationsPage.fxml"); }
+    private void handleViewCreations() { updateDisplay("CreationsPage.fxml"); }
 
     
     /**

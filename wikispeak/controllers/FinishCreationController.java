@@ -23,10 +23,10 @@ import javafx.scene.layout.Pane;
 import wikispeak.Bash;
 import wikispeak.Creator;
 
-public class FinishCreationController {
+public class FinishCreationController extends Controller {
 
 	@FXML
-	private AnchorPane previewCreationsPage;
+	private AnchorPane finishCreationsPage;
     @FXML
     private ListView<String> audioList;
     @FXML
@@ -116,17 +116,8 @@ public class FinishCreationController {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				Pane parent = (Pane) previewCreationsPage.getParent();
-		    	FXMLLoader loader = new FXMLLoader();
-		        loader.setLocation(this.getClass().getResource("/wikispeak/resources/CreationPreview.fxml"));
-		        try {
-		            AnchorPane viewCreationPage = loader.load();
-		            parent.getChildren().clear();
-		            parent.getChildren().add(viewCreationPage);
-
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
+				Pane parent = (Pane) finishCreationsPage.getParent();
+		    	switchScenes(parent, "CreationPreview.fxml");
 			});
 		}
     	

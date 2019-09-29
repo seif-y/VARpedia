@@ -7,13 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
 import wikispeak.Wikit;
 
 import java.io.IOException;
 
-public class NewCreationsController {
+public class NewCreationsController extends Controller {
 
     
 	@FXML
@@ -121,7 +122,8 @@ public class NewCreationsController {
         	if (successful) {
         		Platform.runLater(() -> {
         			Wikit.get().setArticle(wikitOut);
-        			loadFinishCreationsPage();
+        			Pane parent = (Pane) newCreationPage.getParent();
+        			switchScenes(parent, "AudioEditor.fxml");
         		});
         	} else {
         		Platform.runLater(() -> {

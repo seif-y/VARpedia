@@ -143,7 +143,7 @@ public class Creator {
      */
     public void combine(String videoName, String audioName, String fileName) {
     	try {
-			Process combine = Bash.execute("./creations", "ffmpeg -loglevel panic -y -i " + videoName + " -i " + audioName + " -c:v copy -map 0:video:0 -map 1:audio:0 -strict experimental " + fileName + ".mp4 >&2");
+			Process combine = Bash.execute("./creations", "ffmpeg -loglevel panic -y -i " + videoName + " -i " + audioName + " -c:v copy -map 0:video:0 -map 1:audio:0 -strict experimental " + fileName + " >&2");
 			combine.waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -153,16 +153,15 @@ public class Creator {
     
     
     /**
-     * Deletes the temporary audio and video files
+     * Deletes all temporary audio and video files
      */
-    public void cleanup(String videoName, String audioName) {
+    public void cleanup() {
     	try {
-    		Process deleteAudio = Bash.execute("./creations/audiofiles", "rm " + videoName + ".mp4");
-    		deleteAudio.waitFor();
-        	Process deleteVideo = Bash.execute("./creations/images", "rm " + audioName + ".wav");
-        	deleteVideo.waitFor();
+    		Bash.execute("./creations/images", "rm .*").waitFor();
+    		Bash.execute("./creations/audiofiles", "rm .*").waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();
     	}
+    	
     }
 }

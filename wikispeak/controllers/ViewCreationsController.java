@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import wikispeak.Bash;
 
-public class ViewCreationsController {
+public class ViewCreationsController extends Controller {
 	
     private String _currentCreation;
     private boolean _creationSelected;
@@ -137,6 +137,14 @@ public class ViewCreationsController {
             }
         }
     }
+    
+    
+    @Override
+	protected void onSwitchScenes() {
+    	player.stop();
+    }
+    
+    
     
     /**
      * Subclass of Task to handle deleting creations

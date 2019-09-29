@@ -1,8 +1,12 @@
 package wikispeak.controllers;
 
 import java.io.File;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -11,8 +15,10 @@ import javafx.util.Duration;
 import wikispeak.Bash;
 import wikispeak.Creator;
 
-public class CreationPreviewController {
+public class CreationPreviewController extends Controller {
 
+	@FXML
+	private AnchorPane previewCreationsPage;
     @FXML
     private MediaView viewer;
     private MediaPlayer player;
@@ -50,15 +56,26 @@ public class CreationPreviewController {
     @FXML
     private void handleScrap() {
     	Bash.execute("./creations", "rm " + creationName);
+    	Creator.get().cleanup();
     	loadCreationsPage();
     }
 
     @FXML
     private void handleSave() {
+    	Creator.get().cleanup();
     	loadCreationsPage();
+    	
     }
     
+    @Override
+	protected void onSwitchScenes() {
+    	player.stop();
+    }
+    
+
     private void loadCreationsPage() {
     	
+    	Pane parent = (Pane) previewCreationsPage.getParent();
+    	switchScenes(parent, "CreationsPage.fxml");
     }
 }

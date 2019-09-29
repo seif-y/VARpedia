@@ -81,7 +81,7 @@ public class AudioEditorController {
         	errorMsg.setText("Audio file name contains invalid character(s)");
         	errorMsg.setVisible(true);
         		
-        } else if (!(new File("./creations/audiofiles" + fileName + ".mp4").exists())) {
+        } else if (!(new File("./creations/audiofiles/." + fileName + ".wav").exists())) {
         	generateAudio();
         			
         } else {

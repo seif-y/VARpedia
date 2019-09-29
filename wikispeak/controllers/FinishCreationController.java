@@ -86,23 +86,25 @@ public class FinishCreationController extends Controller {
     	String fileName = creationName.getText();
     	
     	if (fileName == null || fileName.equals("")) {
-            //TODO: HANDLE
-    		System.out.println("Nothing in text field.");
+            errorMsg.setText("Please enter a name for your creation.");
+            errorMsg.setVisible(true);
             
         } else if (Bash.hasInvalidChars(fileName, true)) {
-        	//TODO: HANDLE
-        	System.out.println("Filename has invalid characters!!!");
+        	errorMsg.setText("Creation name contains invalid characters.");
+        	errorMsg.setVisible(true);
         		
-        } else if (!(new File("./creations" + fileName + ".mp4").exists())) {
+        } else if (!(new File("./creations/" + fileName + ".mp4").exists())) {
+        	loadingGif.setVisible(true);
         	Thread creatorThread = new Thread(new GenerateCreation());
         	creatorThread.start();
         } else {
         	Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION);
             saveAlert.setTitle("Overwrite Warning");
-            saveAlert.setHeaderText(fileName + " already exists!");
+            saveAlert.setHeaderText("The creation " + fileName + " already exists!");
             saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
             saveAlert.showAndWait().ifPresent(response -> {
             	if (response == ButtonType.OK) {
+            		loadingGif.setVisible(true);
             		Thread creatorThread = new Thread(new GenerateCreation());
             		creatorThread.start();
             	}

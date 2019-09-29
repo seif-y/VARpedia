@@ -15,7 +15,9 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="75.0" text="Play" />
+      <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="50.0" text="Back" />
+      <Button layoutX="299.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="100.0" text="Play/Pause" />
+      <Button layoutX="404.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleForward" prefWidth="50.0" text="Fwd" />
       <Button layoutX="489.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="75.0" text="Delete" />
       <ListView fx:id="creationList" layoutX="32.0" layoutY="80.0" onMouseClicked="#handleSelectCreation" prefHeight="291.0" prefWidth="190.0" />
       <MediaView fx:id="viewer" fitHeight="240.0" fitWidth="320.0" layoutX="244.0" layoutY="80.0" />

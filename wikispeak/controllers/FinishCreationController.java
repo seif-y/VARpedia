@@ -35,7 +35,7 @@ public class FinishCreationController {
     
     
     private void setUpAudioList() {
-    	String[] audioFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.wav 2> /dev/null")).split("\n");
+    	String[] audioFiles = Bash.readOutput(Bash.execute("./creations/audiofiles", "ls .*.wav 2> /dev/null")).split("\n");
     	ObservableList<String> recordings = FXCollections.observableArrayList();
     	for (String fileName : audioFiles) {
     		recordings.add(fileName.substring(1, fileName.length() - 4));
@@ -46,10 +46,10 @@ public class FinishCreationController {
     
     
     private void setUpImageList() {
-    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations", "ls .*.jpg 2> /dev/null")).split("\n");
+    	String[] imageFiles = Bash.readOutput(Bash.execute("./creations/images", "ls .*.jpg 2> /dev/null")).split("\n");
     	ObservableList<ImageView> images = FXCollections.observableArrayList();
     	for (String imageFile : imageFiles) {
-    		File file = new File("./creations", imageFile);
+    		File file = new File("./creations/images", imageFile);
     		if (file.exists()) {
     			Image image = new Image(file.toURI().toString());
     			ImageView imageView = new ImageView(image);

@@ -67,6 +67,9 @@ public class ViewCreationsController extends Controller {
      */
     @FXML
     private void handleSelectCreation() {
+    	if (player != null)
+    		player.stop();
+    	
     	try {
         	_currentCreation = creationList.getSelectionModel().getSelectedItem().toString();
         	if (!_creationSelected) { _creationSelected = true; }
@@ -88,6 +91,7 @@ public class ViewCreationsController extends Controller {
     @FXML
     private void handleDelete() {
         if (_creationSelected) {
+        	player.stop();
             String creationName = creationDisplay.getText();
             Alert delAlert = new Alert(Alert.AlertType.CONFIRMATION);
             delAlert.setTitle("Delete Creation");

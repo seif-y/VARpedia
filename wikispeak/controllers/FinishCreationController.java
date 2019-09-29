@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,8 @@ public class FinishCreationController {
 	private AnchorPane previewCreationsPage;
     @FXML
     private ListView<String> audioList;
+    @FXML
+    private TextField creationName;
 
     @FXML
     private ListView<ImageView> imageList;
@@ -82,9 +85,9 @@ public class FinishCreationController {
 		@Override
 		protected Void call() throws Exception {
 			//Add textField for user to select creation name
-	    	String creationName = "creation";
-	    	String audioFileName = "." + creationName + "-audio.wav";
-	    	String videoFileName = "." + creationName + "-video.mp4";
+	    	String fileName = creationName.getText();
+	    	String audioFileName = "." + fileName + "-audio.wav";
+	    	String videoFileName = "." + fileName + "-video.mp4";
 	    	
 	    	//Create audio based on selected files by concatenating them
 	    	List<String> selectedAudioFiles = new ArrayList<String>();
@@ -105,7 +108,7 @@ public class FinishCreationController {
 	    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);
 	    	
 	    	//Combine audio and video files to one creation
-	    	Creator.get().combine("./images/" + videoFileName, "./audiofiles/" + audioFileName, creationName);
+	    	Creator.get().combine("./images/" + videoFileName, "./audiofiles/" + audioFileName, fileName + ".mp4");
 	    	
 			return null;
 		}

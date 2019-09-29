@@ -1,7 +1,6 @@
 package wikispeak.controllers;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -12,7 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -75,8 +75,32 @@ public class FinishCreationController extends Controller {
 
     @FXML
     private void handleCreation() {
-    	Thread creatorThread = new Thread(new GenerateCreation());
-    	creatorThread.start();
+    	
+    	String fileName = creationName.getText();
+    	
+    	if (fileName == null || fileName.equals("")) {
+            //TODO: HANDLE
+    		System.out.println("Nothing in text field.");
+            
+        } else if (Bash.hasInvalidChars(fileName, true)) {
+        	//TODO: HANDLE
+        	System.out.println("Filename has invalid characters!!!");
+        		
+        } else if (!(new File("./creations" + fileName + ".mp4").exists())) {
+        	Thread creatorThread = new Thread(new GenerateCreation());
+        	creatorThread.start();
+        } else {
+        	Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            saveAlert.setTitle("Overwrite Warning");
+            saveAlert.setHeaderText(fileName + " already exists!");
+            saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
+            saveAlert.showAndWait().ifPresent(response -> {
+            	if (response == ButtonType.OK) {
+            		Thread creatorThread = new Thread(new GenerateCreation());
+            		creatorThread.start();
+            	}
+            });
+        }
     }
     
     

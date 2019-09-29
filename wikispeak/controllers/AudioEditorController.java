@@ -71,23 +71,23 @@ public class AudioEditorController {
      */
     @FXML
     private void handleCreate() {
-        String creationName = nameField.getText();
+        String fileName = nameField.getText();
         
-        if (creationName == null || creationName.equals("")) {
+        if (fileName == null || fileName.equals("")) {
             errorMsg.setText("Please enter a valid name for your audio file");
             errorMsg.setVisible(true);
             
-        } else if (Bash.hasInvalidChars(creationName, true)) {
+        } else if (Bash.hasInvalidChars(fileName, true)) {
         	errorMsg.setText("Audio file name contains invalid character(s)");
         	errorMsg.setVisible(true);
         		
-        } else if (!(new File("./creations/audiofiles" + creationName + ".mp4").exists())) {
+        } else if (!(new File("./creations/audiofiles" + fileName + ".mp4").exists())) {
         	generateAudio();
         			
         } else {
         	Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION);
             saveAlert.setTitle("Overwrite Warning");
-            saveAlert.setHeaderText(creationName + " already exists!");
+            saveAlert.setHeaderText(fileName + " already exists!");
             saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
             saveAlert.showAndWait().ifPresent(response -> {
             	if (response == ButtonType.OK) {
@@ -106,18 +106,15 @@ public class AudioEditorController {
     private void handlePreview() {
     	String selection = wikitText.getSelectedText();
     	int numWords = selection.split("\\s+").length;
-    	String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
     	
     	if (numWords > 40) {
-    		Alert wordAlert = new Alert(Alert.AlertType.ERROR);
-    		wordAlert.setTitle("Too many words!");
-    		wordAlert.setHeaderText("Your selection may contain no more than 40 words.");
-    		wordAlert.setContentText("Please select a smaller chunk of text.");
-    		wordAlert.showAndWait();
+    		errorMsg.setText("Cannot select a chunk of text greater than 40 words!");
+    		errorMsg.setVisible(true);
     	} else {
-    		Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm");
-    		Bash.execute("./creations/voices", "echo '(SayText \"" + selection + "\")' >> voice.scm");
-    		Bash.execute("./creations/voices", "festival -b voice.scm");
+    		errorMsg.setText("Playing audio...");
+    		errorMsg.setVisible(true);
+    		Thread playerThread = new Thread(new PreviewAudio());
+    		playerThread.start();
     	}
     }
     
@@ -148,6 +145,44 @@ public class AudioEditorController {
     private void retrieveImages() {
     	Thread imageThread = new Thread(new CallFlickr());
     	imageThread.start();
+    }
+    
+    
+    /**
+     * Task subclass to handle previewing of audio.
+     */
+    private class PreviewAudio extends Task<Void> {
+
+    	private int _exitCode;
+		@Override
+		protected Void call() throws Exception {
+			
+			String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
+			String selection = wikitText.getSelectedText();
+			
+			try {
+				Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm").waitFor();
+				Bash.execute("./creations/voices", "echo '(SayText \"" + selection + "\")' >> voice.scm").waitFor();
+				_exitCode = Bash.execute("./creations/voices", "festival -b voice.scm").waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    		
+    		return null;
+		}
+		
+		
+		@Override
+		protected void done() {
+			Platform.runLater(() -> {
+				if (_exitCode == 0) {
+					errorMsg.setVisible(false);
+				} else {
+					errorMsg.setText("Error playing audio, ensure your text contains no invalid characters.");
+				}
+			});
+		}
+    	
     }
     
     
@@ -216,4 +251,5 @@ public class AudioEditorController {
 		}
     	
     }
+    
 }

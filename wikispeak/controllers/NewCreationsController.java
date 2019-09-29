@@ -3,7 +3,6 @@ package wikispeak.controllers;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +11,6 @@ import javafx.scene.text.Text;
 import wikispeak.Bash;
 import wikispeak.Wikit;
 
-import java.io.IOException;
 
 public class NewCreationsController extends Controller {
 
@@ -57,24 +55,6 @@ public class NewCreationsController extends Controller {
             Thread searchThread = new Thread(new WikitSearch<Void>());
             searchThread.start();
         }
-    }
-    
-    
-    /**
-     * Redirects to the "Finish Creations" page.
-     */
-    private void loadFinishCreationsPage() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/wikispeak/resources/AudioEditor.fxml"));
-        try {
-            AnchorPane finishCreationPage = loader.load();
-            newCreationPage.getChildren().clear();
-            newCreationPage.getChildren().add(finishCreationPage);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     

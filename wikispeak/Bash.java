@@ -49,11 +49,10 @@ public class Bash {
         
 		String output = "";
         String line = "";
-        int exitCode;
         
         try {
 			while ((line = reader.readLine()) != null) { output += line + "\n"; }
-			exitCode = process.waitFor();
+			process.waitFor();
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();

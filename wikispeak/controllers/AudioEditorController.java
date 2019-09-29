@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -28,7 +27,7 @@ public class AudioEditorController {
     @FXML
     private TextField nameField;
     @FXML
-    private ComboBox voiceOptions;
+    private ComboBox<String> voiceOptions;
     @FXML
     private Text errorMsg;
 
@@ -45,16 +44,7 @@ public class AudioEditorController {
         errorMsg.setVisible(false);
         wikitText.setText(Wikit.get().getFormattedArticle());
     }
-
     
-    /**
-     * Updates progress bar and message to display progress and status of creation process
-     * @param message The message to display
-     */
-    private void updateMessage(String message) {
-        errorMsg.setText(message);
-    }
-
     
     /**
      * Executes when create button is pressed.
@@ -90,6 +80,9 @@ public class AudioEditorController {
     }
 
     
+    /**
+     * Executed when preview button is pressed. Plays the selected audio from the text area using the selected voice.
+     */
     @FXML
     private void handlePreview() {
     	String selection = wikitText.getSelectedText();
@@ -107,22 +100,14 @@ public class AudioEditorController {
     }
 
     
+    /**
+     * Method to retrieve images from Flickr in a new thread, then load the FinishCreations page
+     */
     @FXML
     private void handleNext() {
     	
+    	errorMsg.setText("Moving on to next stage...");
     	retrieveImages();
-    	
-//    	Pane parent = (Pane) finishCreationPage.getParent();
-//    	FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
-//        try {
-//            AnchorPane viewCreationPage = loader.load();
-//            parent.getChildren().clear();
-//            parent.getChildren().add(viewCreationPage);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
  
     
@@ -142,6 +127,7 @@ public class AudioEditorController {
     	Thread imageThread = new Thread(new CallFlickr());
     	imageThread.start();
     }
+    
     
     /**
      * Subclass of Task to handle making a new creation.
@@ -165,7 +151,7 @@ public class AudioEditorController {
 
         
         /**
-         * Done method: Loads the view creations page after creation is completed.
+         * Sets text at bottom to communicate that text file has been saved.
          */
         @Override
         protected void done() {

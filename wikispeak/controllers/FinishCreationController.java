@@ -1,6 +1,7 @@
 package wikispeak.controllers;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -11,15 +12,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import wikispeak.Bash;
 import wikispeak.Creator;
 
 public class FinishCreationController {
 
+	@FXML
+	private AnchorPane previewCreationsPage;
     @FXML
     private ListView<String> audioList;
 
@@ -107,7 +113,17 @@ public class FinishCreationController {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				//TODO: Switch scenes to CreationPreview page. Should be able to pass on creation name.
+				Pane parent = (Pane) previewCreationsPage.getParent();
+		    	FXMLLoader loader = new FXMLLoader();
+		        loader.setLocation(this.getClass().getResource("/wikispeak/resources/CreationPreview.fxml"));
+		        try {
+		            AnchorPane viewCreationPage = loader.load();
+		            parent.getChildren().clear();
+		            parent.getChildren().add(viewCreationPage);
+
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
 			});
 		}
     	

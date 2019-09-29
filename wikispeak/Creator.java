@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Creator {
 
-		private static Creator instance = null;
+	private static Creator instance = null;
 	  
-    private String _time;
+    private String _creationName;
  
     
     /**
@@ -52,6 +52,11 @@ public class Creator {
             instance = new Creator(); 
   
         return instance; 
+    }
+    
+    
+    public String getCurrentCreationName() {
+    	return _creationName;
     }
     
     
@@ -143,6 +148,7 @@ public class Creator {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+    	_creationName = fileName;
     }
     
     

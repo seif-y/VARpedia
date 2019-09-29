@@ -87,7 +87,7 @@ public class AudioEditorController {
         } else {
         	Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION);
             saveAlert.setTitle("Overwrite Warning");
-            saveAlert.setHeaderText(fileName + " already exists!");
+            saveAlert.setHeaderText("The recording " + fileName + " already exists!");
             saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
             saveAlert.showAndWait().ifPresent(response -> {
             	if (response == ButtonType.OK) {

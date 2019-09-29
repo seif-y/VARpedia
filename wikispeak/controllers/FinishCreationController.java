@@ -94,6 +94,7 @@ public class FinishCreationController extends Controller {
         	errorMsg.setVisible(true);
         		
         } else if (!(new File("./creations/" + fileName + ".mp4").exists())) {
+        	errorMsg.setVisible(false);
         	loadingGif.setVisible(true);
         	Thread creatorThread = new Thread(new GenerateCreation());
         	creatorThread.start();
@@ -104,6 +105,7 @@ public class FinishCreationController extends Controller {
             saveAlert.setContentText("If you press \"OK\" you will overwrite this file.");
             saveAlert.showAndWait().ifPresent(response -> {
             	if (response == ButtonType.OK) {
+            		errorMsg.setVisible(false);
             		loadingGif.setVisible(true);
             		Thread creatorThread = new Thread(new GenerateCreation());
             		creatorThread.start();

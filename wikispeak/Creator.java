@@ -78,7 +78,12 @@ public class Creator {
     		list += file + " ";
     	}
     	System.out.println(list);
-    	Bash.execute("./creations", "sox " + list + combinedFileName);
+    	Process combine = Bash.execute("./creations", "sox " + list + combinedFileName);
+    	try {
+			combine.waitFor();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
     }
     
     
@@ -93,15 +98,23 @@ public class Creator {
     	for (String file : imageFiles) {
     		list += file + " ";
     	}
+    	System.out.println("List: " + list);
     	String framerate = imageFiles.size() + "/" + time;
+    	System.out.println("Framerate: " + framerate);
     	// cat *.jpg | ffmpeg 
     	// -framerate $FRAMERATE 
     	// -f image2pipe -i - 
     	String vfSettings = "scale=iw*min(1920/iw\\,1080/ih):ih*min(1920/iw\\,1080/ih), pad=1920:1080:(1920-iw*min(1920/iw\\,1080/ih))/2:(1080-ih*min(1920/iw\\,1080/ih))/2,format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:shadowx=2:x=(w-text_w)/2:y=(h-text_h)/2:text='" + Wikit.get().getTerm() + "'";
     	// -r 25 $VIDEONAME.mp4
+    	String cmd = "cat " + list + "| ffmpeg -framerate " + framerate + " -f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName;
+    	System.out.println(cmd);
+    	Process create = Bash.execute("./creations", cmd);
+    	try {
+			create.waitFor();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
     	
-    	Bash.execute("./creations", "cat " + list + "| ffmpeg -framerate " + framerate + "-f image2pipe -i - -vf \"" + vfSettings + "\" -r 25 " + videoName);
-
     }
     
     

@@ -74,7 +74,6 @@ public class FinishCreationController {
     	for (String audioFile : audioList.getSelectionModel().getSelectedItems()) {
     		selectedAudioFiles.add("." + audioFile + ".wav");
     	}
-    	System.out.println("Audio: " + selectedAudioFiles);
     	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
     	String time = Creator.get().getTimeOfAudio(audioFileName);
     	System.out.println("Time: " + time);

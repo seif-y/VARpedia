@@ -46,7 +46,7 @@ public class ViewCreationsController {
         _creationSelected = false;
         _currentCreation = null;
         
-        String[] creations = Bash.readOutput(Bash.execute("./creations", "ls")).split("\n");
+        String[] creations = Bash.readOutput(Bash.execute("./creations", "ls *.mp4 2> /dev/null")).split("\n");
         
         try {
         	for (String creation : creations) {

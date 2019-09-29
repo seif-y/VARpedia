@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import wikispeak.Bash;
 import wikispeak.Creator;
 
@@ -27,11 +28,14 @@ public class FinishCreationController extends Controller {
 
 	@FXML
 	private AnchorPane finishCreationsPage;
-    @FXML
-    private ListView<String> audioList;
-    @FXML
+	@FXML
     private TextField creationName;
-
+    @FXML
+	private ImageView loadingGif;
+    @FXML
+	private Text errorMsg;
+    @FXML
+	private ListView<String> audioList;
     @FXML
     private ListView<ImageView> imageList;
     private Map<ImageView, String> imageMap = new IdentityHashMap<>();
@@ -39,6 +43,9 @@ public class FinishCreationController extends Controller {
     
     @FXML
     private void initialize() {
+    	errorMsg.setVisible(false);
+    	loadingGif.setVisible(false);
+    	
     	setUpAudioList();
     	setUpImageList();
     }

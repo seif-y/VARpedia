@@ -3,16 +3,24 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="finishCreationsPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
-      <ListView fx:id="audioList" layoutX="66.0" layoutY="44.0" prefHeight="298.0" prefWidth="209.0" />
-      <ListView fx:id="imageList" layoutX="315.0" layoutY="44.0" prefHeight="298.0" prefWidth="220.0" />
+      <ListView fx:id="audioList" layoutX="65.0" layoutY="44.0" prefHeight="295.0" prefWidth="230.0" />
+      <ListView fx:id="imageList" layoutX="304.0" layoutY="44.0" prefHeight="295.0" prefWidth="230.0" />
       <Text layoutX="113.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Audio Files" />
       <Text layoutX="380.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images" />
-      <Button layoutX="300.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleCreation" text="Generate Creation" />
-      <TextField fx:id="creationName" layoutX="159.0" layoutY="355.0" prefHeight="31.0" prefWidth="141.0" promptText="Creation Name" />
+      <Button layoutX="231.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleCreation" text="Create" />
+      <TextField fx:id="creationName" layoutX="67.0" layoutY="348.0" prefHeight="31.0" prefWidth="165.0" promptText="Creation Name" />
+      <Text fx:id="errorMsg" layoutX="306.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="229.9999913200736" />
+      <ImageView fx:id="loadingGif" fitHeight="43.0" fitWidth="39.0" layoutX="304.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

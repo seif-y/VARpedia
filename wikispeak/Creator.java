@@ -65,10 +65,12 @@ public class Creator {
      * @param text The text to be dictated
      * @param fileName The name of the audio file.
      */
-    public void makeAudio(String text, String fileName) {
+    public void makeAudio(String text, String fileName, String voice) {
     	try {
-			Process generateAudio = Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav - eval /voices/slow.scm");
-			generateAudio.waitFor();
+//			Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm").waitFor();
+//			Bash.execute("./creations/voices", "echo \"(utt.save.wave (SayText \\\"" + text + "\\\") \\\"../audiofiles/." + fileName + ".wav\\\" 'riff)\" >> voice.scm").waitFor();
+//			Bash.execute("./creations/voices", "festival -b voice.scm");
+    		Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

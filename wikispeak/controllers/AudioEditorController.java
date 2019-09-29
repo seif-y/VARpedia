@@ -2,6 +2,8 @@ package wikispeak.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.IdentityHashMap;
+import java.util.Map;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -30,6 +32,8 @@ public class AudioEditorController {
     private ComboBox<String> voiceOptions;
     @FXML
     private Text errorMsg;
+    
+    private Map<String, String> voiceMap = new IdentityHashMap<>();
 
     
     /**
@@ -38,9 +42,23 @@ public class AudioEditorController {
      */
     @FXML
     private void initialize() {
+    	
+    	if (!(new File("./voices")).exists()) {
+    		Process process = Bash.execute(".", "mkdir ./creations/voices");
+    		try {
+    			process.waitFor();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
         ObservableList<String> voices = FXCollections.observableArrayList();
         voices.addAll("Default", "Auckland");
         voiceOptions.setItems(voices);
+        
+        voiceMap.put("Default", "kal_diphone");
+        voiceMap.put("Auckland", "akl_nz_jdt_diphone");
+        
         errorMsg.setVisible(false);
         wikitText.setText(Wikit.get().getFormattedArticle());
     }
@@ -88,7 +106,7 @@ public class AudioEditorController {
     private void handlePreview() {
     	String selection = wikitText.getSelectedText();
     	int numWords = selection.split("\\s+").length;
-    	String voice = "kal_diphone"; // change this get voice from selection, need to link with GUI
+    	String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
     	
     	if (numWords > 40) {
     		Alert wordAlert = new Alert(Alert.AlertType.ERROR);
@@ -97,9 +115,9 @@ public class AudioEditorController {
     		wordAlert.setContentText("Please select a smaller chunk of text.");
     		wordAlert.showAndWait();
     	} else {
-    		Bash.execute(".", "echo (" + voice + ") > /voices/voice.scm");
-    		Bash.execute(".", "echo ( Say text \"" + selection + "\") >> /voices/voice.scm");
-    		Bash.execute(".", "festival -b /voices/voice.scm");
+    		Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm");
+    		Bash.execute("./creations/voices", "echo '(SayText \"" + selection + "\")' >> voice.scm");
+    		Bash.execute("./creations/voices", "festival -b voice.scm");
     	}
     }
     
@@ -118,6 +136,7 @@ public class AudioEditorController {
      * Method to generate the audio in a new thread
      */
     private void generateAudio() {
+    	errorMsg.setText("Generating Audio...");
         Thread creatorThread = new Thread(new GenerateAudio());
         creatorThread.start();
     }
@@ -145,8 +164,9 @@ public class AudioEditorController {
         	
         	String name = nameField.getText();
             String selection = wikitText.getSelectedText();
+            String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
             
-            Creator.get().makeAudio(selection, name);
+            Creator.get().makeAudio(selection, name, voice);
             
             return null;
 

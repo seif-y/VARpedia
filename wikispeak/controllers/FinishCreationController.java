@@ -96,7 +96,6 @@ public class FinishCreationController extends Controller {
 	    	}
 	    	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
 	    	String time = Creator.get().getTimeOfAudio(audioFileName);
-	    	System.out.println("Time: " + time);
 	    	time = time.substring(0, time.length() - 1);
 	    	
 	        //Create video based on selected images using the time of the audio file
@@ -104,7 +103,6 @@ public class FinishCreationController extends Controller {
 	    	for (ImageView imageView : imageList.getSelectionModel().getSelectedItems()) {
 	    		selectedImageFiles.add(imageMap.get(imageView));
 	    	}
-	    	System.out.println("Images: " + selectedImageFiles.toString());
 	    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);
 	    	
 	    	//Combine audio and video files to one creation

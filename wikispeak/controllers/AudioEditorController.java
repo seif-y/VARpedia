@@ -83,10 +83,12 @@ public class AudioEditorController {
     /**
      * Executed when preview button is pressed. Plays the selected audio from the text area using the selected voice.
      */
+    
     @FXML
     private void handlePreview() {
     	String selection = wikitText.getSelectedText();
     	int numWords = selection.split("\\s+").length;
+    	String voice = "kal_diphone"; // change this get voice from selection, need to link with GUI
     	
     	if (numWords > 40) {
     		Alert wordAlert = new Alert(Alert.AlertType.ERROR);
@@ -95,10 +97,11 @@ public class AudioEditorController {
     		wordAlert.setContentText("Please select a smaller chunk of text.");
     		wordAlert.showAndWait();
     	} else {
-    		Bash.execute(".", "echo \"" + selection + "\" | festival --tts");
+    		Bash.execute(".", "echo (" + voice + ") > /voices/voice.scm");
+    		Bash.execute(".", "echo ( Say text \"" + selection + "\") >> /voices/voice.scm");
+    		Bash.execute(".", "festival -b /voices/voice.scm");
     	}
     }
-
     
     /**
      * Method to retrieve images from Flickr in a new thread, then load the FinishCreations page

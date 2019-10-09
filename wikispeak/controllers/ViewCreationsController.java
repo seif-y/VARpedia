@@ -8,12 +8,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -26,21 +26,28 @@ import wikispeak.Creation;
 
 public class ViewCreationsController extends Controller {
 	
-    private String _currentCreation;
+    private Creation _currentCreation;
     private boolean _creationSelected;
 
 
     @FXML
     private AnchorPane pane;
+	@FXML
+	private Text creationDisplay;
+
+	private ArrayList<Creation> creations;
+	private ObservableList<Creation> tableItems;
     @FXML
-    private ListView<String> creationList;
+    private TableView<Creation> table;
     @FXML
-    private ArrayList<Creation> creations;
+	private TableColumn<String, Creation> names;
     @FXML
-    private Text creationDisplay;
+	private TableColumn<Integer, Creation> ratings;
+    @FXML
+	private TableColumn<Integer, Creation> views;
+
     @FXML
     private MediaView viewer;
-    
     private MediaPlayer player;
 
     
@@ -63,14 +70,16 @@ public class ViewCreationsController extends Controller {
         _currentCreation = null;
         
        creations = readCreationList();
-        
-        
-        for (Creation creation : creations) {
-        	creationList.getItems().add(creation.getName());
-        }
-        if (creationList.getItems().isEmpty())
-        	creationDisplay.setText("No creations to display");
-        creationList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       tableItems = FXCollections.observableList(creations);
+        if (creations.isEmpty()) {
+			creationDisplay.setText("No creations to display");
+		} else {
+        	names.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        	ratings.setCellValueFactory(new PropertyValueFactory<>("Rating"));
+        	views.setCellValueFactory(new PropertyValueFactory<>("Views"));
+        	table.setItems(tableItems);
+		}
+        table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
     
     
@@ -110,9 +119,9 @@ public class ViewCreationsController extends Controller {
     		player.stop();
     	
     	try {
-        	_currentCreation = creationList.getSelectionModel().getSelectedItem().toString();
+        	_currentCreation = table.getSelectionModel().getSelectedItem();
         	if (!_creationSelected) { _creationSelected = true; }
-        	creationDisplay.setText(_currentCreation);
+        	creationDisplay.setText(_currentCreation.getName());
 
             File vidFile = new File("./creations/" + _currentCreation + ".mp4");
             Media video = new Media(vidFile.toURI().toString());
@@ -205,9 +214,9 @@ public class ViewCreationsController extends Controller {
     @SuppressWarnings("hiding")
 	private class DeleteCreation<Void> extends Task<Void> {
     	
-    	String _creation;
+    	Creation _creation;
     	
-    	private DeleteCreation(String creation) {
+    	private DeleteCreation(Creation creation) {
     		_creation = creation;
     	}
 
@@ -228,7 +237,7 @@ public class ViewCreationsController extends Controller {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				creationList.getItems().remove(_creation);
+				tableItems.remove(_creation);
 				creationDisplay.setText("Select a creation");
 				_creationSelected = false;
 			});

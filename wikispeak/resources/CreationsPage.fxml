@@ -37,7 +37,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="49.0" layoutY="123.0" prefHeight="625.0" prefWidth="400.0">
+      <TableView fx:id="table" layoutX="49.0" layoutY="123.0" onMouseClicked="#handleSelectCreation" prefHeight="625.0" prefWidth="400.0">
         <columns>
           <TableColumn fx:id="names" prefWidth="240.0" text="Name" />
           <TableColumn fx:id="ratings" minWidth="1.0" text="Rating" />

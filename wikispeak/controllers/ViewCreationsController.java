@@ -70,7 +70,7 @@ public class ViewCreationsController extends Controller {
         _currentCreation = null;
         
        creations = readCreationList();
-       tableItems = FXCollections.observableList(creations);
+       tableItems = FXCollections.observableArrayList(creations);
         if (creations.isEmpty()) {
 			creationDisplay.setText("No creations to display");
 		} else {
@@ -83,7 +83,7 @@ public class ViewCreationsController extends Controller {
     }
     
     
-    private ArrayList readCreationList() {
+    private ArrayList<Creation> readCreationList() {
     	ArrayList<Creation> list = null;
     	if (new File("./creations/creations.ser").exists()) {
     		try {
@@ -123,7 +123,7 @@ public class ViewCreationsController extends Controller {
         	if (!_creationSelected) { _creationSelected = true; }
         	creationDisplay.setText(_currentCreation.getName());
 
-            File vidFile = new File("./creations/" + _currentCreation + ".mp4");
+            File vidFile = new File("./creations/" + _currentCreation.getName() + ".mp4");
             Media video = new Media(vidFile.toURI().toString());
             player = new MediaPlayer(video);
             viewer.setMediaPlayer(player);
@@ -193,7 +193,8 @@ public class ViewCreationsController extends Controller {
     
     @Override
 	protected void onSwitchScenes() {
-    	player.stop();
+    	if (player != null)
+    		player.stop();
     	
     	try {
     		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");
@@ -227,6 +228,8 @@ public class ViewCreationsController extends Controller {
 		@Override
 		protected Void call() throws Exception {
 			Bash.execute("./creations", "rm " + _creation + ".mp4");
+			creations.remove(_creation);
+			tableItems.remove(_creation);
 			return null;
 		}
 		
@@ -237,7 +240,6 @@ public class ViewCreationsController extends Controller {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				tableItems.remove(_creation);
 				creationDisplay.setText("Select a creation");
 				_creationSelected = false;
 			});

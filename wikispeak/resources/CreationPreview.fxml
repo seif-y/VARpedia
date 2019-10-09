@@ -3,14 +3,35 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="previewCreationsPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
+<AnchorPane fx:id="previewCreationsPage" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
    <children>
-      <MediaView fx:id="viewer" fitHeight="240.0" fitWidth="320.0" layoutX="140.0" layoutY="36.0" />
-      <Button layoutX="320.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleSave" text="Save Creation" />
-      <Button layoutX="176.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleScrap" text="Scrap Creation" />
-      <Button layoutX="254.0" layoutY="290.0" mnemonicParsing="false" onAction="#handlePlay" text="Play/Pause" />
-      <Button layoutX="194.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleBack" text="&lt;&lt;" />
-      <Button layoutX="365.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleFwd" text="&gt;&gt;" />
+      <MediaView fx:id="viewer" fitHeight="540.0" fitWidth="940.0" layoutX="130.0" layoutY="135.0" />
+      <Button layoutX="966.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="60.0" prefWidth="200.0" text="Save Creation">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="736.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleScrap" prefHeight="60.0" prefWidth="200.0" text="Scrap Creation">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="525.0" layoutY="702.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="60.0" prefWidth="150.0" text="Play/Pause">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="430.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="60.0" prefWidth="60.0" text="&lt;&lt;">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="710.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleFwd" prefHeight="60.0" prefWidth="60.0" text="&gt;&gt;">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="34.0" layoutY="42.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" text="Back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

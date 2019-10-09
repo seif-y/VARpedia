@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,18 +7,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
    <children>
-      <Text fx:id="creationDisplay" layoutX="17.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
+      <Text fx:id="creationDisplay" layoutX="483.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
          <font>
-            <Font size="26.0" />
+            <Font size="35.0" />
          </font>
       </Text>
-      <Button layoutX="244.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBack" prefWidth="50.0" text="&lt;&lt;" />
-      <Button layoutX="299.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePlay" prefWidth="100.0" text="Play/Pause" />
-      <Button layoutX="404.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleForward" prefWidth="50.0" text="&gt;&gt;" />
-      <Button layoutX="489.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleDelete" prefWidth="75.0" text="Delete" />
-      <ListView fx:id="creationList" layoutX="32.0" layoutY="80.0" onMouseClicked="#handleSelectCreation" prefHeight="291.0" prefWidth="190.0" />
-      <MediaView fx:id="viewer" fitHeight="240.0" fitWidth="320.0" layoutX="244.0" layoutY="80.0" />
+      <Button layoutX="490.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="60.0" prefWidth="60.0" text="&lt;&lt;">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="566.0" layoutY="681.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="60.0" prefWidth="150.0" text="Play/Pause">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="729.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="60.0" prefWidth="60.0" text="&gt;&gt;">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="899.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="60.0" prefWidth="150.0" text="Delete">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <ListView fx:id="creationList" layoutX="49.0" layoutY="118.0" onMouseClicked="#handleSelectCreation" prefHeight="649.0" prefWidth="315.0" />
+      <MediaView fx:id="viewer" fitHeight="432.0" fitWidth="768.0" layoutX="382.0" layoutY="210.0" />
+      <Button layoutX="49.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="60.0" prefWidth="120.0" text="Home">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

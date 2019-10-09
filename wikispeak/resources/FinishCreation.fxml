@@ -6,18 +6,34 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="finishCreationsPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
+<AnchorPane fx:id="finishCreationsPage" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
-      <ListView fx:id="audioList" layoutX="65.0" layoutY="44.0" prefHeight="295.0" prefWidth="230.0" />
-      <ListView fx:id="imageList" layoutX="304.0" layoutY="44.0" prefHeight="295.0" prefWidth="230.0" />
-      <Text layoutX="113.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Audio Files" />
-      <Text layoutX="380.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images" />
-      <Button layoutX="231.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleCreation" text="Create" />
-      <TextField fx:id="creationName" layoutX="67.0" layoutY="348.0" prefHeight="31.0" prefWidth="165.0" promptText="Creation Name" />
-      <Text fx:id="errorMsg" layoutX="306.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="229.9999913200736" />
-      <ImageView fx:id="loadingGif" fitHeight="43.0" fitWidth="39.0" layoutX="304.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+      <ListView fx:id="audioList" layoutX="145.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />
+      <ListView fx:id="imageList" layoutX="657.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />
+      <Text layoutX="291.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Audio Files">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Text layoutX="835.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Button layoutX="415.0" layoutY="722.0" mnemonicParsing="false" onAction="#handleCreation" prefHeight="60.0" prefWidth="120.0" text="Create">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <TextField fx:id="creationName" layoutX="142.0" layoutY="722.0" prefHeight="60.0" prefWidth="274.0" promptText="Creation Name">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <Text fx:id="errorMsg" layoutX="583.0" layoutY="760.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="483.9999913200736">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <ImageView fx:id="loadingGif" fitHeight="73.0" fitWidth="91.0" layoutX="657.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@loading.gif" />
          </image>

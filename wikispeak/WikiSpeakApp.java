@@ -16,7 +16,7 @@ public class WikiSpeakApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/wikispeak/resources/Main.fxml"));
+        loader.setLocation(this.getClass().getResource("/wikispeak/resources/HomePage.fxml"));
         Parent layout = loader.load();
         Scene scene = new Scene(layout);
         primaryStage.setScene(scene);

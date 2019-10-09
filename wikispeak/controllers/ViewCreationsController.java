@@ -2,12 +2,12 @@ package wikispeak.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -185,6 +185,16 @@ public class ViewCreationsController extends Controller {
     @Override
 	protected void onSwitchScenes() {
     	player.stop();
+    	
+    	try {
+    		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");
+    		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+    		out.writeObject(creations);
+    		out.close();
+    		fileOut.close();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
     
     

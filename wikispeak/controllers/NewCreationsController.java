@@ -16,6 +16,8 @@ public class NewCreationsController extends Controller {
 
     
 	@FXML
+	private AnchorPane pane;
+	@FXML
     private TextField searchField;
     @FXML
     private Text errorMsg;
@@ -32,6 +34,12 @@ public class NewCreationsController extends Controller {
     @FXML
     private void initialize() {
         searchingGif.setVisible(false);
+    }
+    
+    
+    @FXML
+    private void handleHome() {
+    	switchScenes(pane, "HomePage.fxml");
     }
 
     
@@ -102,8 +110,7 @@ public class NewCreationsController extends Controller {
         	if (successful) {
         		Platform.runLater(() -> {
         			Wikit.get().setArticle(wikitOut);
-        			Pane parent = (Pane) newCreationPage.getParent();
-        			switchScenes(parent, "AudioEditor.fxml");
+        			switchScenes(pane, "AudioEditor.fxml");
         		});
         	} else {
         		Platform.runLater(() -> {

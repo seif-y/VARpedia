@@ -61,24 +61,6 @@ public class Creator {
     
     
     /**
-     * Makes an .wav audio file of the given text being dictated, using text2wave
-     * @param text The text to be dictated
-     * @param fileName The name of the audio file.
-     */
-    public void makeAudio(String text, String fileName, String voice) {
-    	try {
-//			Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm").waitFor();
-//			Bash.execute("./creations/voices", "echo \"(utt.save.wave (SayText \\\"" + text + "\\\") \\\"../audiofiles/." + fileName + ".wav\\\" 'riff)\" >> voice.scm").waitFor();
-//			Bash.execute("./creations/voices", "festival -b voice.scm");
-    		Bash.execute("./creations/audiofiles", "echo \"" + text + "\" | text2wave -o ." + fileName + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    	
-    }
-    
-    
-    /**
      * Return a string that contains the length of an audio file.
      * @param fileName The audio file that we are getting the time for.
      * @return The time of the given audio file
@@ -155,12 +137,32 @@ public class Creator {
     
     
     /**
-     * Deletes all temporary audio and video files
+     * Deletes all temporary files
      */
     public void cleanup() {
+    	cleanupAudio();
+    	cleanupImages();
+    	
+    }
+    
+    /**
+     * Deletes all temporary audio files
+     */
+    public void cleanupAudio() {
+    	try {
+    		Bash.execute("./creations/audiofiles", "rm .*").waitFor();
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
+    	
+    }
+    
+    /**
+     * Deletes all temporary image files
+     */
+    public void cleanupImages() {
     	try {
     		Bash.execute("./creations/images", "rm .*").waitFor();
-    		Bash.execute("./creations/audiofiles", "rm .*").waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();
     	}

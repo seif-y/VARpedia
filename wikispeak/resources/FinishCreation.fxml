@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="finishCreationsPage" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
       <ListView fx:id="audioList" layoutX="145.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />
       <ListView fx:id="imageList" layoutX="657.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />

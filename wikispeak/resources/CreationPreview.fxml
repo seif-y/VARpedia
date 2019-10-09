@@ -5,7 +5,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="previewCreationsPage" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
    <children>
       <MediaView fx:id="viewer" fitHeight="540.0" fitWidth="940.0" layoutX="130.0" layoutY="135.0" />
       <Button layoutX="966.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="60.0" prefWidth="200.0" text="Save Creation">
@@ -28,7 +28,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="34.0" layoutY="42.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" text="Back">
+      <Button layoutX="34.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="60.0" prefWidth="120.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>

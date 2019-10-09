@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
@@ -23,6 +24,8 @@ public class ViewCreationsController extends Controller {
     private boolean _creationSelected;
 
 
+    @FXML
+    private AnchorPane pane;
     @FXML
     private ListView<String> creationList;
     @FXML
@@ -62,6 +65,12 @@ public class ViewCreationsController extends Controller {
         }
         
         creationList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+    
+    
+    @FXML
+    private void handleHome() {
+    	switchScenes(pane, "HomePage.fxml");
     }
 
     

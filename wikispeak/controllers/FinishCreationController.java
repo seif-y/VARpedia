@@ -27,7 +27,7 @@ import wikispeak.Creator;
 public class FinishCreationController extends Controller {
 
 	@FXML
-	private AnchorPane finishCreationsPage;
+	private AnchorPane pane;
 	@FXML
     private TextField creationName;
     @FXML
@@ -149,8 +149,7 @@ public class FinishCreationController extends Controller {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				Pane parent = (Pane) finishCreationsPage.getParent();
-		    	switchScenes(parent, "CreationPreview.fxml");
+		    	switchScenes(pane, "CreationPreview.fxml");
 			});
 		}
     	

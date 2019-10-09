@@ -16,14 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
-import wikispeak.Creator;
 import wikispeak.ImageHandler;
 import wikispeak.Wikit;
 
-public class AudioEditorController {
+public class AudioEditorController extends Controller {
     
     @FXML
-    private AnchorPane finishCreationPage;
+    private AnchorPane pane;
     @FXML
     private TextArea wikitText;
     @FXML
@@ -61,6 +60,12 @@ public class AudioEditorController {
         
         errorMsg.setVisible(false);
         wikitText.setText(Wikit.get().getFormattedArticle());
+    }
+    
+    
+    @FXML
+    private void handleBack() {
+    	switchScenes(pane, "NewCreationPage.fxml");
     }
     
     
@@ -191,6 +196,8 @@ public class AudioEditorController {
      */
     private class GenerateAudio extends Task<Void> {
     	
+    	int _exitCode;
+    	
     	/**
     	 * Call method: Creates temp audio and video files and combines them, then deletes the temp files, using Creator class.
     	 */
@@ -201,7 +208,11 @@ public class AudioEditorController {
             String selection = wikitText.getSelectedText();
             String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
             
-            Creator.get().makeAudio(selection, name, voice);
+            try {
+        		_exitCode = Bash.execute("./creations/audiofiles", "echo \"" + selection + "\" | text2wave -o ." + name + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
             
             return null;
 
@@ -213,8 +224,13 @@ public class AudioEditorController {
          */
         @Override
         protected void done() {
-            errorMsg.setText(nameField.getText() + " has been saved.");
-            errorMsg.setVisible(true);
+        	if (_exitCode == 0) {
+        		errorMsg.setText(nameField.getText() + " has been saved.");
+        		errorMsg.setVisible(true);
+        	} else {
+        		errorMsg.setText("Could not save audio, ensure your text has no invalid characters.");
+        		errorMsg.setVisible(true);
+        	}
         }
     }
     
@@ -236,17 +252,7 @@ public class AudioEditorController {
 		@Override
 		protected void done() {
 			Platform.runLater(() -> {
-				Pane parent = (Pane) finishCreationPage.getParent();
-		    	FXMLLoader loader = new FXMLLoader();
-		        loader.setLocation(this.getClass().getResource("/wikispeak/resources/FinishCreation.fxml"));
-		        try {
-		            AnchorPane viewCreationPage = loader.load();
-		            parent.getChildren().clear();
-		            parent.getChildren().add(viewCreationPage);
-
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
+				switchScenes(pane, "FinishCreation.fxml");
 			});
 		}
     	

@@ -16,7 +16,7 @@ import wikispeak.Creator;
 public class CreationPreviewController extends Controller {
 
 	@FXML
-	private AnchorPane previewCreationsPage;
+	private AnchorPane pane;
     @FXML
     private MediaView viewer;
     private MediaPlayer player;
@@ -30,6 +30,11 @@ public class CreationPreviewController extends Controller {
         Media video = new Media(vidFile.toURI().toString());
         player = new MediaPlayer(video);
         viewer.setMediaPlayer(player);
+    }
+    
+    @FXML
+    private void handleGoBack() {
+    	switchScenes(pane, "FinishCreation.fxml");
     }
 
     @FXML
@@ -72,8 +77,6 @@ public class CreationPreviewController extends Controller {
     
 
     private void loadCreationsPage() {
-    	
-    	Pane parent = (Pane) previewCreationsPage.getParent();
-    	switchScenes(parent, "CreationsPage.fxml");
+    	switchScenes(pane, "CreationsPage.fxml");
     }
 }

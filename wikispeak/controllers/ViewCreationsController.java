@@ -1,8 +1,13 @@
 package wikispeak.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,6 +22,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import wikispeak.Bash;
+import wikispeak.Creation;
 
 public class ViewCreationsController extends Controller {
 	
@@ -28,6 +34,8 @@ public class ViewCreationsController extends Controller {
     private AnchorPane pane;
     @FXML
     private ListView<String> creationList;
+    @FXML
+    private ArrayList<Creation> creations;
     @FXML
     private Text creationDisplay;
     @FXML
@@ -54,17 +62,35 @@ public class ViewCreationsController extends Controller {
         _creationSelected = false;
         _currentCreation = null;
         
-        String[] creations = Bash.readOutput(Bash.execute("./creations", "ls *.mp4 2> /dev/null")).split("\n");
+       creations = readCreationList();
         
-        try {
-        	for (String creation : creations) {
-        		creationList.getItems().add(creation.substring(0, creation.length() - 4));
-        	}
-        } catch (StringIndexOutOfBoundsException e) { 
-        	creationDisplay.setText("There are no creations to display.");
+        
+        for (Creation creation : creations) {
+        	creationList.getItems().add(creation.getName());
         }
-        
+        if (creationList.getItems().isEmpty())
+        	creationDisplay.setText("No creations to display");
         creationList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+    
+    
+    private ArrayList readCreationList() {
+    	ArrayList<Creation> list = null;
+    	if (new File("./creations/creations.ser").exists()) {
+    		try {
+    			FileInputStream fileIn = new FileInputStream("./creations/creations.ser");
+    			ObjectInputStream in = new ObjectInputStream(fileIn);
+    			list = (ArrayList<Creation>) in.readObject();
+    			in.close();
+    			fileIn.close();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	} else {
+    		list = new ArrayList<Creation>();
+    	}
+    	
+    	return list;
     }
     
     

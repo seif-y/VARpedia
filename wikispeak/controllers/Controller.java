@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 public abstract class Controller {
 
     protected void switchScenes(Pane pane, String FXMLFileName) {
+    	onSwitchScenes();
+    	
         Stage stage = (Stage) pane.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader();

@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import wikispeak.Bash;
 import wikispeak.Creation;
+import wikispeak.Creator;
 
 public class ViewCreationsController extends Controller {
 	
@@ -49,6 +50,8 @@ public class ViewCreationsController extends Controller {
     @FXML
     private MediaView viewer;
     private MediaPlayer player;
+    @FXML
+    private Slider ratingSlider;
 
     
     /**
@@ -58,28 +61,22 @@ public class ViewCreationsController extends Controller {
     @FXML
     private void initialize() {
 
-    	if (!(new File("./creations")).exists()) {
-    		try {
-				Bash.execute(".","mkdir creations").waitFor();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-    	};
+    	Creator.get();
     	
         _creationSelected = false;
         _currentCreation = null;
         
        creations = readCreationList();
        tableItems = FXCollections.observableArrayList(creations);
-        if (creations.isEmpty()) {
-			creationDisplay.setText("No creations to display");
-		} else {
-        	names.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        	ratings.setCellValueFactory(new PropertyValueFactory<>("Rating"));
-        	views.setCellValueFactory(new PropertyValueFactory<>("Views"));
-        	table.setItems(tableItems);
-		}
+       populateTable();
         table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+        ratingSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+        	if (_currentCreation != null) {
+        		_currentCreation.setRating(newValue.intValue());
+        		table.refresh();
+        	}
+        });
     }
     
     
@@ -103,6 +100,18 @@ public class ViewCreationsController extends Controller {
     }
     
     
+    private void populateTable() {
+    	if (creations.isEmpty()) {
+			creationDisplay.setText("No creations to display");
+		} else {
+        	names.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        	ratings.setCellValueFactory(new PropertyValueFactory<>("Rating"));
+        	views.setCellValueFactory(new PropertyValueFactory<>("Views"));
+        	table.setItems(tableItems);
+		}
+    }
+    
+    
     @FXML
     private void handleHome() {
     	switchScenes(pane, "HomePage.fxml");
@@ -122,10 +131,17 @@ public class ViewCreationsController extends Controller {
         	_currentCreation = table.getSelectionModel().getSelectedItem();
         	if (!_creationSelected) { _creationSelected = true; }
         	creationDisplay.setText(_currentCreation.getName());
+        	
+        	ratingSlider.setValue(_currentCreation.getRating());
 
-            File vidFile = new File("./creations/" + _currentCreation.getName() + ".mp4");
+            File vidFile = new File("./creations/" + _currentCreation.getFile());
             Media video = new Media(vidFile.toURI().toString());
             player = new MediaPlayer(video);
+            player.setOnEndOfMedia(() -> {
+            	player.pause();
+            	_currentCreation.incrementViews();
+            	table.refresh();
+            });
             viewer.setMediaPlayer(player);
         	
         } catch (NullPointerException e) {}        
@@ -191,6 +207,14 @@ public class ViewCreationsController extends Controller {
     }
     
     
+    @FXML
+    private void handleRatingChange() {
+    	System.out.println("whats poppin cuzzo lmao");
+    	if (_currentCreation != null) {
+    		_currentCreation.setRating((int) ratingSlider.getValue());
+    	}
+    }
+    
     @Override
 	protected void onSwitchScenes() {
     	if (player != null)
@@ -227,7 +251,7 @@ public class ViewCreationsController extends Controller {
     	 */
 		@Override
 		protected Void call() throws Exception {
-			Bash.execute("./creations", "rm " + _creation + ".mp4");
+			Bash.execute("./creations", "rm " + _creation.getFile());
 			creations.remove(_creation);
 			tableItems.remove(_creation);
 			return null;

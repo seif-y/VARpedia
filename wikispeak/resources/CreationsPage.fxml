@@ -47,7 +47,7 @@
             <TableColumn fx:id="views" prefWidth="79.0" text="Views" />
         </columns>
       </TableView>
-      <Slider fx:id="ratingSlider" layoutX="587.0" layoutY="696.0" onDragDone="#handleRatingChange" prefHeight="50.0" prefWidth="475.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="ratingSlider" layoutX="587.0" layoutY="696.0" prefHeight="50.0" prefWidth="475.0" showTickLabels="true" showTickMarks="true" />
       <ImageView fitHeight="99.0" fitWidth="141.0" layoutX="459.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@low-rating.png" />

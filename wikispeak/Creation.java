@@ -35,8 +35,16 @@ public class Creation implements Serializable {
 		return _rating;
 	}
 	
+	public void setRating(int rating) {
+		_rating = rating;
+	}
+	
 	public int getViews() {
 		return _views;
+	}
+	
+	public void incrementViews() {
+		_views++;
 	}
 	
 	public static void setInstance(Creation creation) {

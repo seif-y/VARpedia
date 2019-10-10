@@ -138,6 +138,7 @@ public class ViewCreationsController extends Controller {
             Media video = new Media(vidFile.toURI().toString());
             player = new MediaPlayer(video);
             player.setOnEndOfMedia(() -> {
+            	player.seek(new Duration(0));
             	player.pause();
             	_currentCreation.incrementViews();
             	table.refresh();

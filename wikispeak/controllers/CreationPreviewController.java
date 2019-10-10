@@ -7,11 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -29,6 +27,8 @@ public class CreationPreviewController extends Controller {
     @FXML
     private MediaView viewer;
     private MediaPlayer player;
+    @FXML
+	private Slider ratingSlider;
     
     private String creationName;
     
@@ -98,7 +98,7 @@ public class CreationPreviewController extends Controller {
     		creations = new ArrayList<Creation>();
     	}
     	
-    	creations.add(new Creation(Wikit.get().getTerm(), creationName, 50));
+    	creations.add(new Creation(Wikit.get().getTerm(), creationName, (int) ratingSlider.getValue()));
     	
     	try {
     		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");

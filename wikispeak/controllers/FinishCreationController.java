@@ -34,11 +34,23 @@ public class FinishCreationController extends Controller {
 	private ImageView loadingGif;
     @FXML
 	private Text errorMsg;
+    
     @FXML
 	private ListView<String> audioList;
+    private ObservableList<String> unselectedAudio;
+    @FXML
+    private ListView<String> selectedAudioList;
+    private ObservableList<String> selectedAudio;
+    
     @FXML
     private ListView<ImageView> imageList;
+    private ObservableList<ImageView> unselectedImages;
+    @FXML
+    private ListView<ImageView> selectedImageList;
+    private ObservableList<ImageView> selectedImages;
+    
     private Map<ImageView, String> imageMap = new IdentityHashMap<>();
+    
     
     
     @FXML
@@ -48,23 +60,33 @@ public class FinishCreationController extends Controller {
     	
     	setUpAudioList();
     	setUpImageList();
+    	
+    	selectedAudio = FXCollections.observableArrayList();
+    	selectedAudioList.setItems(selectedAudio);
+    	selectedAudioList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    	
+    	selectedImages = FXCollections.observableArrayList();
+    	selectedImageList.setItems(selectedImages);
+    	selectedImageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
+    
     
     
     private void setUpAudioList() {
     	String[] audioFiles = Bash.readOutput(Bash.execute("./creations/audiofiles", "ls .*.wav 2> /dev/null")).split("\n");
-    	ObservableList<String> recordings = FXCollections.observableArrayList();
+    	unselectedAudio = FXCollections.observableArrayList();
     	for (String fileName : audioFiles) {
-    		recordings.add(fileName.substring(1, fileName.length() - 4));
+    		unselectedAudio.add(fileName.substring(1, fileName.length() - 4));
     	}
-    	audioList.setItems(recordings);
-    	audioList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	audioList.setItems(unselectedAudio);
+    	audioList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
+    
     
     
     private void setUpImageList() {
     	String[] imageFiles = Bash.readOutput(Bash.execute("./creations/images", "ls .*.jpg 2> /dev/null")).split("\n");
-    	ObservableList<ImageView> images = FXCollections.observableArrayList();
+    	unselectedImages = FXCollections.observableArrayList();
     	for (String imageFile : imageFiles) {
     		File file = new File("./creations/images", imageFile);
     		if (file.exists()) {
@@ -72,14 +94,85 @@ public class FinishCreationController extends Controller {
     			ImageView imageView = new ImageView(image);
     			imageView.setPreserveRatio(true);
     			imageView.setFitWidth(180);
-    			images.add(imageView);
+    			unselectedImages.add(imageView);
     			imageMap.put(imageView, imageFile);
     		}
     	}
-    	imageList.setItems(images);
-    	imageList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	imageList.setItems(unselectedImages);
+    	imageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
+    
+    
 
+    @FXML
+    private void handleBack() {
+    	switchScenes(pane, "AudioEditor.fxml");
+    }
+    
+    
+    @FXML
+    private void handleScrapCreation() {
+    	Creator.get().cleanup();
+    	switchScenes(pane, "HomePage.fxml");
+    }
+    
+    
+    
+    @FXML
+    private void handleAddAudio() {
+    	String chosenAudioFile = audioList.getSelectionModel().getSelectedItem();
+    	unselectedAudio.remove(chosenAudioFile);
+    	selectedAudio.add(chosenAudioFile);
+    }
+    
+    
+    @FXML
+    private void handleAudioUp() {
+    	
+    }
+    
+    @FXML
+    private void handleAudioDown() {
+    	
+    }
+    
+    @FXML
+    private void handleAudioDel() {
+    	String chosenAudioFile = selectedAudioList.getSelectionModel().getSelectedItem();
+    	selectedAudio.remove(chosenAudioFile);
+    	unselectedAudio.add(chosenAudioFile);
+    }
+    
+    
+    @FXML
+    private void handleAddImages() {
+    	ImageView chosenImage = imageList.getSelectionModel().getSelectedItem();
+    	unselectedImages.remove(chosenImage);
+    	selectedImages.add(chosenImage);
+    }
+    
+    
+    @FXML
+    private void handleImageUp() {
+    	
+    }
+    
+    
+    @FXML
+    private void handleImageDown() {
+    	
+    }
+    
+    
+    @FXML
+    private void handleImageDel() {
+    	ImageView chosenImage = selectedImageList.getSelectionModel().getSelectedItem();
+    	selectedImages.remove(chosenImage);
+    	unselectedImages.add(chosenImage);
+    }
+    
+    
+    
     @FXML
     private void handleCreation() {
     	
@@ -118,7 +211,7 @@ public class FinishCreationController extends Controller {
     private class GenerateCreation extends Task<Void> {
 
 		@Override
-		protected Void call() throws Exception {
+		protected Void call() {
 			//Add textField for user to select creation name
 	    	String fileName = creationName.getText();
 	    	String audioFileName = "." + fileName + "-audio.wav";
@@ -126,7 +219,7 @@ public class FinishCreationController extends Controller {
 	    	
 	    	//Create audio based on selected files by concatenating them
 	    	List<String> selectedAudioFiles = new ArrayList<String>();
-	    	for (String audioFile : audioList.getSelectionModel().getSelectedItems()) {
+	    	for (String audioFile : selectedAudio) {
 	    		selectedAudioFiles.add("." + audioFile + ".wav");
 	    	}
 	    	Creator.get().combineAudio(selectedAudioFiles, audioFileName);
@@ -135,7 +228,7 @@ public class FinishCreationController extends Controller {
 	    	
 	        //Create video based on selected images using the time of the audio file
 	    	List<String> selectedImageFiles = new ArrayList<String>();
-	    	for (ImageView imageView : imageList.getSelectionModel().getSelectedItems()) {
+	    	for (ImageView imageView : selectedImages) {
 	    		selectedImageFiles.add(imageMap.get(imageView));
 	    	}
 	    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);

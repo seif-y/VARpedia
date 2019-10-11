@@ -2,6 +2,7 @@ package wikispeak.controllers;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,6 +118,14 @@ public class FinishCreationController extends Controller {
     }
     
     
+    private void swapListItems(ListView listView, ObservableList list, int mod) {
+    	int index = listView.getSelectionModel().getSelectedIndex();
+    	try {
+    		Collections.swap(list, index, index + mod);
+    	} catch (IndexOutOfBoundsException e) {}
+    }
+    
+    
     
     @FXML
     private void handleAddAudio() {
@@ -128,12 +137,12 @@ public class FinishCreationController extends Controller {
     
     @FXML
     private void handleAudioUp() {
-    	
+    	swapListItems(selectedAudioList, selectedAudio, -1);
     }
     
     @FXML
     private void handleAudioDown() {
-    	
+    	swapListItems(selectedAudioList, selectedAudio, 1);
     }
     
     @FXML
@@ -154,13 +163,13 @@ public class FinishCreationController extends Controller {
     
     @FXML
     private void handleImageUp() {
-    	
+    	swapListItems(selectedImageList, selectedImages, -1);
     }
     
     
     @FXML
     private void handleImageDown() {
-    	
+    	swapListItems(selectedImageList, selectedImages, 1);
     }
     
     

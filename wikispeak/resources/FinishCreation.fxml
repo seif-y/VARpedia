@@ -60,42 +60,42 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="520.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleAddImages" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+      <Button layoutX="520.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleAddImages" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="520.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleAddAudio" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+      <Button layoutX="520.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleAddAudio" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1070.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleAudioUp" prefHeight="50.0" prefWidth="100.0" text="Up">
+      <Button layoutX="1070.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleAudioUp" prefHeight="50.0" prefWidth="100.0" text="Up">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1070.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleAudioDown" prefHeight="50.0" prefWidth="100.0" text="Down">
+      <Button layoutX="1070.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleAudioDown" prefHeight="50.0" prefWidth="100.0" text="Down">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1070.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleAudioDel" prefHeight="50.0" prefWidth="100.0" text="Del">
+      <Button layoutX="520.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleAudioDel" prefHeight="50.0" prefWidth="60.0" text="&lt;-">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1069.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleImageUp" prefHeight="50.0" prefWidth="100.0" text="Up">
+      <Button layoutX="1070.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleImageUp" prefHeight="50.0" prefWidth="100.0" text="Up">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1069.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleImageDown" prefHeight="50.0" prefWidth="100.0" text="Down">
+      <Button layoutX="1070.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleImageDown" prefHeight="50.0" prefWidth="100.0" text="Down">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1069.0" layoutY="599.0" mnemonicParsing="false" onAction="#handleImageDel" prefHeight="50.0" prefWidth="100.0" text="Del">
+      <Button layoutX="520.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleImageDel" prefHeight="50.0" prefWidth="60.0" text="&lt;-">
          <font>
             <Font size="20.0" />
          </font>

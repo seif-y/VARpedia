@@ -1,7 +1,6 @@
 package wikispeak.controllers;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
@@ -10,12 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
+import wikispeak.Creator;
 import wikispeak.ImageHandler;
 import wikispeak.Wikit;
 
@@ -25,6 +23,8 @@ public class AudioEditorController extends Controller {
     private AnchorPane pane;
     @FXML
     private TextArea wikitText;
+    @FXML
+    private TextArea selectedText;
     @FXML
     private TextField nameField;
     @FXML
@@ -58,6 +58,7 @@ public class AudioEditorController extends Controller {
         voiceMap.put("Default", "kal_diphone");
         voiceMap.put("Auckland", "akl_nz_jdt_diphone");
         
+        voiceOptions.setStyle("-fx-font: 20px \"System\";");
         errorMsg.setVisible(false);
         wikitText.setText(Wikit.get().getFormattedArticle());
     }
@@ -66,6 +67,12 @@ public class AudioEditorController extends Controller {
     @FXML
     private void handleBack() {
     	switchScenes(pane, "NewCreationPage.fxml");
+    }
+    
+    @FXML
+    private void handleScrapCreation() {
+    	Creator.get().cleanup();
+    	switchScenes(pane, "HomePage.fxml");
     }
     
     
@@ -77,6 +84,7 @@ public class AudioEditorController extends Controller {
     @FXML
     private void handleCreate() {
         String fileName = nameField.getText();
+        int numWords = selectedText.getText().split("\\s+").length;
         
         if (fileName == null || fileName.equals("")) {
             errorMsg.setText("Please enter a valid name for your audio file");
@@ -84,6 +92,10 @@ public class AudioEditorController extends Controller {
             
         } else if (Bash.hasInvalidChars(fileName, true)) {
         	errorMsg.setText("Audio file name contains invalid character(s)");
+        	errorMsg.setVisible(true);
+        	
+        } else if (numWords > 40) {
+        	errorMsg.setText("Cannot select a chunk of text greater than 40 words!");
         	errorMsg.setVisible(true);
         		
         } else if (!(new File("./creations/audiofiles/." + fileName + ".wav").exists())) {
@@ -109,7 +121,7 @@ public class AudioEditorController extends Controller {
     
     @FXML
     private void handlePreview() {
-    	String selection = wikitText.getSelectedText();
+    	String selection = selectedText.getText();
     	int numWords = selection.split("\\s+").length;
     	
     	if (numWords > 40) {
@@ -123,14 +135,28 @@ public class AudioEditorController extends Controller {
     	}
     }
     
+    
+    
+    @FXML
+    private void handleAddText() {
+    	selectedText.appendText("\n\n" + wikitText.getSelectedText());
+    }
+    
+    
+    
     /**
      * Method to retrieve images from Flickr in a new thread, then load the FinishCreations page
      */
     @FXML
     private void handleNext() {
-    	
-    	errorMsg.setText("Moving on to next stage...");
-    	retrieveImages();
+    	if (new File("./creations/audiofiles").list().length == 0) {
+    		errorMsg.setVisible(true);
+    		errorMsg.setText("You need to save an audio file to move on.");
+    	} else {
+    		errorMsg.setVisible(true);
+    		errorMsg.setText("Moving on to next stage...");
+    		retrieveImages();
+    	}
     }
  
     
@@ -138,6 +164,7 @@ public class AudioEditorController extends Controller {
      * Method to generate the audio in a new thread
      */
     private void generateAudio() {
+    	errorMsg.setVisible(true);
     	errorMsg.setText("Generating Audio...");
         Thread creatorThread = new Thread(new GenerateAudio());
         creatorThread.start();
@@ -163,7 +190,12 @@ public class AudioEditorController extends Controller {
 		protected Void call() throws Exception {
 			
 			String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
-			String selection = wikitText.getSelectedText();
+			String selection = selectedText.getText();
+			
+			if (voice == null) {
+				_exitCode = -1;
+				return null;
+			}
 			
 			try {
 				Bash.execute("./creations/voices", "echo '(voice_" + voice + ")' > voice.scm").waitFor();
@@ -181,7 +213,9 @@ public class AudioEditorController extends Controller {
 		protected void done() {
 			Platform.runLater(() -> {
 				if (_exitCode == 0) {
-					errorMsg.setVisible(false);
+					errorMsg.setText("Finished previewing audio.");
+				} else if (_exitCode == -1) {
+					errorMsg.setText("Please select a voice before previewing audio.");
 				} else {
 					errorMsg.setText("Error playing audio, ensure your text contains no invalid characters.");
 				}
@@ -205,8 +239,13 @@ public class AudioEditorController extends Controller {
         protected Void call() throws Exception {
         	
         	String name = nameField.getText();
-            String selection = wikitText.getSelectedText();
+            String selection = selectedText.getText();
             String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
+            
+            if (voice == null) {
+            	_exitCode = -1;
+            	return null;
+            }
             
             try {
         		_exitCode = Bash.execute("./creations/audiofiles", "echo \"" + selection + "\" | text2wave -o ." + name + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
@@ -226,10 +265,10 @@ public class AudioEditorController extends Controller {
         protected void done() {
         	if (_exitCode == 0) {
         		errorMsg.setText(nameField.getText() + " has been saved.");
-        		errorMsg.setVisible(true);
+        	} else if (_exitCode == -1) {
+        		errorMsg.setText("Please select a voice before saving audio.");
         	} else {
         		errorMsg.setText("Could not save audio, ensure your text has no invalid characters.");
-        		errorMsg.setVisible(true);
         	}
         }
     }

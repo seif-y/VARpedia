@@ -25,7 +25,7 @@ public class WikiSpeakApp extends Application {
         Parent layout = loader.load();
         Scene scene = new Scene(layout);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("WikiSpeak");
+        primaryStage.setTitle("VARpedia");
         primaryStage.show();
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

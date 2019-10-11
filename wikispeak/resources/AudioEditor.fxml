@@ -18,7 +18,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <TextArea fx:id="wikitText" layoutX="50.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
+      <TextArea fx:id="wikitText" layoutX="50.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" editable="false" />
       <Text fx:id="errorMsg" layoutX="52.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="933.6708984375">
          <font>
             <Font size="20.0" />
@@ -37,7 +37,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextArea fx:id="selectedText" layoutX="650.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" />
+      <TextArea fx:id="selectedText" layoutX="650.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
       <Button layoutX="570.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleAddText" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
          <font>
             <Font size="20.0" />

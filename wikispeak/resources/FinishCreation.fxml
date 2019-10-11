@@ -11,32 +11,94 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
-      <ListView fx:id="audioList" layoutX="145.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />
-      <ListView fx:id="imageList" layoutX="657.0" layoutY="73.0" prefHeight="622.0" prefWidth="410.0" />
-      <Text layoutX="291.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Audio Files">
+      <ListView fx:id="audioList" layoutX="50.0" layoutY="134.0" prefHeight="200.0" prefWidth="450.0" />
+      <ListView fx:id="imageList" layoutX="50.0" layoutY="399.0" prefHeight="300.0" prefWidth="450.0" />
+      <Text layoutX="231.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Audio">
          <font>
             <Font size="20.0" />
          </font></Text>
-      <Text layoutX="835.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images">
+      <Text layoutX="229.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Images">
          <font>
             <Font size="20.0" />
          </font></Text>
-      <Button layoutX="415.0" layoutY="722.0" mnemonicParsing="false" onAction="#handleCreation" prefHeight="60.0" prefWidth="120.0" text="Create">
+      <Button layoutX="380.0" layoutY="732.0" mnemonicParsing="false" onAction="#handleCreation" prefHeight="50.0" prefWidth="120.0" text="Create">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <TextField fx:id="creationName" layoutX="142.0" layoutY="722.0" prefHeight="60.0" prefWidth="274.0" promptText="Creation Name">
+      <TextField fx:id="creationName" layoutX="50.0" layoutY="732.0" prefHeight="50.0" prefWidth="333.0" promptText="Creation Name">
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Text fx:id="errorMsg" layoutX="583.0" layoutY="760.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="483.9999913200736">
+      <Text fx:id="errorMsg" layoutX="585.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="483.9999913200736">
          <font>
             <Font size="20.0" />
          </font></Text>
-      <ImageView fx:id="loadingGif" fitHeight="73.0" fitWidth="91.0" layoutX="657.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loadingGif" fitHeight="73.0" fitWidth="91.0" layoutX="791.0" layoutY="720.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@loading.gif" />
          </image>
       </ImageView>
+      <ListView fx:id="selectedAudioList" layoutX="600.0" layoutY="134.0" prefHeight="200.0" prefWidth="450.0" />
+      <ListView fx:id="selectedImageList" layoutX="600.0" layoutY="399.0" prefHeight="300.0" prefWidth="450.0" />
+      <Button layoutX="171.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleScrapCreation" prefHeight="50.0" prefWidth="200.0" text="Scrap Creation">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="30.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="120.0" text="Back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="775.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Audio">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="770.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Images">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="520.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleAddImages" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="520.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleAddAudio" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1070.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleAudioUp" prefHeight="50.0" prefWidth="100.0" text="Up">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1070.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleAudioDown" prefHeight="50.0" prefWidth="100.0" text="Down">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1070.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleAudioDel" prefHeight="50.0" prefWidth="100.0" text="Del">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1069.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleImageUp" prefHeight="50.0" prefWidth="100.0" text="Up">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1069.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleImageDown" prefHeight="50.0" prefWidth="100.0" text="Down">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="1069.0" layoutY="599.0" mnemonicParsing="false" onAction="#handleImageDel" prefHeight="50.0" prefWidth="100.0" text="Del">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

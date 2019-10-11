@@ -97,7 +97,7 @@ public class ViewCreationsController extends Controller {
     
     /**
      * Executes when the list view is clicked on.
-     * Updates state to indicate that a creation is selected, and show which creation is selected
+     * Updates state to indicate that a creation is selected, and show which creation is selected.
      */
     @FXML
     private void handleSelectCreation() {

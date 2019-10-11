@@ -1,10 +1,15 @@
 package wikispeak;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -22,6 +27,23 @@ public class WikiSpeakApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("WikiSpeak");
         primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+            	Alert quitAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                quitAlert.setTitle("Exit WikiSpeak");
+                quitAlert.setHeaderText("Are you sure you want to quit?");
+                quitAlert.setContentText("Any unsaved progress will be lost.");
+                quitAlert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        Platform.exit();
+                        System.exit(0);
+                    } else {
+                    	event.consume();
+                    }
+                });
+            }
+        });
     }
 
     

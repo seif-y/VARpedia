@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import wikispeak.Bash;
+import wikispeak.Creator;
 import wikispeak.Wikit;
 
 
@@ -34,6 +34,7 @@ public class NewCreationsController extends Controller {
     @FXML
     private void initialize() {
         searchingGif.setVisible(false);
+        Creator.get().cleanup();
     }
     
     

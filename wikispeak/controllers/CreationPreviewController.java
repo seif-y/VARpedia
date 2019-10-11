@@ -84,31 +84,11 @@ public class CreationPreviewController extends Controller {
     
     
     private void saveCreation() {
-    	if (new File("./creations/creations.ser").exists()) {
-    		try {
-    			FileInputStream fileIn = new FileInputStream("./creations/creations.ser");
-    			ObjectInputStream in = new ObjectInputStream(fileIn);
-    			creations = (ArrayList<Creation>) in.readObject();
-    			in.close();
-    			fileIn.close();
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-    	} else {
-    		creations = new ArrayList<Creation>();
-    	}
+    	creations = Creator.get().readCreationList();
     	
     	creations.add(new Creation(Wikit.get().getTerm(), creationName, (int) ratingSlider.getValue()));
     	
-    	try {
-    		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");
-    		ObjectOutputStream out = new ObjectOutputStream(fileOut);
-    		out.writeObject(creations);
-    		out.close();
-    		fileOut.close();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    	Creator.get().writeCreationList(creations);
     }
     
     

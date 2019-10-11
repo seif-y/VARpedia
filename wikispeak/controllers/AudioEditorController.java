@@ -244,7 +244,9 @@ public class AudioEditorController extends Controller {
 		protected Void call() throws Exception {
 			
 			String searchTerm = Wikit.get().getTerm();
-			ImageHandler.get().saveImages(searchTerm, 10);
+			if (new File("./creations/images").list().length == 0) {
+				ImageHandler.get().saveImages(searchTerm, 10);
+			}
 			
 			return null;
 		}

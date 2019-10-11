@@ -1,6 +1,11 @@
 package wikispeak;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Creator {
@@ -167,5 +172,40 @@ public class Creator {
     		e.printStackTrace();
     	}
     	
+    }
+    
+    
+    
+    public ArrayList<Creation> readCreationList() {
+    	ArrayList<Creation> list = null;
+    	if (new File("./creations/creations.ser").exists()) {
+    		try {
+    			FileInputStream fileIn = new FileInputStream("./creations/creations.ser");
+    			ObjectInputStream in = new ObjectInputStream(fileIn);
+    			list = (ArrayList<Creation>) in.readObject();
+    			in.close();
+    			fileIn.close();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	} else {
+    		list = new ArrayList<Creation>();
+    	}
+    	
+    	return list;
+    }
+    
+    
+    
+    public void writeCreationList(ArrayList<Creation> list) {
+    	try {
+    		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");
+    		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+    		out.writeObject(list);
+    		out.close();
+    		fileOut.close();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 }

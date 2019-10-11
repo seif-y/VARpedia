@@ -59,44 +59,21 @@ public class ViewCreationsController extends Controller {
      * If the creations directory is empty, nothing is added to the list view, and a message is displayed to communicate this.
      */
     @FXML
-    private void initialize() {
-
-    	Creator.get();
-    	
-        _creationSelected = false;
-        _currentCreation = null;
+    private void initialize() {    	
+       _creationSelected = false;
+       _currentCreation = null;
         
-       creations = readCreationList();
+       creations = Creator.get().readCreationList();
        tableItems = FXCollections.observableArrayList(creations);
        populateTable();
-        table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
-        ratingSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-        	if (_currentCreation != null) {
-        		_currentCreation.setRating(newValue.intValue());
-        		table.refresh();
-        	}
-        });
-    }
-    
-    
-    private ArrayList<Creation> readCreationList() {
-    	ArrayList<Creation> list = null;
-    	if (new File("./creations/creations.ser").exists()) {
-    		try {
-    			FileInputStream fileIn = new FileInputStream("./creations/creations.ser");
-    			ObjectInputStream in = new ObjectInputStream(fileIn);
-    			list = (ArrayList<Creation>) in.readObject();
-    			in.close();
-    			fileIn.close();
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-    	} else {
-    		list = new ArrayList<Creation>();
-    	}
-    	
-    	return list;
+       ratingSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+    	   if (_currentCreation != null) {
+       			_currentCreation.setRating(newValue.intValue());
+       			table.refresh();
+    	   }
+       });
     }
     
     
@@ -218,18 +195,9 @@ public class ViewCreationsController extends Controller {
     
     @Override
 	protected void onSwitchScenes() {
-    	if (player != null)
-    		player.stop();
+    	if (player != null)	  { player.stop(); }
     	
-    	try {
-    		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");
-    		ObjectOutputStream out = new ObjectOutputStream(fileOut);
-    		out.writeObject(creations);
-    		out.close();
-    		fileOut.close();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    	Creator.get().writeCreationList(creations);
     }
     
     

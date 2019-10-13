@@ -92,6 +92,13 @@ public class CreationPreviewController extends Controller {
     
     private void saveCreation() {
     	creations = Creator.get().readCreationList();
+    	ArrayList<Creation> sameNameCreations = new ArrayList<Creation>();
+    	for (Creation creation : creations) {
+    		if (creation.getFile().equals(creationName)) {
+    			sameNameCreations.add(creation);
+    		}
+    	}
+    	creations.removeAll(sameNameCreations);
     	
     	creations.add(new Creation(Wikit.get().getTerm(), creationName, (int) ratingSlider.getValue()));
     	

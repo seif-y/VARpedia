@@ -99,6 +99,26 @@ public class Creator {
 
     }
     
+    public void overlayMusic(String music, String voice, String combinedAudio) {
+    	
+    	try {
+    		Process overlay = Bash.execute("./creations", "ffmpeg -i music/" + music + " -i audiofiles/" + voice + " -filter_complex amerge=inputs=2 -ac 2 " + combinedAudio);
+    		overlay.waitFor();
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
+
+    }
+    
+    public void trimMusic(String musicFile, String trimmedMusicFile, String length) {
+    	try {
+    		Process trim = Bash.execute(".", "ffmpeg -t " + length + " -i music/" + musicFile + " creations/music/" + trimmedMusicFile);
+    		trim.waitFor();
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
     
     /**
      * Uses ffmpeg to make a .mp4 video, consisting of a slideshow of the given images.

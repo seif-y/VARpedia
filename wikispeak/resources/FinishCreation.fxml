@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -11,9 +12,9 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.FinishCreationController">
    <children>
-      <ListView fx:id="audioList" layoutX="50.0" layoutY="134.0" prefHeight="200.0" prefWidth="450.0" />
+      <ListView fx:id="audioList" layoutX="50.0" layoutY="110.0" prefHeight="177.0" prefWidth="450.0" />
       <ListView fx:id="imageList" layoutX="50.0" layoutY="399.0" prefHeight="300.0" prefWidth="450.0" />
-      <Text layoutX="231.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Audio">
+      <Text layoutX="231.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Audio">
          <font>
             <Font size="20.0" />
          </font></Text>
@@ -38,7 +39,7 @@
             <Image url="@loading.gif" />
          </image>
       </ImageView>
-      <ListView fx:id="selectedAudioList" layoutX="600.0" layoutY="134.0" prefHeight="200.0" prefWidth="450.0" />
+      <ListView fx:id="selectedAudioList" layoutX="600.0" layoutY="110.0" prefHeight="177.0" prefWidth="450.0" />
       <ListView fx:id="selectedImageList" layoutX="600.0" layoutY="399.0" prefHeight="300.0" prefWidth="450.0" />
       <Button layoutX="171.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleScrapCreation" prefHeight="50.0" prefWidth="200.0" text="Scrap Creation">
          <font>
@@ -50,7 +51,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Text layoutX="775.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Audio">
+      <Text layoutX="775.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Audio">
          <font>
             <Font size="20.0" />
          </font>
@@ -65,22 +66,22 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="520.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleAddAudio" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+      <Button layoutX="520.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleAddAudio" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1070.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleAudioUp" prefHeight="50.0" prefWidth="100.0" text="Up">
+      <Button layoutX="1070.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleAudioUp" prefHeight="50.0" prefWidth="100.0" text="Up">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="1070.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleAudioDown" prefHeight="50.0" prefWidth="100.0" text="Down">
+      <Button layoutX="1070.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleAudioDown" prefHeight="50.0" prefWidth="100.0" text="Down">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="520.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleAudioDel" prefHeight="50.0" prefWidth="60.0" text="&lt;-">
+      <Button layoutX="520.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleAudioDel" prefHeight="50.0" prefWidth="60.0" text="&lt;-">
          <font>
             <Font size="20.0" />
          </font>
@@ -100,5 +101,6 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <ComboBox fx:id="musicOptions" layoutX="55.0" layoutY="311.0" prefHeight="41.0" prefWidth="446.0" promptText="Background Music (Optional)" />
    </children>
 </AnchorPane>

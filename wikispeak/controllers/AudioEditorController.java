@@ -231,6 +231,7 @@ public class AudioEditorController extends Controller {
     private class GenerateAudio extends Task<Void> {
     	
     	int _exitCode;
+    	String _name;
     	
     	/**
     	 * Call method: Creates temp audio and video files and combines them, then deletes the temp files, using Creator class.
@@ -238,7 +239,7 @@ public class AudioEditorController extends Controller {
         @Override
         protected Void call() throws Exception {
         	
-        	String name = nameField.getText();
+        	_name = nameField.getText();
             String selection = selectedText.getText();
             String voice = voiceMap.get(voiceOptions.getSelectionModel().getSelectedItem());
             
@@ -248,7 +249,8 @@ public class AudioEditorController extends Controller {
             }
             
             try {
-        		_exitCode = Bash.execute("./creations/audiofiles", "echo \"" + selection + "\" | text2wave -o ." + name + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
+        		Bash.execute("./creations/audiofiles", "echo \"" + selection + "\" | text2wave -o ." + _name + ".wav -eval \"(voice_" + voice + ")\"").waitFor();
+        		_exitCode = Bash.execute("./creations/audiofiles", "soxi -D ." + _name + ".wav").waitFor();
     		} catch (InterruptedException e) {
     			e.printStackTrace();
     		}
@@ -268,6 +270,7 @@ public class AudioEditorController extends Controller {
         	} else if (_exitCode == -1) {
         		errorMsg.setText("Please select a voice before saving audio.");
         	} else {
+        		Bash.execute("./creations/audiofiles", "rm ." + _name + ".wav");
         		errorMsg.setText("Could not save audio, ensure your text has no invalid characters.");
         	}
         }

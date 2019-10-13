@@ -45,6 +45,13 @@ public class CreationPreviewController extends Controller {
     
     @FXML
     private void handleGoBack() {
+    	try {
+			Bash.execute("./creations/images", "rm .*-video.mp4").waitFor();
+			Bash.execute("./creations/audiofiles", "rm .*-audio.wav").waitFor();
+	    	Bash.execute("./creations", "rm " + creationName).waitFor();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
     	switchScenes(pane, "FinishCreation.fxml");
     }
 

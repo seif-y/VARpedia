@@ -14,6 +14,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -44,6 +45,10 @@ public class FinishCreationController extends Controller {
     private ObservableList<String> selectedAudio;
     
     @FXML
+    private ComboBox<String> musicOptions;
+    private Map<String, String> musicMap = new IdentityHashMap<>();
+    
+    @FXML
     private ListView<ImageView> imageList;
     private ObservableList<ImageView> unselectedImages;
     @FXML
@@ -65,6 +70,14 @@ public class FinishCreationController extends Controller {
     	selectedAudio = FXCollections.observableArrayList();
     	selectedAudioList.setItems(selectedAudio);
     	selectedAudioList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    	
+        ObservableList<String> music = FXCollections.observableArrayList();
+        music.addAll("One", "Two");
+        //musicOptions.setStyle("-fx-font: 20px \"System\";");
+        musicOptions.setItems(music);
+        
+        musicMap.put("One", "perspective.mp3");
+        musicMap.put("Two", "whatyousay.mp3");
     	
     	selectedImages = FXCollections.observableArrayList();
     	selectedImageList.setItems(selectedImages);
@@ -223,8 +236,12 @@ public class FinishCreationController extends Controller {
 		protected Void call() {
 			//Add textField for user to select creation name
 	    	String fileName = creationName.getText();
+	    	// remove ./music part
+	    	String musicFile = musicMap.get(musicOptions.getSelectionModel().getSelectedItem());
 	    	String audioFileName = "." + fileName + "-audio.wav";
 	    	String videoFileName = "." + fileName + "-video.mp4";
+	    	String trimmedMusicFileName = "." + fileName + "-music.mp3";
+	    	String combinedAudioFileName = "./audiofiles/" + fileName + "-fullaudio.mp3";
 	    	
 	    	//Create audio based on selected files by concatenating them
 	    	List<String> selectedAudioFiles = new ArrayList<String>();
@@ -235,6 +252,12 @@ public class FinishCreationController extends Controller {
 	    	String time = Creator.get().getTimeOfAudio(audioFileName);
 	    	time = time.substring(0, time.length() - 1);
 	    	
+	    	//Trim audio
+	    	Creator.get().trimMusic(musicFile, trimmedMusicFileName, time);
+	    	
+	    	//Overlay background music on speech
+	    	Creator.get().overlayMusic(trimmedMusicFileName, audioFileName, combinedAudioFileName);
+	    	
 	        //Create video based on selected images using the time of the audio file
 	    	List<String> selectedImageFiles = new ArrayList<String>();
 	    	for (ImageView imageView : selectedImages) {
@@ -243,7 +266,8 @@ public class FinishCreationController extends Controller {
 	    	Creator.get().makeSlideshow(selectedImageFiles, videoFileName, time);
 	    	
 	    	//Combine audio and video files to one creation
-	    	Creator.get().combine("./images/" + videoFileName, "./audiofiles/" + audioFileName, fileName + ".mp4");
+	    	Creator.get().combine("./images/" + videoFileName, combinedAudioFileName, fileName + ".mp4");
+
 	    	
 			return null;
 		}

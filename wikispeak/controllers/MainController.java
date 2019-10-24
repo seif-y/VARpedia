@@ -23,7 +23,7 @@ public class MainController extends Controller {
     @FXML
     private void initialize() {
     	List<Creation> creationsSortedByRating = Creator.get().readCreationList();
-    	List<Creation> creationsSortedByViews = Creator.get().readCreationList();
+    	List<Creation> creationsSortedByViews = creationsSortedByRating;
     	
     	List<Creation> creationReviewList = new ArrayList<Creation>();
     	
@@ -43,7 +43,7 @@ public class MainController extends Controller {
     		creationReviewList.add(creationsSortedByRating.get(1));
     		
     		int ind = 0;
-    		while (creationReviewList.size() <= 4)  {
+    		while (creationReviewList.size() < 4)  {
     			if (!creationReviewList.contains(creationsSortedByViews.get(ind))) {
     				creationReviewList.add(creationsSortedByViews.get(ind));
     			}

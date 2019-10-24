@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
    <children>
       <MediaView fx:id="viewer" fitHeight="540.0" fitWidth="940.0" layoutX="26.0" layoutY="130.0" />
       <Button layoutX="966.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="50.0" prefWidth="200.0" text="Save Creation">
@@ -36,16 +37,21 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="116.0" fitWidth="157.0" layoutX="1007.0" layoutY="641.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="1038.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@low-rating.png" />
          </image>
       </ImageView>
       <Slider fx:id="ratingSlider" layoutX="1066.0" layoutY="240.0" orientation="VERTICAL" prefHeight="395.0" prefWidth="53.0" showTickLabels="true" showTickMarks="true" />
-      <ImageView fitHeight="111.0" fitWidth="94.0" layoutX="1038.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="1038.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@high-rating.png" />
          </image>
       </ImageView>
+      <Text layoutX="1010.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

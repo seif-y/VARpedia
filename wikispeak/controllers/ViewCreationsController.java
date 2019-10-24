@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -35,6 +37,18 @@ public class ViewCreationsController extends Controller {
     private AnchorPane pane;
 	@FXML
 	private Text creationDisplay;
+	@FXML
+	private Button btnPlayPause;
+	
+	private ChangeListener<Duration> timeListener = new ChangeListener<Duration>() {
+    	@Override
+    	public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+    		String time = "";
+    		time += String.format("%02d", (int)newValue.toMinutes()) + ":" + String.format("%02d", (int)newValue.toSeconds());
+    		time += "/" + String.format("%02d", (int)video.getDuration().toMinutes()) + ":" + String.format("%02d", (int)video.getDuration().toSeconds());
+    		btnPlayPause.setText(time);
+    	}
+	};
 
 	private ArrayList<Creation> creations;
 	private ObservableList<Creation> tableItems;
@@ -50,6 +64,7 @@ public class ViewCreationsController extends Controller {
     @FXML
     private MediaView viewer;
     private MediaPlayer player;
+    private Media video;
     @FXML
     private Slider ratingSlider;
 
@@ -101,8 +116,11 @@ public class ViewCreationsController extends Controller {
      */
     @FXML
     private void handleSelectCreation() {
-    	if (player != null)
+    	if (player != null) {
     		player.stop();
+    		player.currentTimeProperty().removeListener(timeListener);
+    		btnPlayPause.setText("Play/Pause");
+    	}
     	
     	try {
         	_currentCreation = table.getSelectionModel().getSelectedItem();
@@ -112,15 +130,20 @@ public class ViewCreationsController extends Controller {
         	ratingSlider.setValue(_currentCreation.getRating());
 
             File vidFile = new File("./creations/" + _currentCreation.getFile());
-            Media video = new Media(vidFile.toURI().toString());
+            video = new Media(vidFile.toURI().toString());
             player = new MediaPlayer(video);
             player.setOnEndOfMedia(() -> {
+            	btnPlayPause.setText("Play/Pause");
             	player.seek(new Duration(0));
             	player.pause();
             	_currentCreation.incrementViews();
             	table.refresh();
             });
+            player.currentTimeProperty().addListener(timeListener);
             viewer.setMediaPlayer(player);
+            
+            player.play();
+            player.pause();
         	
         } catch (NullPointerException e) {}        
     }
@@ -239,4 +262,5 @@ public class ViewCreationsController extends Controller {
 		}
     	
     }
+	
 }

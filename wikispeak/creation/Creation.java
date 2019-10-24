@@ -54,5 +54,13 @@ public class Creation implements Serializable {
     public static Creation getInstance() {
         return _creation;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj.getClass() != this.getClass()) {
+    		return false;
+    	}
+    	return this.getName().equals(((Creation) obj).getName());
+    }
 
 }

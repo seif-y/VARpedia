@@ -16,9 +16,9 @@ import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.util.Duration;
 import wikispeak.Bash;
-import wikispeak.Creation;
 import wikispeak.Creator;
 import wikispeak.Wikit;
+import wikispeak.creation.Creation;
 
 public class CreationPreviewController extends Controller {
 

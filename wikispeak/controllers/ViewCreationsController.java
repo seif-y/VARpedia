@@ -22,8 +22,8 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import wikispeak.Bash;
-import wikispeak.Creation;
 import wikispeak.Creator;
+import wikispeak.creation.Creation;
 
 public class ViewCreationsController extends Controller {
 	

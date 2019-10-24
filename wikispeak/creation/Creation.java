@@ -1,4 +1,4 @@
-package wikispeak;
+package wikispeak.creation;
 
 import java.io.Serializable;
 

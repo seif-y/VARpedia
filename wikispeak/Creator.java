@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import wikispeak.creation.Creation;
+
 public class Creator {
 
 	private static Creator instance = null;
@@ -39,6 +41,15 @@ public class Creator {
     	
     	if (!(new File("./creations/images")).exists()) {
     		Process process = Bash.execute(".", "mkdir creations/images");
+    		try {
+    			process.waitFor();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	if (!(new File("./creations/music")).exists()) {
+    		Process process = Bash.execute(".", "mkdir creations/music");
     		try {
     			process.waitFor();
     		} catch (InterruptedException e) {
@@ -161,32 +172,14 @@ public class Creator {
     }
     
     
+    
     /**
      * Deletes all temporary files
      */
     public void cleanup() {
-    	cleanupAudio();
-    	cleanupImages();
-    	
-    }
-    
-    /**
-     * Deletes all temporary audio files
-     */
-    public void cleanupAudio() {
     	try {
     		Bash.execute("./creations/audiofiles", "rm .*").waitFor();
-    	} catch (InterruptedException e) {
-    		e.printStackTrace();
-    	}
-    	
-    }
-    
-    /**
-     * Deletes all temporary image files
-     */
-    public void cleanupImages() {
-    	try {
+    		Bash.execute("./creations/music", "rm *").waitFor();
     		Bash.execute("./creations/images", "rm .*").waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();
@@ -195,7 +188,10 @@ public class Creator {
     }
     
     
-    
+    /**
+     * Read the list of user creations to get data such as ratings/views
+     * @return An ArrayList of Creation objects.
+     */
     public ArrayList<Creation> readCreationList() {
     	ArrayList<Creation> list = null;
     	if (new File("./creations/creations.ser").exists()) {
@@ -217,6 +213,10 @@ public class Creator {
     
     
     
+    /**
+     * Write the list of creation objects to the file "creations.ser"
+     * @param list An ArrayList containing all the Creation objects.
+     */
     public void writeCreationList(ArrayList<Creation> list) {
     	try {
     		FileOutputStream fileOut = new FileOutputStream("./creations/creations.ser");

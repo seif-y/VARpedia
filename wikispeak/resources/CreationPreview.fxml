@@ -19,7 +19,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="429.0" layoutY="701.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="Play/Pause">
+      <Button fx:id="btnPlayPause" layoutX="429.0" layoutY="701.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="Play/Pause">
          <font>
             <Font size="20.0" />
          </font></Button>

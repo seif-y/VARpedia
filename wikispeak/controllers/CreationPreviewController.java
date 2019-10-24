@@ -7,7 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -29,6 +32,8 @@ public class CreationPreviewController extends Controller {
     private MediaPlayer player;
     @FXML
 	private Slider ratingSlider;
+    @FXML
+    private Button btnPlayPause;
     
     private String creationName;
     
@@ -40,6 +45,15 @@ public class CreationPreviewController extends Controller {
     	File vidFile = new File("./creations/" + creationName);
         Media video = new Media(vidFile.toURI().toString());
         player = new MediaPlayer(video);
+        player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+    	@Override
+    	public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+    		String time = "";
+    		time += String.format("%02d", (int)newValue.toMinutes()) + ":" + String.format("%02d", (int)newValue.toSeconds());
+    		time += "/" + String.format("%02d", (int)video.getDuration().toMinutes()) + ":" + String.format("%02d", (int)video.getDuration().toSeconds());
+    		btnPlayPause.setText(time);
+    	}
+	});
         viewer.setMediaPlayer(player);
     }
     

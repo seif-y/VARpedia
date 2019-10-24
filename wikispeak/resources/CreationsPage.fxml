@@ -22,11 +22,11 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="579.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="Play/Pause">
+      <Button fx:id="btnPlayPause" layoutX="579.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" text="Play/Pause">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="729.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
+      <Button layoutX="829.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
          <font>
             <Font size="20.0" />
          </font></Button>

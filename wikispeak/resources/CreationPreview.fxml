@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.CreationPreviewController">
    <children>
-      <MediaView fx:id="viewer" fitHeight="540.0" fitWidth="940.0" layoutX="34.0" layoutY="130.0" />
+      <MediaView fx:id="viewer" fitHeight="540.0" fitWidth="940.0" layoutX="26.0" layoutY="130.0" />
       <Button layoutX="966.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="50.0" prefWidth="200.0" text="Save Creation">
          <font>
             <Font size="20.0" />
@@ -19,15 +19,15 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="429.0" layoutY="701.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="150.0" text="Play/Pause">
+      <Button layoutX="369.0" layoutY="701.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" text="Play/Pause">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="354.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="75.0" text="&lt;&lt;">
+      <Button layoutX="294.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="75.0" text="&lt;&lt;">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="579.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleFwd" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
+      <Button layoutX="619.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleFwd" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
          <font>
             <Font size="20.0" />
          </font></Button>

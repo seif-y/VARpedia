@@ -256,7 +256,11 @@ public class FinishCreationController extends Controller {
 	    	Creator.get().trimMusic(musicFile, trimmedMusicFileName, time);
 	    	
 	    	//Overlay background music on speech
-	    	Creator.get().overlayMusic(trimmedMusicFileName, audioFileName, combinedAudioFileName);
+	    	if (musicOptions.getSelectionModel().getSelectedItem() == null) {
+	    		combinedAudioFileName = "./audiofiles/" + audioFileName;
+	    	} else {
+	    		Creator.get().overlayMusic(trimmedMusicFileName, audioFileName, combinedAudioFileName);
+	    	}
 	    	
 	        //Create video based on selected images using the time of the audio file
 	    	List<String> selectedImageFiles = new ArrayList<String>();

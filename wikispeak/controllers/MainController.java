@@ -58,6 +58,7 @@ public class MainController extends Controller {
     			creationReviewString += "   |   ";
     		}
     	}
+    	creationReviewString += "\n\nClick \"View Creations\" to check them!";
     	creationsToReview.setText(creationReviewString);
     }
     

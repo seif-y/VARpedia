@@ -143,8 +143,10 @@ public class FinishCreationController extends Controller {
     @FXML
     private void handleAddAudio() {
     	String chosenAudioFile = audioList.getSelectionModel().getSelectedItem();
-    	unselectedAudio.remove(chosenAudioFile);
-    	selectedAudio.add(chosenAudioFile);
+    	if (chosenAudioFile != null) {
+    		unselectedAudio.remove(chosenAudioFile);
+    		selectedAudio.add(chosenAudioFile);
+    	}
     }
     
     
@@ -169,8 +171,10 @@ public class FinishCreationController extends Controller {
     @FXML
     private void handleAddImages() {
     	ImageView chosenImage = imageList.getSelectionModel().getSelectedItem();
-    	unselectedImages.remove(chosenImage);
-    	selectedImages.add(chosenImage);
+    	if (chosenImage != null) {
+    		unselectedImages.remove(chosenImage);
+    		selectedImages.add(chosenImage);
+    	}
     }
     
     
@@ -207,7 +211,9 @@ public class FinishCreationController extends Controller {
         } else if (Bash.hasInvalidChars(fileName, true)) {
         	errorMsg.setText("Creation name contains invalid characters.");
         	errorMsg.setVisible(true);
-        		
+        }else if (selectedImages.isEmpty() || selectedAudio.isEmpty()) {
+        	errorMsg.setText("You need at least 1 audio file and at least 1 image.");	
+        	errorMsg.setVisible(true);
         } else if (!(new File("./creations/" + fileName + ".mp4").exists())) {
         	errorMsg.setVisible(false);
         	loadingGif.setVisible(true);

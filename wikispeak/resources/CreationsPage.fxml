@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,10 +11,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="pane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
 
    <children>
-      <Text fx:id="creationDisplay" layoutX="525.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
+      <Text fx:id="creationDisplay" layoutX="525.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
          <font>
             <Font size="35.0" />
          </font>
@@ -24,7 +23,7 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="btnPlayPause" layoutX="579.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" styleClass="mediaPlayerButton" text="Play/Pause">
+      <Button fx:id="btnPlayPause" layoutX="601.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="208.0" styleClass="mediaPlayerButton" text="Play/Pause">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -60,14 +59,10 @@
             <Image url="@high-rating.png" />
          </image>
       </ImageView>
-      <Text layoutX="705.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Rating" textAlignment="CENTER" wrappingWidth="214.6708984375">
+      <Text layoutX="705.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Creation Rating" textAlignment="CENTER" wrappingWidth="214.6708984375">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
    </children>
-   <stylesheets>
-      <URL value="@style.css" />
-      <URL value="@../style/style.css" />
-   </stylesheets>
 </AnchorPane>

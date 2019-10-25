@@ -10,40 +10,40 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.AudioEditorController">
    <children>
-      <TextField fx:id="nameField" layoutX="633.0" layoutY="108.0" prefHeight="50.0" prefWidth="517.0" promptText="Enter audio filename">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <Button layoutX="514.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="50.0" prefWidth="120.0" text="Save">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <TextArea fx:id="wikitText" editable="false" layoutX="50.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
-      <Text fx:id="errorMsg" layoutX="52.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="933.6708984375">
-         <font>
-            <Font size="20.0" />
-         </font></Text>
-      <Button layoutX="345.0" layoutY="108.0" mnemonicParsing="false" onAction="#handlePreview" prefHeight="50.0" prefWidth="120.0" text="Preview">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <Button layoutX="1030.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="50.0" prefWidth="120.0" text="Next">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <ComboBox fx:id="voiceOptions" layoutX="50.0" layoutY="108.0" prefHeight="50.0" prefWidth="244.0" promptText="Select Voice" />
       <Button layoutX="50.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="120.0" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TextArea fx:id="selectedText" layoutX="650.0" layoutY="184.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
-      <Button layoutX="570.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleAddText" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
+      <Button layoutX="187.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleScrapCreation" prefHeight="50.0" prefWidth="200.0" text="Scrap Creation">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleScrapCreation" prefHeight="50.0" prefWidth="200.0" text="Scrap Creation">
+      <ComboBox fx:id="voiceOptions" layoutX="50.0" layoutY="646.0" prefHeight="50.0" prefWidth="244.0" promptText="Select Voice" />
+      <Button layoutX="345.0" layoutY="646.0" mnemonicParsing="false" onAction="#handlePreview" prefHeight="50.0" prefWidth="120.0" text="Preview">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button layoutX="514.0" layoutY="646.0" mnemonicParsing="false" onAction="#handleCreate" prefHeight="50.0" prefWidth="120.0" text="Save">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <TextField fx:id="nameField" layoutX="633.0" layoutY="646.0" prefHeight="50.0" prefWidth="517.0" promptText="Enter audio filename">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <TextArea fx:id="wikitText" editable="false" layoutX="50.0" layoutY="108.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
+      <Text fx:id="errorMsg" layoutX="52.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="933.6708984375">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Button layoutX="1030.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="50.0" prefWidth="120.0" text="Next">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <TextArea fx:id="selectedText" layoutX="650.0" layoutY="108.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
+      <Button layoutX="570.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleAddText" prefHeight="50.0" prefWidth="60.0" text="-&gt;">
          <font>
             <Font size="20.0" />
          </font>

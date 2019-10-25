@@ -24,11 +24,11 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="294.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="75.0" text="&lt;&lt;">
+      <Button layoutX="270.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="75.0" text="&lt;&lt;">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="619.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleFwd" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
+      <Button layoutX="642.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleFwd" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
          <font>
             <Font size="20.0" />
          </font></Button>

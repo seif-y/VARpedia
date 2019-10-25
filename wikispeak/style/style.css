@@ -3,6 +3,14 @@
 	src: url('Roboto-Regular.ttf');
 }
 
+root {
+	-fx-font-family: Roboto;
+}
+
+.text {
+	-fx-font-family: Roboto;
+}
+
 .background {
 	-fx-background-color: white;
 }
@@ -10,6 +18,23 @@
 .button {
 	-fx-background-color: black;
 	-fx-font-family: Roboto;
-	-fx-font-size: 20;
+	-fx-font-size: 22;
+	-fx-text-fill: white
+}
+
+.mainButton {
+	-fx-background-color: black;
+	-fx-font-size: 40;
+
+}
+
+.combo-box {
+	-fx-background-color: black;
+	-fx-font-size: 22;
+	-fx-text-fill: white;
+}
+
+.combo-box .list-cell {
+	-fx-font-family: Roboto;
 	-fx-text-fill: white;
 }

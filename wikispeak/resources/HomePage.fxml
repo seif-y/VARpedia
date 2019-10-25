@@ -20,12 +20,12 @@
         <Image url="@varpedia-logo-dark.png" />
       </image>
     </ImageView>
-    <Button layoutX="260.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleNewCreation" prefHeight="60.0" prefWidth="300.0" text="New Creation">
+    <Button layoutX="250.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleNewCreation" prefHeight="60.0" prefWidth="310.0" text="New Creation">
       <font>
         <Font size="20.0" fx:id="x1" />
       </font>
     </Button>
-    <Button font="$x1" layoutX="640.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleViewCreations" prefHeight="60.0" prefWidth="300.0" text="View Creations" />
+    <Button font="$x1" layoutX="640.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleViewCreations" prefHeight="60.0" prefWidth="310.0000999999975" text="View Creations" />
     <Text layoutX="297.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creations To Review" textAlignment="CENTER" wrappingWidth="606.5478515625">
       <font>
         <Font name="System Bold" size="35.0" />

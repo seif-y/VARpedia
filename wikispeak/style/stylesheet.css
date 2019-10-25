@@ -1,0 +1,15 @@
+.button {
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+
+.mediaPlayerButton {
+    -fx-border-color: white;
+    -fx-border-insets: -1;
+}
+
+.pane {
+    -fx-background-color: white;
+}
+
+

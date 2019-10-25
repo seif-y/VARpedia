@@ -11,26 +11,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="pane" stylesheets="@../style/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
    <children>
       <Text fx:id="creationDisplay" layoutX="525.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Button layoutX="509.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="70.0" text="&lt;&lt;">
+      <Button layoutX="509.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="50.0" prefWidth="70.0" styleClass="mediaPlayerButton" text="&lt;&lt;">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="btnPlayPause" layoutX="579.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" text="Play/Pause">
+      <Button fx:id="btnPlayPause" layoutX="579.0" layoutY="589.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="50.0" prefWidth="250.0" styleClass="mediaPlayerButton" text="Play/Pause">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="829.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="50.0" prefWidth="75.0" text="&gt;&gt;">
+      <Button layoutX="829.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="50.0" prefWidth="75.0" styleClass="mediaPlayerButton" text="&gt;&gt;">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button layoutX="959.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="50.0" prefWidth="150.0" text="Delete">
+      <Button layoutX="959.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="50.0" prefWidth="150.0" styleClass="mediaPlayerButton" text="Delete">
          <font>
             <Font size="20.0" />
          </font></Button>

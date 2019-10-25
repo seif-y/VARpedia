@@ -178,7 +178,9 @@ public class ViewCreationsController extends Controller {
      */
     @FXML
     private void handleBack() {
-    	player.seek( player.getCurrentTime().add( Duration.seconds(-3)) );
+    	if (player != null) {
+    		player.seek( player.getCurrentTime().add( Duration.seconds(-3)) );
+    	}
     }
     
     /**
@@ -187,7 +189,9 @@ public class ViewCreationsController extends Controller {
      */
     @FXML
     private void handleForward() {
-    	player.seek( player.getCurrentTime().add( Duration.seconds(3)) );
+    	if (player != null) {
+    		player.seek( player.getCurrentTime().add( Duration.seconds(3)) );
+    	}
     }
     
     

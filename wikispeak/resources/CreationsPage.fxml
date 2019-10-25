@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="pane" stylesheets="@../style/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.ViewCreationsController">
 
    <children>
       <Text fx:id="creationDisplay" layoutX="525.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Creation" textAlignment="CENTER" wrappingWidth="566.0">

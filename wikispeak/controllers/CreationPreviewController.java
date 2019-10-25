@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.util.Duration;
 import wikispeak.Bash;
@@ -34,6 +35,8 @@ public class CreationPreviewController extends Controller {
 	private Slider ratingSlider;
     @FXML
     private Button btnPlayPause;
+    @FXML
+    private Text ratingLabel;
     
     private String creationName;
     
@@ -41,6 +44,8 @@ public class CreationPreviewController extends Controller {
 
     @FXML
     private void initialize() {
+    	ratingLabel.setText("R\nA\nT\nI\nN\nG");
+    	
     	creationName = Creator.get().getCurrentCreationName();
     	File vidFile = new File("./creations/" + creationName);
         Media video = new Media(vidFile.toURI().toString());

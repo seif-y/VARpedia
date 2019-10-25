@@ -1,0 +1,15 @@
+@font-face {
+	font-family: Roboto;
+	src: url('Roboto-Regular.ttf');
+}
+
+.background {
+	-fx-background-color: white;
+}
+
+.button {
+	-fx-background-color: black;
+	-fx-font-family: Roboto;
+	-fx-font-size: 20;
+	-fx-text-fill: white;
+}

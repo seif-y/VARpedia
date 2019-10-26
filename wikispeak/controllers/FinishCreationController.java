@@ -195,8 +195,10 @@ public class FinishCreationController extends Controller {
     @FXML
     private void handleImageDel() {
     	ImageView chosenImage = selectedImageList.getSelectionModel().getSelectedItem();
-    	selectedImages.remove(chosenImage);
-    	unselectedImages.add(chosenImage);
+    	if (chosenImage != null) {
+    		selectedImages.remove(chosenImage);
+    		unselectedImages.add(chosenImage);
+    	}
     }
     
     

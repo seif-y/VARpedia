@@ -12,7 +12,6 @@ root {
 }
 
 .background {
-	-fx-background-color: white;
 }
 
 
@@ -20,14 +19,11 @@ root {
 /*BUTTONS*/
 
 .button {
-	-fx-background-color: black;
 	-fx-font-family: Roboto;
 	-fx-font-size: 22;
-	-fx-text-fill: white;
 }
 
 .mainButton {
-	-fx-background-color: black;
 	-fx-font-size: 30;
 
 }
@@ -37,15 +33,11 @@ root {
 /*COMBO BOX*/
 
 .combo-box {
-	-fx-background-color: black;
 	-fx-font-size: 22;
-	-fx-text-fill: white;
 }
 
 .combo-box .list-cell {
 	-fx-font-family: Roboto;
-	-fx-background-color: black;
-	-fx-text-fill: white;
 }
 
 
@@ -53,12 +45,9 @@ root {
 /*SLIDER*/
 
 .slider > .thumb {
-	-fx-background-color: black;
 }
 
 .slider > .track {
-	-fx-background-color: white;
-	-fx-border-color: black;
 	-fx-background-radius: 5;
 	-fx-border-radius: 5;
 }
@@ -68,12 +57,10 @@ root {
 /*TEXT FIELD AND TEXT AREA*/
 
 .text-field {
-	-fx-border-color: black;
 	-fx-border-width: 2;
 }
 
 .text-area {
-	-fx-border-color: black;
 	-fx-border-width: 2;
 }
 
@@ -82,7 +69,6 @@ root {
 /*SCROLL BAR (FOR TEXT AREA)*/
 
 .scroll-bar:vertical > .thumb {
-	-fx-background-color: black;
 }
 
 
@@ -90,9 +76,6 @@ root {
 /*TABLE*/
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -112,15 +95,12 @@ root {
 
 .table-view .column-header .label {
     -fx-font-size: 15pt;
-    -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
 
 .table-row-cell:even {
-	-fx-background-color: #444444;
 }
 
 .table-row-cell:selected {
-	-fx-background-color: #BBBBBB;
 }

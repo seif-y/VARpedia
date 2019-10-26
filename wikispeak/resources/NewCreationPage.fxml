@@ -32,10 +32,17 @@
             <Image url="@searching.gif" />
          </image>
       </ImageView>
-      <Button layoutX="33.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="60.0" prefWidth="120.0" text="Home">
+      <Button layoutX="33.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="50.0" prefWidth="150.0" text="Home">
          <font>
             <Font size="20.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@home-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

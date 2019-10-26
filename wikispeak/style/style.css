@@ -106,11 +106,7 @@ root {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+    -fx-border-color: transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -121,3 +117,10 @@ root {
     -fx-opacity: 1;
 }
 
+.table-row-cell:even {
+	-fx-background-color: #444444;
+}
+
+.table-row-cell:selected {
+	-fx-background-color: #BBBBBB;
+}

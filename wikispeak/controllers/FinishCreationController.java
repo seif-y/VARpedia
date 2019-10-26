@@ -247,7 +247,7 @@ public class FinishCreationController extends Controller {
 	    	String audioFileName = "." + fileName + "-audio.wav";
 	    	String videoFileName = "." + fileName + "-video.mp4";
 	    	String trimmedMusicFileName = "." + fileName + "-music.mp3";
-	    	String combinedAudioFileName = "./audiofiles/" + fileName + "-fullaudio.mp3";
+	    	String combinedAudioFileName = "./audiofiles/." + fileName + "-fullaudio.mp3";
 	    	
 	    	//Create audio based on selected files by concatenating them
 	    	List<String> selectedAudioFiles = new ArrayList<String>();
@@ -263,7 +263,7 @@ public class FinishCreationController extends Controller {
 	    	
 	    	//Overlay background music on speech
 	    	if (musicOptions.getSelectionModel().getSelectedItem() == null) {
-	    		combinedAudioFileName = "./audiofiles/" + audioFileName;
+	    		combinedAudioFileName = "./audiofiles/." + audioFileName;
 	    	} else {
 	    		Creator.get().overlayMusic(trimmedMusicFileName, audioFileName, combinedAudioFileName);
 	    	}

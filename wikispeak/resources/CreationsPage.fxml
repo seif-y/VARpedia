@@ -47,6 +47,9 @@
           <TableColumn fx:id="ratings" prefWidth="100.0" text="Rating" />
             <TableColumn fx:id="views" prefWidth="99.0" text="Views" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Slider fx:id="ratingSlider" layoutX="575.0" layoutY="696.0" prefHeight="50.0" prefWidth="475.0" showTickLabels="true" showTickMarks="true" />
       <ImageView fitHeight="75.0" fitWidth="50.0" layoutX="513.0" layoutY="684.0" pickOnBounds="true" preserveRatio="true">

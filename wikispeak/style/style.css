@@ -19,12 +19,12 @@ root {
 	-fx-background-color: black;
 	-fx-font-family: Roboto;
 	-fx-font-size: 22;
-	-fx-text-fill: white
+	-fx-text-fill: white;
 }
 
 .mainButton {
 	-fx-background-color: black;
-	-fx-font-size: 40;
+	-fx-font-size: 30;
 
 }
 
@@ -36,5 +36,6 @@ root {
 
 .combo-box .list-cell {
 	-fx-font-family: Roboto;
+	-fx-background-color: black;
 	-fx-text-fill: white;
 }

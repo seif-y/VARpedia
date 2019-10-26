@@ -178,9 +178,9 @@ public class Creator {
      */
     public void cleanup() {
     	try {
-    		Bash.execute("./creations/audiofiles", "rm .*").waitFor();
-    		Bash.execute("./creations/music", "rm *").waitFor();
-    		Bash.execute("./creations/images", "rm .*").waitFor();
+    		Bash.execute("./creations/audiofiles", "rm .* *").waitFor();
+    		Bash.execute("./creations/music", "rm .* *").waitFor();
+    		Bash.execute("./creations/images", "rm .* *").waitFor();
     	} catch (InterruptedException e) {
     		e.printStackTrace();
     	}

@@ -50,3 +50,8 @@ root {
 	-fx-background-radius: 5;
 	-fx-border-radius: 5;
 }
+
+.table-view > .table-column {
+	-fx-background-color: black;
+	-fx-text-fill: white
+}

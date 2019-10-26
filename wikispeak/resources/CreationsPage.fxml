@@ -43,9 +43,9 @@
       </Button>
       <TableView fx:id="table" layoutX="49.0" layoutY="123.0" onMouseClicked="#handleSelectCreation" prefHeight="625.0" prefWidth="400.0">
         <columns>
-          <TableColumn fx:id="names" prefWidth="240.0" text="Name" />
-          <TableColumn fx:id="ratings" minWidth="1.0" text="Rating" />
-            <TableColumn fx:id="views" prefWidth="79.0" text="Views" />
+          <TableColumn fx:id="names" prefWidth="200" text="Name" />
+          <TableColumn fx:id="ratings" prefWidth="100.0" text="Rating" />
+            <TableColumn fx:id="views" prefWidth="99.0" text="Views" />
         </columns>
       </TableView>
       <Slider fx:id="ratingSlider" layoutX="575.0" layoutY="696.0" prefHeight="50.0" prefWidth="475.0" showTickLabels="true" showTickMarks="true" />

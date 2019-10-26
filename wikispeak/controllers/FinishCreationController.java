@@ -163,8 +163,10 @@ public class FinishCreationController extends Controller {
     @FXML
     private void handleAudioDel() {
     	String chosenAudioFile = selectedAudioList.getSelectionModel().getSelectedItem();
-    	selectedAudio.remove(chosenAudioFile);
-    	unselectedAudio.add(chosenAudioFile);
+    	if (chosenAudioFile != null) {
+    		selectedAudio.remove(chosenAudioFile);
+    		unselectedAudio.add(chosenAudioFile);
+    	}
     }
     
     

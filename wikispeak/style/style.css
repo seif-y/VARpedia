@@ -21,6 +21,7 @@ root {
 .button {
 	-fx-font-family: Roboto;
 	-fx-font-size: 22;
+	-fx-border-width: 2;
 }
 
 .mainButton {
@@ -34,6 +35,7 @@ root {
 
 .combo-box {
 	-fx-font-size: 22;
+	-fx-border-width: 2;
 }
 
 .combo-box .list-cell {
@@ -78,6 +80,7 @@ root {
 .table-view {
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
+    -fx-border-width: 2;
     -fx-padding: 5;
 }
 

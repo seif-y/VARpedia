@@ -3,6 +3,7 @@
 .root {
 	-fx-component-bg-color: black;
 	-fx-component-text-color: white;
+	-fx-text-fill: white;
 }
 
 .anchor {
@@ -11,6 +12,8 @@
 
 .button {
 	-fx-background-color: -fx-component-bg-color;
+	-fx-border-color: -fx-component-text-color;
+	-fx-border-width: 2;
 	-fx-text-fill: -fx-component-text-color;
 }
 
@@ -28,6 +31,8 @@
 
 .combo-box {
 	-fx-background-color: -fx-component-bg-color;
+	-fx-border-color: -fx-component-text-color;
+	-fx-border-width: 2;
 	-fx-text-fill: -fx-component-text-color;
 }
 
@@ -41,12 +46,12 @@
 /*SLIDER*/
 
 .slider > .thumb {
-	-fx-background-color: -fx-component-bg-color;
+	-fx-background-color: -fx-component-text-color;
 }
 
 .slider > .track {
-	-fx-background-color: white;
-	-fx-border-color: black;
+	-fx-background-color: -fx-component-bg-color;
+	-fx-border-color: -fx-component-text-color;
 }
 
 
@@ -54,11 +59,21 @@
 /*TEXT FIELD AND TEXT AREA*/
 
 .text-field {
-	-fx-border-color: -fx-component-bg-color;
+	-fx-border-color: -fx-component-text-color;
+	-fx-background-color: -fx-component-bg-color;
 }
 
 .text-area {
-	-fx-border-color: -fx-component-bg-color;
+	-fx-border-color: -fx-component-text-color;
+	-fx-background-color: -fx-component-bg-color;
+}
+
+
+
+/*TEXT BOX*/
+
+.text-box {
+	-fx-fill: -fx-component-text-color;
 }
 
 
@@ -77,6 +92,7 @@
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
     -fx-background-color: #1d1d1d;
+    -fx-border-color: -fx-component-text-color;
 }
 
 .table-view .column-header-background {

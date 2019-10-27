@@ -8,12 +8,12 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="anchor" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.SettingsController">
   <children>
-    <Text layoutX="287.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Settings" textAlignment="CENTER" wrappingWidth="626.5478515625">
+    <Text layoutX="287.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="Settings" textAlignment="CENTER" wrappingWidth="626.5478515625">
       <font>
         <Font name="System Bold" size="35.0" />
       </font>
     </Text>
-    <Text layoutX="118.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a theme:" textAlignment="CENTER" wrappingWidth="998.6708984375">
+    <Text layoutX="118.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="Select a theme:" textAlignment="CENTER" wrappingWidth="998.6708984375">
          <font>
         <Font size="20.0" fx:id="x1" />
          </font></Text>

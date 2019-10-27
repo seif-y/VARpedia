@@ -29,12 +29,12 @@
       </font>
     </Button>
     <Button font="$x1" layoutX="640.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleViewCreations" prefHeight="60.0" prefWidth="310.0000999999975" styleClass="mainButton" text="View Creations" />
-    <Text layoutX="297.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Creations To Review" textAlignment="CENTER" wrappingWidth="606.5478515625">
+    <Text layoutX="297.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="Creations To Review" textAlignment="CENTER" wrappingWidth="606.5478515625">
       <font>
         <Font name="System Bold" size="35.0" />
       </font>
     </Text>
-    <Text fx:id="creationsToReview" font="$x1" layoutX="101.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="998.6708984375" />
+    <Text fx:id="creationsToReview" font="$x1" layoutX="101.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="998.6708984375" styleClass="text-box"/>
   </children>
    <styleClass>
       <String fx:value="anchor" />

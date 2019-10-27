@@ -21,4 +21,7 @@
       <ComboBox fx:id="themeOptions" layoutX="222.0" layoutY="340.0" prefHeight="44.0" prefWidth="570.0" />
       <Button layoutX="815.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePreview" prefHeight="44.0" prefWidth="164.0" text="Preview" />
   </children>
+   <styleClass>
+      <String fx:value="anchor" />
+   </styleClass>
 </AnchorPane>

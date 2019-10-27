@@ -69,4 +69,7 @@
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+    <styleClass>
+      <String fx:value="anchor" />
+   </styleClass>
 </AnchorPane>

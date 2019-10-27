@@ -68,4 +68,7 @@
          </font>
       </Text>
    </children>
+      <styleClass>
+      <String fx:value="anchor" />
+   </styleClass>
 </AnchorPane>

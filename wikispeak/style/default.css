@@ -5,6 +5,10 @@
 	-fx-component-text-color: white;
 }
 
+.anchor {
+	-fx-background-color: white;
+}
+
 .button {
 	-fx-background-color: -fx-component-bg-color;
 	-fx-text-fill: -fx-component-text-color;
@@ -15,6 +19,9 @@
 
 }
 
+.logo {
+	-fx-image: url("/wikispeak/resources/varpedia-logo-dark.png");
+}
 
 
 /*COMBO BOX*/

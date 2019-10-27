@@ -9,10 +9,17 @@
 
 <AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.MainController">
   <children>
-      <Button layoutX="994.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="32.0" prefWidth="182.0" text="Settings">
+      <Button layoutX="1120.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="44.0" prefWidth="56.0" textAlignment="CENTER">
          <font>
             <Font size="20.0" fx:id="x11" />
          </font>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@gear.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
     <ImageView fitHeight="486.0" fitWidth="942.0" layoutX="129.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
       <image>

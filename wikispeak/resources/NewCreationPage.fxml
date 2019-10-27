@@ -18,12 +18,12 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Text layoutX="257.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SEARCH FOR A TERM" textAlignment="CENTER" wrappingWidth="685.69775390625">
+      <Text layoutX="257.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="SEARCH FOR A TERM" textAlignment="CENTER" wrappingWidth="685.69775390625">
          <font>
             <Font size="60.0" />
          </font>
       </Text>
-      <Text fx:id="errorMsg" layoutX="359.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="482.0">
+      <Text fx:id="errorMsg" layoutX="359.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" textAlignment="CENTER" wrappingWidth="482.0">
          <font>
             <Font size="20.0" />
          </font></Text>

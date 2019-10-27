@@ -51,7 +51,7 @@
             <Font size="20.0" />
          </font></TextField>
       <TextArea fx:id="wikitText" editable="false" layoutX="50.0" layoutY="108.0" prefHeight="512.0" prefWidth="500.0" wrapText="true" />
-      <Text fx:id="errorMsg" layoutX="52.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="933.6708984375">
+      <Text fx:id="errorMsg" layoutX="52.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" textAlignment="CENTER" wrappingWidth="933.6708984375">
          <font>
             <Font size="20.0" />
          </font></Text>

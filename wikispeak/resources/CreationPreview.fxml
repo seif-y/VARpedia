@@ -62,7 +62,7 @@
             <Image url="@high-rating.png" />
          </image>
       </ImageView>
-      <Text fx:id="ratingLabel" layoutX="1040.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER">
+      <Text fx:id="ratingLabel" layoutX="1040.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>

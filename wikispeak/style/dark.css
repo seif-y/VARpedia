@@ -111,11 +111,11 @@
 }
 
 .table-row-cell:even {
-	-fx-background-color: #444444;
+	-fx-background-color: derive(-fx-component-bg-color, 50%);
 }
 
 .table-row-cell:selected {
-	-fx-background-color: #BBBBBB;
+	-fx-background-color: derive(-fx-component-bg-color, 95%);
 }
 
 

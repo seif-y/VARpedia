@@ -87,10 +87,10 @@ public class NewCreationsController extends Controller {
         	String output = Wikit.get().search(searchField.getText());
         	
         	if (output.equals("")) {
-        		message = "There was an error with wikit :L";
+        		message = "There was an error with wikit.";
         		successful = false;
         	} else if (output.contains("not found :^(")) {
-        		message = output;
+        		message = "Could not find an article for \"" + Wikit.get().getTerm() + "\"";
         		successful = false;
         	} else {
         		wikitOut = output;

@@ -25,11 +25,12 @@ public class SettingsController extends Controller {
     private void initialize() {
     	ObservableList<String> themes = FXCollections.observableArrayList();
         
-        themes.addAll("Default", "Yellow");
+        themes.addAll("Default", "Yellow", "Dark");
         themeOptions.setItems(themes);
         
         themeMap.put("Default", "default.css");
         themeMap.put("Yellow", "yellow.css");
+        themeMap.put("Dark", "dark.css");
     }
     
     private void changeTheme() {

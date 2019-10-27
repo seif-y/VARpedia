@@ -1,27 +1,17 @@
-
-root {
-	
-}
-
-.text {
-	
-}
-
-.background {
-	-fx-background-color: white;
-}
-
-
-
 /*BUTTONS*/
 
+.root {
+	-fx-component-bg-color: black;
+	-fx-component-text-color: white;
+}
+
 .button {
-	-fx-background-color: black;
-	-fx-text-fill: white;
+	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
 }
 
 .mainButton {
-	-fx-background-color: black;
+	-fx-background-color: -fx-component-bg-color;
 
 }
 
@@ -30,13 +20,13 @@ root {
 /*COMBO BOX*/
 
 .combo-box {
-	-fx-background-color: black;
-	-fx-text-fill: white;
+	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
 }
 
 .combo-box .list-cell {
-	-fx-background-color: black;
-	-fx-text-fill: white;
+	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
 }
 
 
@@ -44,7 +34,7 @@ root {
 /*SLIDER*/
 
 .slider > .thumb {
-	-fx-background-color: black;
+	-fx-background-color: -fx-component-bg-color;
 }
 
 .slider > .track {
@@ -57,11 +47,11 @@ root {
 /*TEXT FIELD AND TEXT AREA*/
 
 .text-field {
-	-fx-border-color: black;
+	-fx-border-color: -fx-component-bg-color;
 }
 
 .text-area {
-	-fx-border-color: black;
+	-fx-border-color: -fx-component-bg-color;
 }
 
 
@@ -69,7 +59,7 @@ root {
 /*SCROLL BAR (FOR TEXT AREA)*/
 
 .scroll-bar:vertical > .thumb {
-	-fx-background-color: black;
+	-fx-background-color: -fx-component-bg-color;
 }
 
 
@@ -89,7 +79,7 @@ root {
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-component-text-color;
 }
 
 .table-row-cell:even {

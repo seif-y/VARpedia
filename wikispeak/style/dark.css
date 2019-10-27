@@ -1,14 +1,14 @@
 
 root {
-	
+	-fx-background-color: black;
 }
 
 .text {
 	
 }
 
-.background {
-	-fx-background-color: white;
+.anchor {
+	-fx-background-color: black;
 }
 
 

@@ -72,12 +72,12 @@ public class FinishCreationController extends Controller {
     	selectedAudioList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
         ObservableList<String> music = FXCollections.observableArrayList();
-        music.addAll("One", "Two");
+        music.addAll("Classic Piano", "Hip-Hop");
         //musicOptions.setStyle("-fx-font: 20px \"System\";");
         musicOptions.setItems(music);
         
-        musicMap.put("One", "perspective.mp3");
-        musicMap.put("Two", "whatyousay.mp3");
+        musicMap.put("Classic Piano", "perspective.mp3");
+        musicMap.put("Hip-Hop", "whatyousay.mp3");
     	
     	selectedImages = FXCollections.observableArrayList();
     	selectedImageList.setItems(selectedImages);

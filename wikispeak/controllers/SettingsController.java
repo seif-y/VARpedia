@@ -21,6 +21,7 @@ public class SettingsController extends Controller {
     private ComboBox<String> themeOptions;
     private Map<String, String> themeMap = new IdentityHashMap<>();
     
+    @FXML
     private void initialize() {
     	ObservableList<String> themes = FXCollections.observableArrayList();
         

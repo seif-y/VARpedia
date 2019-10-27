@@ -1,12 +1,12 @@
 /*BUTTONS*/
 
 .root {
-	-fx-component-bg-color: #f05e23;
+	-fx-component-bg-color: #cd3900;
 	-fx-component-text-color: white;
 }
 
 .anchor {
-	-fx-background-image: url("/wikispeak/resources/retro-bg.jpg");
+	-fx-background-image: url("/wikispeak/resources/patternbg.png");
 }
 
 .button {
@@ -21,6 +21,7 @@
 
 .themeButton {
 	-fx-border-color: -fx-component-bg-color;
+
 }
 
 .logo {

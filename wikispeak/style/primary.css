@@ -20,14 +20,15 @@
 	-fx-background-color: -fx-component-bg-color;
 	-fx-border-width: 8px;
 	-fx-border-color: #ffde03;
+}
 
+.themeButton {
+	-fx-border-color: #ffde03;
 }
 
 .logo {
 	-fx-image: url("/wikispeak/resources/varpedia-logo-light.png");
 }
-
-
 /*COMBO BOX*/
 
 .combo-box {
@@ -49,8 +50,8 @@
 }
 
 .slider > .track {
-	-fx-background-color: white;
-	-fx-border-color: black;
+	-fx-background-color: -fx-component-text-color;
+	-fx-border-color: -fx-component-bg-color;
 }
 
 
@@ -67,6 +68,14 @@
 
 
 
+/*TEXT BOX*/
+
+.text-box {
+	-fx-fill: -fx-component-bg-color;
+}
+
+
+
 /*SCROLL BAR (FOR TEXT AREA)*/
 
 .scroll-bar:vertical > .thumb {
@@ -78,9 +87,9 @@
 /*TABLE*/
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: -fx-component-bg-color;
+    -fx-control-inner-background: -fx-component-bg-color;
+    -fx-background-color: -fx-component-bg-color;
 }
 
 .table-view .column-header-background {
@@ -94,9 +103,22 @@
 }
 
 .table-row-cell:even {
-	-fx-background-color: #444444;
+	-fx-background-color: derive(-fx-component-bg-color, 60%);
 }
 
 .table-row-cell:selected {
-	-fx-background-color: #BBBBBB;
+	-fx-background-color: #444444;
+}
+
+
+
+/*LIST VIEW*/
+
+.list-view {
+	-fx-border-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-bg-color;
+}
+
+.list-cell:selected {
+	-fx-background-color: -fx-component-bg-color;
 }

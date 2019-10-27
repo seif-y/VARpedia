@@ -71,4 +71,31 @@ public class SettingsController extends Controller {
     	themeFileName = "primary.css";
         switchScenes(pane,"SettingsPage.fxml");
     }
+    
+    /**
+     * Loads default theme.
+     */
+    @FXML
+    private void handleRetroTheme() {
+    	themeFileName = "retro.css";
+        switchScenes(pane,"SettingsPage.fxml");
+    }
+    
+    /**
+     * Loads default theme.
+     */
+    @FXML
+    private void handlePatternTheme() {
+    	themeFileName = "pattern.css";
+        switchScenes(pane,"SettingsPage.fxml");
+    }
+    
+    /**
+     * Loads default theme.
+     */
+    @FXML
+    private void handleNatureTheme() {
+    	themeFileName = "nature.css";
+        switchScenes(pane,"SettingsPage.fxml");
+    }
 }

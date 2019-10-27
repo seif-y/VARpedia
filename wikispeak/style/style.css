@@ -1,14 +1,19 @@
 @font-face {
 	font-family: Roboto;
-	src: url('Roboto-Regular.ttf');
+	src: url('/wikispeak/style/Mollen-Bold.otf');
+}
+
+@font-face {
+	font-family: RobotoTitle;
+	src: url('/wikispeak/style/Mollen-Bold.otf');
 }
 
 root {
-	-fx-font-family: Roboto;
+	-fx-font-family: RobotoTitle;
 }
 
 .text {
-	-fx-font-family: Roboto;
+	-fx-font-family: RobotoTitle;
 }
 
 .background {
@@ -19,7 +24,7 @@ root {
 /*BUTTONS*/
 
 .button {
-	-fx-font-family: Roboto;
+	-fx-font-family: RobotoTitle;
 	-fx-font-size: 22;
 	-fx-border-width: 2;
 }
@@ -33,6 +38,7 @@ root {
 	-fx-background-radius: 0;
 	-fx-border-width: 2;
 	-fx-font-size: 40;
+	-fx-font-family: RobotoTitle;
 }
 
 

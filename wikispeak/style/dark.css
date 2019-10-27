@@ -61,11 +61,16 @@
 .text-field {
 	-fx-border-color: -fx-component-text-color;
 	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
+}
+
+.text-area .content {
+	-fx-border-color: -fx-component-text-color;
+	-fx-background-color: -fx-component-bg-color;
 }
 
 .text-area {
-	-fx-border-color: -fx-component-text-color;
-	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
 }
 
 
@@ -112,3 +117,27 @@
 .table-row-cell:selected {
 	-fx-background-color: #BBBBBB;
 }
+
+
+
+/*LIST VIEW*/
+
+.list-view {
+	-fx-border-color: -fx-component-text-color;
+	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
+}
+
+.list-cell {
+	-fx-background-color: -fx-component-bg-color;
+	-fx-text-fill: -fx-component-text-color;
+}
+
+.list-cell:even {
+	-fx-background-color: #444444;
+}
+
+.list-cell:selected {
+	-fx-background-color: #BBBBBB;
+}
+

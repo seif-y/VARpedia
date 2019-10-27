@@ -107,3 +107,11 @@ root {
 
 .table-row-cell:selected {
 }
+
+
+
+/*LIST VIEW*/
+
+.list-view {
+	-fx-border-width: 2;
+}

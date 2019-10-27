@@ -32,14 +32,28 @@ public class SettingsController extends Controller {
         themeMap.put("Yellow", "yellow.css");
     }
     
-    
+    private void changeTheme() {
+    	if (themeOptions.getSelectionModel().getSelectedItem() != null) {
+    		themeFileName = themeMap.get(themeOptions.getSelectionModel().getSelectedItem());
+    	} 	
+    }
 
     
     /**
-     * Loads "Settings" page
+     * Loads "Home" page
      */
     @FXML
     private void handleBack() {
+    	changeTheme();
         switchScenes(pane,"HomePage.fxml");
+    }
+    
+    /**
+     * Loads new theme.
+     */
+    @FXML
+    private void handlePreview() {
+    	changeTheme();
+        switchScenes(pane,"SettingsPage.fxml");
     }
 }

@@ -28,7 +28,7 @@ public class WikiSpeakApp extends Application {
         scene.getStylesheets().clear();
         scene.getStylesheets().add("wikispeak/style/style.css");
         scene.getStylesheets().add("wikispeak/style/default.css");
-        Controller.setTheme("yellow.css");
+        Controller.setTheme("default.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("VARpedia");
         primaryStage.show();

@@ -17,7 +17,8 @@
          <font>
         <Font size="20.0" fx:id="x1" />
          </font></Text>
-      <Button layoutX="68.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
-      <ComboBox fx:id="themeOptions" layoutX="315.0" layoutY="340.0" prefHeight="44.0" prefWidth="570.0" />
+      <Button layoutX="28.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="44.0" prefWidth="88.0" text="Back" />
+      <ComboBox fx:id="themeOptions" layoutX="222.0" layoutY="340.0" prefHeight="44.0" prefWidth="570.0" />
+      <Button layoutX="815.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePreview" prefHeight="44.0" prefWidth="164.0" text="Preview" />
   </children>
 </AnchorPane>

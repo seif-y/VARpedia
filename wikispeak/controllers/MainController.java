@@ -78,4 +78,12 @@ public class MainController extends Controller {
     private void handleViewCreations() {
         switchScenes(pane,"CreationsPage.fxml");
     }
+    
+    /**
+     * Loads "Settings" page
+     */
+    @FXML
+    private void handleSettings() {
+        switchScenes(pane,"SettingsPage.fxml");
+    }
 }

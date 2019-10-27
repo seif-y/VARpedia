@@ -9,6 +9,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public abstract class Controller {
+	
+	protected static String themeFileName;
 
     protected void switchScenes(Pane pane, String FXMLFileName) {
     	onSwitchScenes();
@@ -19,12 +21,20 @@ public abstract class Controller {
         loader.setLocation(this.getClass().getResource("/wikispeak/resources/" + FXMLFileName));
         try {
             Pane newPage = loader.load();
-            stage.setScene(new Scene(newPage));
+            Scene scene = new Scene(newPage);
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add("wikispeak/style/style.css");
+            scene.getStylesheets().add("wikispeak/style/" + themeFileName);
+            stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 	
 	protected void onSwitchScenes() {}
+	
+	public static void setTheme(String theme) {
+		themeFileName = theme;
+	}
 
 }

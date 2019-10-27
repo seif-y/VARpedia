@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import wikispeak.controllers.Controller;
 
 import java.io.IOException;
 
@@ -24,6 +25,10 @@ public class WikiSpeakApp extends Application {
         loader.setLocation(this.getClass().getResource("/wikispeak/resources/HomePage.fxml"));
         Parent layout = loader.load();
         Scene scene = new Scene(layout);
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add("wikispeak/style/style.css");
+        scene.getStylesheets().add("wikispeak/style/default.css");
+        Controller.setTheme("yellow.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("VARpedia");
         primaryStage.show();

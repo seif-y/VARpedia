@@ -18,7 +18,7 @@
          </font></Text>
       <Button layoutX="28.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="44.0" prefWidth="88.0" text="Back" />
       <Button id="themeButton1" layoutX="58.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDefaultTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="themeButton" text="Default" />
-      <Button id="themeButton5" layoutX="58.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePrimaryTheme" prefHeight="250.0" prefWidth="250.0" styleClass="themeButton" />
+      <Button id="themeButton5" layoutX="58.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePrimaryTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(#cc0222 50%, #0336aa 50%); -fx-text-fill: #ffde03;" styleClass="themeButton" text="Primary" />
       <Button id="themeButton2" layoutX="336.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDarkTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: black; -fx-text-fill: white;" styleClass="themeButton" text="Dark" />
       <Button id="themeButton6" layoutX="336.0" layoutY="448.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" styleClass="themeButton" />
       <Button id="themeButton3" layoutX="615.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleMustardTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #e1ad01; -fx-text-fill: white;" styleClass="themeButton" text="Mustard" textFill="WHITE" />

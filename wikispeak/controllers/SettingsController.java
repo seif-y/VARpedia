@@ -68,7 +68,7 @@ public class SettingsController extends Controller {
      */
     @FXML
     private void handlePrimaryTheme() {
-    	themeFileName = "pastel.css";
+    	themeFileName = "primary.css";
         switchScenes(pane,"SettingsPage.fxml");
     }
 }

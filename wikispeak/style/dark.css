@@ -7,7 +7,7 @@
 }
 
 .anchor {
-	-fx-background-color: #333333;
+	-fx-background-color: #1f1f1f;
 }
 
 .button {
@@ -20,6 +20,10 @@
 .mainButton {
 	-fx-background-color: -fx-component-bg-color;
 
+}
+
+.themeButton {
+	-fx-border-color: white;
 }
 
 .logo {

@@ -29,6 +29,12 @@ root {
 
 }
 
+.themeButton {
+	-fx-background-radius: 0;
+	-fx-border-width: 2;
+	-fx-font-size: 40;
+}
+
 
 
 /*COMBO BOX*/

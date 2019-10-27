@@ -23,8 +23,9 @@ public abstract class Controller {
             Pane newPage = loader.load();
             Scene scene = new Scene(newPage);
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("wikispeak/style/style.css");
             scene.getStylesheets().add("wikispeak/style/" + themeFileName);
+            scene.getStylesheets().add("wikispeak/style/style.css");
+            
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

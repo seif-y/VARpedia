@@ -15,7 +15,9 @@
 
 }
 
-
+.themeButton {
+	-fx-border-color: -fx-component-bg-color;
+}
 
 /*COMBO BOX*/
 

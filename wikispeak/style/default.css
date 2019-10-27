@@ -19,6 +19,10 @@
 
 }
 
+.themeButton {
+	-fx-border-color: black;
+}
+
 .logo {
 	-fx-image: url("/wikispeak/resources/varpedia-logo-dark.png");
 }

@@ -1,7 +1,7 @@
 /*BUTTONS*/
 
 .root {
-	-fx-component-bg-color: #cec8e4;
+	-fx-component-bg-color: #beaad4;
 	-fx-component-text-color: white;
 }
 
@@ -12,10 +12,14 @@
 .button {
 	-fx-background-color: -fx-component-bg-color;
 	-fx-text-fill: -fx-component-text-color;
+	-fx-border-width: 4;
+	-fx-border-color: white;
 }
 
 .mainButton {
 	-fx-background-color: -fx-component-bg-color;
+	-fx-border-width: 4;
+	-fx-border-color: white;
 
 }
 

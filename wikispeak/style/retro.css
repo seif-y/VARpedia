@@ -69,7 +69,7 @@
 /*TEXT BOX*/
 
 .text-box {
-	-fx-fill: -fx-component-text-color;
+	-fx-fill: white;
 }
 
 

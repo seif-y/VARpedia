@@ -6,11 +6,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="anchor" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.SettingsController">
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1200.0" styleClass="anchor" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wikispeak.controllers.SettingsController">
   <children>
     <Text layoutX="287.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" wrappingWidth="626.5478515625">
       <font>
-        <Font size="35.0" />
+        <Font name="Roboto Black" size="35.0" />
       </font>
          <styleClass>
             <String fx:value="text-box" />
@@ -19,16 +19,40 @@
     </Text>
     <Text layoutX="101.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-box" text="Select a theme:" textAlignment="CENTER" wrappingWidth="998.6708984375">
          <font>
-        <Font size="20.0" fx:id="x1" />
+        <Font size="24.0" fx:id="x1" />
          </font></Text>
       <Button layoutX="28.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="44.0" prefWidth="88.0" text="Back" />
-      <Button id="themeButton1" layoutX="58.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDefaultTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="themeButton" text="Default" />
-      <Button id="themeButton5" layoutX="58.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePrimaryTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(#cc0222 50%, #0336aa 50%); -fx-text-fill: #ffde03;" styleClass="themeButton" text="Primary" />
-      <Button id="themeButton2" layoutX="336.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDarkTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: black; -fx-text-fill: white;" styleClass="themeButton" text="Dark" />
-      <Button id="themeButton6" layoutX="336.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleRetroTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/retro-bg.jpg&quot;); -fx-background-size: 420; -fx-text-fill: white;" styleClass="themeButton" text="Retro" />
-      <Button id="themeButton3" layoutX="615.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleMustardTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #e1ad01; -fx-text-fill: white;" styleClass="themeButton" text="Mustard" textFill="WHITE" />
-      <Button id="themeButton7" layoutX="615.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePatternTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/patternbg.png&quot;); -fx-background-size: 425; -fx-text-fill: #cd3900;" styleClass="themeButton" text="Pattern" />
-      <Button id="themeButton4" layoutX="893.0" layoutY="171.0" mnemonicParsing="false" onAction="#handlePastelTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(#a6c1ee, #fbc2eb); -fx-text-fill: white;" styleClass="themeButton" text="Pastel" />
-      <Button id="themeButton8" layoutX="893.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleNatureTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/nature-bg.png&quot;); -fx-background-size: 420; -fx-text-fill: white;" styleClass="themeButton" text="Nature" />
+      <Button id="themeButton1" layoutX="58.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDefaultTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="themeButton" text="Default">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton5" layoutX="58.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePrimaryTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(#cc0222 50%, #0336aa 50%); -fx-text-fill: #ffde03;" styleClass="themeButton" text="Primary">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton2" layoutX="336.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleDarkTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: black; -fx-text-fill: white;" styleClass="themeButton" text="Dark">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton6" layoutX="336.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleRetroTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/retro-bg.jpg&quot;); -fx-background-size: 420; -fx-text-fill: white;" styleClass="themeButton" text="Retro">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton3" layoutX="615.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleMustardTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #e1ad01; -fx-text-fill: white;" styleClass="themeButton" text="Mustard" textFill="WHITE">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton7" layoutX="615.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePatternTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/patternbg.png&quot;); -fx-background-size: 425; -fx-text-fill: #cd3900;" styleClass="themeButton" text="Pattern">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton4" layoutX="893.0" layoutY="171.0" mnemonicParsing="false" onAction="#handlePastelTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(#a6c1ee, #fbc2eb); -fx-text-fill: white;" styleClass="themeButton" text="Pastel">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
+      <Button id="themeButton8" layoutX="893.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleNatureTheme" prefHeight="250.0" prefWidth="250.0" style="-fx-background-image: url(&quot;wikispeak/resources/nature-bg.png&quot;); -fx-background-size: 420; -fx-text-fill: white;" styleClass="themeButton" text="Nature">
+         <font>
+            <Font name="Roboto Black" size="13.0" />
+         </font></Button>
   </children>
 </AnchorPane>

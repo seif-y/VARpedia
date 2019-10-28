@@ -70,7 +70,7 @@
 /*TEXT BOX*/
 
 .text-box {
-	-fx-fill: -fx-component-bg-color;
+	-fx-fill: -fx-component-text-color;
 }
 
 

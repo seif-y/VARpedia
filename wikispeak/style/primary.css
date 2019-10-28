@@ -12,13 +12,13 @@
 .button {
 	-fx-background-color: -fx-component-bg-color;
 	-fx-text-fill: -fx-component-text-color;
-	-fx-border-width: 8px;
+	-fx-border-width: 4;
 	-fx-border-color: #ffde03;
 }
 
 .mainButton {
 	-fx-background-color: -fx-component-bg-color;
-	-fx-border-width: 8px;
+	-fx-border-width: 4;
 	-fx-border-color: #ffde03;
 }
 

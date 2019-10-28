@@ -28,10 +28,12 @@ root {
 	-fx-font-family: Roboto;
 	-fx-font-size: 22;
 	-fx-border-width: 2;
+	-fx-effect: dropshadow(gaussian, rgba(11,11,11,0.5), 0, 0, 2, 2);
 }
 
 .mainButton {
 	-fx-font-size: 30;
+	-fx-effect: dropshadow(gaussian, rgba(11,11,11,0.5), 0, 0, 3, 3);
 
 }
 
@@ -41,6 +43,7 @@ root {
 	-fx-font-size: 45;
 	-fx-font-family: Roboto;
 	-fx-font-weight: bold;
+	-fx-effect: dropshadow(gaussian, rgba(11,11,11,0.5), 0, 0, 5, 5);
 }
 
 

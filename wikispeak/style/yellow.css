@@ -31,6 +31,10 @@
 	-fx-text-fill: -fx-component-text-color;
 }
 
+.logo {
+	-fx-image: url("/wikispeak/resources/varpedia-logo-yellow.png");
+}
+
 
 
 /*SLIDER*/

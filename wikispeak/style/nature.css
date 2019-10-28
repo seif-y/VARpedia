@@ -1,4 +1,4 @@
-/*BUTTONS*/
+
 
 .root {
 	-fx-component-bg-color: #006400;
@@ -8,6 +8,12 @@
 .anchor {
 	-fx-background-image: url("/wikispeak/resources/nature-bg.png");
 }
+
+.title {
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 1, 1, 3, 3);
+}
+
+/*BUTTONS*/
 
 .button {
 	-fx-background-color: -fx-component-bg-color;
@@ -70,7 +76,8 @@
 /*TEXT BOX*/
 
 .text-box {
-	-fx-fill: -fx-component-text-color;
+	-fx-fill: white;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 1, 1, 1, 1);
 }
 
 

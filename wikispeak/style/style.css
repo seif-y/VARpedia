@@ -1,11 +1,11 @@
 @font-face {
 	font-family: Roboto;
-	src: url('/wikispeak/style/Roboto-Regular.otf');
+	src: url('/wikispeak/style/Roboto-Regular.ttf');
 }
 
 @font-face {
 	font-family: RobotoTitle;
-	src: url('/wikispeak/style/Roboto-Bold.otf');
+	src: url('/wikispeak/style/Roboto-Bold.ttf');
 }
 
 root {
